@@ -1,0 +1,97 @@
+---------------------------------
+| FaabBB Version 3.0 ALPHA		|					
+| Copyright © 2011 FaabTech		|							
+---------------------------------
+Introduction:
+---------------------------------
+
+FaabBB is an open-source website management system, designed for managing websites and communities. 
+
+FaabBB has support for serveral SQL servers including MySQL and Microsoft SQL. FaabBB uses an abstract design, which
+can be ripped off the source-code, an SQL system with Logic™, a powerfull content management system and plenty plugins
+for communities.
+
+---------------------------------
+Using FaabBB
+---------------------------------
+
+Recruitments:
+	* PHP 4+
+	* An SQL Server, MySQL approved.
+	* Common sense.
+	
+Extract the download and navigate to the following url:
+http://yourwebsite.com/folderinstalled/install.php
+Localhost:
+http://localhost/folderinstalled/install.php
+
+FaabBB is developed and tested using Eclipse on a Windows system, so you should be able to import
+this project in Eclipse which should detect the project layout
+automatically.
+
+----------------------------------
+Licensing
+----------------------------------
+  Copyright (c) 2011 FaabTech <faabtech.com>
+ 
+  More information about FaabBB may be found on these websites:
+     http://faabtech.com/faabbb
+ 
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+ 
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+ 
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  THE SOFTWARE.
+  
+----------------------------------
+Credits and Thanks list.
+----------------------------------
+Credits:
+	* Fabian M. (Faab234@hotmail.com)
+	
+Thanks:
+	* Runelocus		(http://runelocus.com)
+	* Potstyle		(http://runelocus.com)
+	* Mystic Flow	(http://runelocus.com)
+	* Perfection	(http://runelocus.com)
+	* 2kbarrows		(http://runelocus.com)
+	* Fly			(http://runelocus.com)
+	* J I M B O		(http://runelocus.com)
+	* Drosel		(http://runelocus.com)
+	* Kaos			(http://runelocus.com)
+	* Skiddies		(http://runelocus.com) (http://skiddies.us)
+	* Justin H		(http://runelocus.com)
+	* Joshua F		(http://runelocus.com)
+	* Fellixombc	(http://runelocus.com) (http://freeflyin.com)
+	* Twisted		(http://runelocus.com)
+	* Smudge		(http://runelocus.com) 
+	* Anthony`		(http://runelocus.com) 
+	
+Forgot to add you? Send me a message.
+
+----------------------------------
+Contact
+----------------------------------
+Website:
+http://faabtech.com/faabbb
+Twitter:
+http://twitter.com/faab234
+E-mail: 
+faab234@hotmail.com
+
+
+
+ 
+ 

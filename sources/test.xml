@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<faabmod>
+	<product>
+		<name>Test</name>
+		<description>Test</description>
+		<author>Hi</author>
+		<version>1.0</version>
+	</product>
+	
+	<plugin>
+		<hooks>
+			<hook as="helloworld" doit="false">template::main_below</hook>
+		</hooks>
+		<includes>
+			<include>Println.ini</include>
+		</includes>
+		
+		<hook name="helloworld">
+			<println>Hello world</println>
+			<println>Hello world</println>
+		</hook>
+	</plugin>
+
+
+</faabmod>

@@ -1,0 +1,147 @@
+/*
+ *   Copyright (C) 2010 Faab234 (FaabDesign)
+ *
+ *   This program is free software: you can redistribute it and/or modify
+ * 	 it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ */
+
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	background:#cccccc;
+	margin: 0;
+	padding: 0;
+}
+
+.content-container {
+	width: 100%;
+
+
+	
+}
+
+
+
+blockquote,
+blockquote p
+{
+	color:#140F00;
+font-family: Arial, Helvetica, Sans-Serif;
+font-style: italic;
+font-weight: normal;
+text-align: left;
+}
+blockquote
+{
+		border:solid 1px #ccc; 
+		margin:10px 10px 10px 50px;
+	padding:5px 5px 5px 41px;
+	background-color:#E2F4FF;
+	background-image:url('../images/PostQuote.png');
+	background-position:left top;
+	background-repeat:no-repeat;
+}
+
+
+#header-top {
+
+	
+	
+}
+
+#top-bar {
+	height:400px;
+width: 100%;
+z-index: 3; 
+padding: 0px;
+background: url(../images/top_bg.png);
+
+
+}
+
+
+
+#content {
+	margin-top: 10px;
+	min-height:500px;
+	height: auto;
+	padding: 10px;
+	width: 65%;
+	margin-left:auto;
+	margin-right: auto;
+
+
+}
+
+.container {
+	
+	min-height:500px;
+border-top: solid 1px #000000;	
+  	margin-bottom: 10px;
+	background: url(../images/content_bg.png) #cccccc repeat-x;
+}
+
+
+.article {
+	margin-top: 0;
+	margin: 10px;
+	width: 50%;
+	  -moz-box-shadow: 1px 1px 2px #000; /* Firefox/Mozilla */  
+  -webkit-box-shadow: 1px 1px 2px #000; /*Safari/Chrome */  
+  box-shadow: 1px 1px 2px #000; /* Opera & hoe het zou moeten */  
+  /* Voor IE 8 */  
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=135, Color='#000000')";  
+  /* Voor IE 5.5 - 7 */  
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=135, Color='#000000');  
+  background: url(../images/article.png) #fcfcfc repeat-x;
+}
+
+.article-header {
+
+height: 20px;
+border: 0;
+font-weight: bold;
+color: #7892c4;
+padding: 10px;
+}
+
+
+.article-content {
+height:auto;
+padding: 10px;
+border-top: 1px solid #ccc;
+color:#464A52;
+
+}
+
+#copy {
+	height: auto;
+	padding: 5px;
+	text-align: center;
+	margin-top: 20px;
+	font-size: 9px;
+	color: #626873;
+
+}
+
+.row {
+	clear: left;
+}
+
+.row #article-panel {
+	float: left;
+	width: 60%;
+}
+
+.row #login-panel {
+	float: right;
+	width: 20%;
+}

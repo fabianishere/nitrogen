@@ -1,0 +1,206 @@
+@charset "utf-8";
+/* CSS Document */
+
+.general_box {
+	
+	background: #EEF3F7 url(http://rankupforum.com/public/style_images/velvet-blue/_custom/topline.gif) repeat-x 0% 0%;
+	border: 1px solid #D5DDE5;
+	border-radius: 6px;
+	-moz-border-radius:6px;
+	-webkit-border-radius: 6px;
+	padding: 10px;
+	color: #474747;
+	margin: 10px;
+}
+
+.threadcontent p {
+	margin: 0;
+	color: #606060;
+	font-size: 10px;
+}
+
+
+.tborder {
+	color: #898989;
+}
+
+/* Fixed Positioned AddThis Toolbox */            
+.addthis_toolbox.atfixed {
+    position: fixed;
+    top: 10%;
+    left: 20px;
+    border: 1px solid #eee;
+    padding: 5px 5px 1px;
+    width: 32px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+
+#threads {
+	margin-top: 1px; border-bottom: 1px solid #F0F0F0;
+}
+.navbottomlinks {
+	text-align: center;
+	font-weight:bold;
+}
+
+#moderators:hover {
+	text-decoration: underline;
+}
+
+#threads:hover {
+	background:#ecf8ff;
+}
+#editbutton {
+	background:url(../images/Pencil.png) no-repeat;
+border: 0;
+	width: auto;
+	height: 32px;
+	padding: 0 0 0 32px;
+	font-size: 11px;
+
+}
+#restorebutton {
+	background:url(../images/Add.png)  no-repeat;
+border: 0;
+	width: auto;
+	height: 32px;
+	padding: 0 0 0 32px;
+	font-size: 11px;
+
+}
+#deletebutton {
+	background:url(../images/Remove.png)  no-repeat;
+border: 0;
+	width: auto;
+	height: 32px;
+	padding: 0 0 0 32px;
+	font-size: 11px;
+
+}
+#lockbutton {
+	background:url(../images/Lock.png)  no-repeat;
+	border: 0;
+	width: auto;
+	height: 32px;
+	padding: 0 0 0 32px;
+	font-size: 11px;
+
+}
+#unlockbutton {
+	background:url(../images/Unlocked.png)  no-repeat;
+	border: 0;
+	width: auto;
+	height: 32px;
+	padding: 0 0 0 32px;
+	font-size: 11px;
+
+}
+#aprovebutton {
+	background:url(../images/Done.png) no-repeat;
+	border: 0;
+	width: auto;
+	height: 32px;
+	padding: 0 0 0 32px;
+	font-size: 11px;
+}
+#stickybutton {
+	background:url(../images/Fav.png) no-repeat;
+	border: 0;
+	width: auto;
+	height: 32px;
+	padding: 0 0 0 32px;
+	font-size: 11px;
+}
+.addthis_toolbox .custom_images a {
+    width: 32px;
+    height: 32px;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+.addthis_toolbox .custom_images a img { border: 0; margin: 0 0 1px; opacity: 1.0; }
+.addthis_toolbox .custom_images a:hover img { margin: 1px 0 0; opacity: 0.75; }
+
+td.userdetails {
+	background: #DAD4D4; padding: 5px;
+	width: 20%;
+	
+}
+
+.username {
+	font-weight: bold; text-align: left;padding: 10px; padding-top: 0; padding-bottom: 0;
+}
+
+.board {
+	height: auto;
+	margin: 10px;
+	margin-left:auto;
+	margin-right: auto;
+	color:black;
+	background: transparent;
+}
+
+.threadcontent {
+	background: #F6F9FC;		
+	padding: 5px;
+}
+#signature {
+	border-top: 1px solid #E2E9EF; 
+	padding: 10px;
+	height:auto;
+	min-height: 40px;
+	margin-bottom: 10px; 
+
+}
+.board-header {
+	font-size: 15px;
+    font-weight: normal;
+    text-shadow: 1px 1px 1px #fff;
+    padding: 6px 12px !important;
+    margin: 10px 10px 10px 10px !important;
+    overflow: hidden;
+     border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border: 1px solid #a2b6c9;
+    background: #C6D8E9 url(http://img403.imageshack.us/img403/3301/bgmaintitle.png)  repeat-x;
+	color: #666;
+}
+
+
+.board-content {
+	color: #666;
+	padding: 10px;
+	font: 13px/1.5 Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
+}
+
+.section-content {
+border: 1px solid #ccc;
+width:99%;
+height: 50px;
+padding: 5px;
+}
+
+td.userdetails {
+	
+	background: #F6F9FC;
+	padding: 5px;
+	border-right: 1px solid #E2E9EF;
+
+}
+
+.userdata {
+	
+font-size: 10px;	
+text-align: left;
+padding: 10px;
+}
+
+.post-bottom {
+	background: #B7DDF7;
+	width: 100%;
+	height: 20px;
+	padding: 4px 0px 0 0px;
+}

@@ -1,0 +1,59 @@
+@charset "utf-8";
+/* CSS Document */
+
+.board {
+	margin-top: 0;
+	margin: 10px;
+	width: 90%;
+	  -moz-box-shadow: 1px 1px 2px #000; /* Firefox/Mozilla */  
+  -webkit-box-shadow: 1px 1px 2px #000; /*Safari/Chrome */  
+  box-shadow: 1px 1px 2px #000; /* Opera & hoe het zou moeten */  
+  /* Voor IE 8 */  
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=135, Color='#000000')";  
+  /* Voor IE 5.5 - 7 */  
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=135, Color='#000000');  
+  background: url(../images/article.png) #fcfcfc repeat-x;
+}
+
+#board-header {
+	
+height: 20px;
+border: 0;
+font-weight: bold;
+color: #7892c4;
+padding: 10px;
+}
+
+
+#board-content {
+height:auto;
+padding: 10px;
+border-top: 1px solid #ccc;
+color:#464A52;
+}
+
+#section-content {
+border: 1px solid #ccc;
+width:99%;
+height: 50px;
+padding: 5px;
+}
+
+td.userdetails {
+	
+	background: #DAD4D4;
+	border-right: 1px solid #C5E5FC;
+
+}
+
+.userdata {
+	
+font-size: 10px;	
+padding: 10px;
+}
+
+.post-bottom {
+	background: #B7DDF7;
+	width: 100%;
+	height: 20px;
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<faabmod>
+<layout>
+<div class="article">
+	<div class="article-header">
+		{var: title}
+	</div>
+	<div class="article-content">
+		{var: content}
+	</div>
+</div>
+	
+</layout>
+</faabmod>

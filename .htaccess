@@ -1,0 +1,13 @@
+# htaccess file
+RewriteEngine on
+RewriteRule users/(.*)/(.*)/page/(.*) /faabbb/showprofile.php?id=$1&page=$3
+RewriteRule threads/(.*)/page/(.*) /faabbb/showthread.php?id=$1&page=$2
+RewriteRule board/(.*)/page/(.*) /faabbb/showforum.php?id=$1&page=$2
+RewriteRule board/(.*)/order/(.*) /faabbb/showforum.php?id=$1&order=$2
+RewriteRule board/(.*)/page/(.*)/order/(.*) /faabbb/showforum.php?id=$1&page=$2&order=$3
+RewriteRule threads/(.*) /faabbb/showthread.php?id=$1
+RewriteRule board/(.*)/(.*) /faabbb/showforum.php?id=$1&name=$2
+RewriteRule users/(.*)/(.*) /faabbb/showprofile.php?id=$1&name=$2
+RewriteRule inbox/(.*) /faabbb/showpm.php?id=$1
+RewriteRule users/(.*) /faabbb/showprofile.php?id=$1
+RewriteRule board/(.*) /faabbb/showforum.php?id=$1

@@ -38,7 +38,7 @@ abstract class Page extends System {
 	 * The import block.
 	 * Imports will be added here.
 	 */
-	abstract function load();
+	function load();
 	
 	/**
 	 * The main function of our system.

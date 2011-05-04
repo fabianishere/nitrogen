@@ -26,6 +26,7 @@
  */
 
 
+
 class System {
 	
 	   /**
@@ -102,6 +103,13 @@ class System {
 	 		define('FaabBB', true);
 	 		//Include Path
 	 		define('includePath', dirname(self::$file));
+	 		
+	 		
+	 		/**
+			 * Package
+			 */
+			self::registerClass('php.lang.Package');
+			
 	 		/** 
 	 		 * SQL
 	 		 */
@@ -118,7 +126,7 @@ class System {
 			/**
 			 * Plugin
 			 */
-			self::registerClass('php.plugin.Plugin');
+			self::registerClass(self::getPackage()->php->plugin->Plugin);
 	
 			/**
 			 * Utils
@@ -130,12 +138,7 @@ class System {
 			 * Misc
 			 */
 			self::registerClass('php.util.Misc');
-		
-		
-			/**
-			 * Config
-			 */
-			self::registerImport('config.php');
+	
 	 		/**
 	  		 * XMLparser
 	  		 */
@@ -311,6 +314,12 @@ class System {
 		* @param $import the import to add
 		*/
 		static function registerClass($import) {
+			if ($import instanceof Package) {
+				if (is_dir($import->path))
+					self::systemDie(array('File ' . $import->path . ' is directory.'));
+				self::registerImport($import->getPath());
+				return;
+			}
 			// Replace the dot to a slash
 			$import = str_replace('.', '/', $import);
 			
@@ -372,6 +381,14 @@ class System {
 	 	 */
 	 	static function setTemplate($template) {
 	 		self::$template = $template;
+	 	}
+	 	
+	 	/**
+	 	 * Get the default package.
+	 	 * @return the package.
+	 	 */
+	 	static function getPackage() {
+	 		return new Package(dirname(self::getFile()) . '/classes');
 	 	}
 	 	
 	 	/**

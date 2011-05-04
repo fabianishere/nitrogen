@@ -24,27 +24,50 @@
  * THE SOFTWARE.
  *
  */
- 
- //Include the system.
-include(dirname(__FILE__). "/classes/php/lang/Page.class.php");
 
 /**
- * Homepage of website.
+ * Represents a package, used for importing. 
  * @author Fabian M.
  */
-class Index extends Page {
+class Package {
 	
-	function main() {
-		// Run the content_start hook
-		Plugins::runHook("index::content_start");
-		// Create an article
-		ForumContent::createArticle("Welcome", "Welcome at FaabTech.");
-		// Run the content_end hook
-		Plugins::runHook("index::content_end");
+	
+	/**
+	 * The path of this package.
+	 */
+	private $path = '';
+	
+	/**
+	 * Constructs a new package.
+	 * @param path the path of this package.
+	 */
+	function __construct($path) {
+		$this->path = $path . '/';	
 	}
-}
-
-new Index();
- 
 	
-	?>
+	/**
+	 * Get a file in the package.
+	 * @param $get the name of this file.
+	 * @return a new package instance.
+	 */
+	function __get($get) {
+		$file = $this->path . $get;
+		// Does the file exists?
+		if (!file_exists($filename . '.class.php') && !file_exists($filename)) {
+			System::systemDie(array('File ' . $file . ' doesn\'t exists.'));
+		}
+		
+		return new Package($file);
+	}
+	
+	/**
+	 * Returns the path of the file.
+	 * @return the path.
+	 */
+	function getPath() {
+		return $this->path;
+	}
+	
+	
+	
+}

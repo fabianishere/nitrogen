@@ -46,19 +46,16 @@ class Forum extends Page {
 	 */
 	function main() {
 		// Run the content_start hook
-		Plugins::runHook("index::content_start");
-		// Show the main-board
-		ForumContent::showMainBoard();
+		Plugins::runHook("forum::content_start");
+		
 		// Run the content_end hook
-		Plugins::runHook("index::content_end");
+		Plugins::runHook("forum::content_end");
 	}
 	
 	
 }
 
-//Startup the System.
-System::startup(new Forum(), 'Forum', __FILE__);
-
+new Forum();
 
 
 

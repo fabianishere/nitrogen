@@ -37,14 +37,11 @@ class Index extends Page {
 	function main() {
 		// Run the content_start hook
 		Plugins::runHook("index::content_start");
-		// Create an article
-		ForumContent::createArticle("Welcome", "Welcome at FaabTech.");
+		
 		// Run the content_end hook
 		Plugins::runHook("index::content_end");
 	}
 }
 
 new Index();
- 
-	
-	?>
+?>

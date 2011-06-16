@@ -27,7 +27,7 @@
  */
 
 System::registerImport("sources/xmlscript/class.php");
-System::registerClass("php.io.File");
+System::registerClass("php.io.FileUtils");
 
 
 class Plugin {

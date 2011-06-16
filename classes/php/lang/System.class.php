@@ -26,7 +26,10 @@
  */
 
 
-
+/**
+ * The whole site is working on this system.
+ * @author Fabian M.
+ */
 class System {
 	
 	   /**
@@ -34,41 +37,7 @@ class System {
 	    * <note>Default value is 'index'.</note>
 	    */
 		private static $template = "index";
-		
-	   /**
-		* The classes
-		*/
-		private static $classes = array(
-										'ForumContent' => 'php.forum.content.ForumContent',
-										'Section' => 'php.forum.section.Section',
-										'Thread' => 'php.forum.thread.Thread',
-										'Reply' => 'php.forum.thread.Reply',
-										'ThreadUtils' => 'php.forum.thread.util.ThreadUtils',
-										'User' => 'php.forum.user.User',
-										'UserConfig' => 'php.forum.user.UserConfig',
-										'UsergroupUtils' => 'php.forum.user.util.UsergroupUtils',
-										'Counter' => 'php.forum.util.Counter',
-										'Pagination' => 'php.forum.util.Pagination',
-										'Statistics' => 'php.forum.util.Statistics',
-										'FileUtils' => 'php.io.File',
-										'DefaultPrintStream' => 'php.io.DefaultPrintStream',
-										'PrintStream' => 'php.io.PrintStream',
-										'Page' => 'php.lang.Page',
-										'StringUtils' => 'php.lang.util.StringUtils',
-										'System' => 'php.lang.System',
-										'URL' => 'php.net.URL',
-										'Plugin' => 'php.plugin.Plugin',
-										'Plugins' => 'php.plugin.Plugin',
-										'Plugins' => 'php.plugin.Plugin',
-										'Database' => 'php.sql.Database',	
-										'DatabaseManager' => 'php.sql.DatabaseManager',
-										'TemplateManager' => 'php.template.TemplateManager',
-										'Theme' => 'php.template.TemplateManager',
-										'Misc' => 'php.util.Misc',
-										'XMLParser' => 'php.util.xml.XMLParser',
-										'XMLUtils' => 'php.util.xml.XMLUtils',
-										);
-		
+	
 	   /**
 	    * File
 	    */
@@ -114,9 +83,9 @@ class System {
 	 		 * SQL
 	 		 */
 	 		// Import database.class
-			self::registerClass('php.sql.Database');
+			self::registerClass(self::getPackage()->php->sql->Database);
 			// Import MySQL.class
-			self::registerClass('php.sql.impl.MySQL');
+			self::registerClass(self::getPackage()->php->sql->impl->MySQL);
 			//Set the DatabaseManager
 	 		Database::setDatabaseManager(new MySQL());
 	 		// Startup the SQL
@@ -132,53 +101,42 @@ class System {
 			 * Utils
 			 */
 		
-			self::registerClass("php.lang.util.StringUtils");
+			self::registerClass(self::getPackage()->php->lang->StringUtils);
 	
 			/** 
 			 * Misc
 			 */
-			self::registerClass('php.util.Misc');
+			self::registerClass(self::getPackage()->php->util->Misc);
 	
 	 		/**
 	  		 * XMLparser
 	  		 */
-			self::registerClass('php.util.xml.XMLParser');
+			self::registerClass(self::getPackage()->php->util->xml->XMLParser);
 	
 			/** 
 			 * TemplateManager
 	 		 */
-			self::registerClass('php.template.TemplateManager');
+			self::registerClass(self::getPackage()->php->template->TemplateManager);
 			
 			/**
 			 * Print Stream
 			 */
-			self::registerClass("php.io.PrintStream");
+			self::registerClass(self::getPackage()->php->io->PrintStream);
 			
 			/**
 			 * Default Print Stream
 			 */
-			self::registerClass("php.io.DefaultPrintStream");
+			self::registerClass(self::getPackage()->php->io->DefaultPrintStream);
 			
 			/**
 			 * XMLUtils
 			 */
-			self::registerClass("php.util.xml.XMLUtils");
-			
-			
-			/**
-			 * Section
-			 */
-			self::registerClass("php.forum.section.Section");
-			
-		    /**
-			 * Thread
-			 */
-			self::registerClass("php.forum.thread.Thread");
+			self::registerClass(self::getPackage()->php->util->xml->XMLUtils);
 			
 			/**
-			 * Uers
+			 * Annotations
 			 */
-			self::registerClass("php.forum.user.User");
+			self::registerClass(self::getPackage()->php->util->annot->Override);
 			
 			/**
 			 * Load plugins
@@ -203,10 +161,6 @@ class System {
 	 	 * on System ready
 	 	 */
 	 	static function systemReady() {
-	 		/**
-	 		 * Content
-	 		 */	
-	 		self::registerClass('php.forum.content.ForumContent');
 	 		
 	 		/**
 	 		 * Set the out variable
@@ -309,6 +263,8 @@ class System {
 			require(dirname(self::$file) . '/' .  $import);
 		}
 		
+		
+		
   	   /**
 		* Register Classs
 		* @param $import the import to add
@@ -317,7 +273,7 @@ class System {
 			if ($import instanceof Package) {
 				if (is_dir($import->path))
 					self::systemDie(array('File ' . $import->path . ' is directory.'));
-				self::registerImport($import->getPath());
+				require($import->getPath());
 				return;
 			}
 			// Replace the dot to a slash

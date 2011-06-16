@@ -25,47 +25,10 @@
  *
  */
 
-class FileUtils {
-	
-	/**
-	 * Get array with files in directory.
-	 * @param String $directory the directory 
-	 * @return array with files.
-	 */
-	static function getDirectoryList ($directory) {
+/**
+ * Holds the data for a file.
+ * @author Fabian M.
+ */
+class File {
 
-   	 	// create an array to hold directory list
-   	 	$results = array();
-	
-    	// create a handler for the directory
-    	$handler = opendir($directory);
-    	
-    	if (!$handler)
-    		return NULL;
-
-    	// open directory and walk through the filenames
-    	while ($file = readdir($handler)) 
-			if ($file != "." && $file != "..") 
-        		$results[] = $directory . "/" . $file;
-      
-
-    
-
-    		// tidy up: close the handler
-    		closedir($handler);
-
-    		// done!
-    		return $results;
-	}
-	
-	/**
-	 * Get contents
-	 * @param $file the file
-	 * @return contents
-	 */
-	static function getContents($file) {
-		if (!file_exists($file)) 
-			System::systemDie(array('File doesnt exists: ' . $file));
-		return file_get_contents($file);
-	}
 }

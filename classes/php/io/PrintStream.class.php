@@ -31,6 +31,24 @@ abstract class PrintSteam {
 	 * Print a message
 	 * @param $str the message to print
 	 */
+	abstract function printn($str);
+	
+	/**
+	 * Print a message
+	 * @param $str the message to print
+	 */
 	abstract function println($str);
+	
+	/**
+	 * Print a message
+	 * @param $str the message to print
+	 */
+	abstract function printf($str);
+	
+	/**
+	 * Print a message
+	 * @param $str the message to print
+	 */
+	abstract function printr($str);
 	
 }

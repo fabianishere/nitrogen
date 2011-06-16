@@ -27,9 +27,41 @@
 
 
 class DefaultPrintStream extends PrintSteam {
-	 			
+	 	
+	   /**
+		* (non-PHPdoc)
+		* @see PrintSteam::println()
+		*/
+		/** @Override */
 	 	public function println($str) {
-	 			echo System::secure($str);
+	 			echo $str . '<br />';
+	 	}
+	 	
+  	   /**
+		* (non-PHPdoc)
+		* @see PrintSteam::printn()
+		*/
+		/** @Override */
+	 	public function printn($str) {
+	 			print($str);
+	 	}
+	 	
+       /**
+		* (non-PHPdoc)
+		* @see PrintSteam::printf()
+		*/
+		/** @Override */
+	 	public function printf($str) {
+	 			printf($str);
+	 	}
+	 	
+       /**
+		* (non-PHPdoc)
+		* @see PrintSteam::printr()
+		*/
+		/** @Override */
+	 	public function printr($str) {
+	 			print_r($str);
 	 	}
 
 }

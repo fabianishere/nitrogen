@@ -29,16 +29,13 @@ include(dirname(__FILE__) . "/System.class.php");
 
 abstract class Page extends System {
 	
-	
-	
-
-	
-	
 	/**
 	 * The import block.
 	 * Imports will be added here.
 	 */
-	function load();
+	function load() {
+		
+	}
 	
 	/**
 	 * The main function of our system.

@@ -25,9 +25,9 @@
  *
  */
 
-include(dirname(__FILE__) . "/System.class.php");
+include(dirname(__FILE__) . "/Core.class.php");
 
-abstract class Page extends System {
+abstract class Page extends Core {
 	
 	/**
 	 * The import block.

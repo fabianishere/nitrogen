@@ -27,42 +27,11 @@
 
 
 /**
- * The whole site is working on this system.
+ * The core of this website.
  * @author Fabian M.
  */
-class System {
+class Core {
 	
-	   /**
-	    * The template
-	    * <note>Default value is 'index'.</note>
-	    */
-		private static $template = "index";
-	
-	   /**
-	    * File
-	    */
-		public static $file = '';
-	   /**
-		* Imports array
-		*/
-		private static $imports = array(); 
-	   /**
-	   	* Data
-	    */
-		public static $_DATA = array(
-											'DB_HOST' => 'localhost',
-											'DB_USER' => 'root',
-											'DB_PASS' => '',
-											'DB_DATABASE' => 'Faabdesign',
-											'ARTICLE_LAYOUT' => 'article_layout.xml',
-											'FORUM_BOARD_LAYOUT' => 'forum_board_layout.xml',
-											'HTML_LAYOUT' => 'html_layout.xml'
-											);
-	   /**
-		* PrintStream
-		*/
-	   static $out = NULL;
-		
 	   /**
 	    * Load the System
 	    */
@@ -78,25 +47,8 @@ class System {
 			 * Package
 			 */
 			self::registerClass('php.lang.Package');
-			
-	 		/** 
-	 		 * SQL
-	 		 */
-	 		// Import database.class
-			self::registerClass(self::getPackage()->php->sql->Database);
-			// Import MySQL.class
-			self::registerClass(self::getPackage()->php->sql->impl->MySQL);
-			//Set the DatabaseManager
-	 		Database::setDatabaseManager(new MySQL());
-	 		// Startup the SQL
-	 		self::startupSQL();
 
-	
-			/**
-			 * Plugin
-			 */
-			self::registerClass(self::getPackage()->php->plugin->Plugin);
-	
+
 			/**
 			 * Utils
 			 */
@@ -107,16 +59,6 @@ class System {
 			 * Misc
 			 */
 			self::registerClass(self::getPackage()->php->util->Misc);
-	
-	 		/**
-	  		 * XMLparser
-	  		 */
-			self::registerClass(self::getPackage()->php->util->xml->XMLParser);
-	
-			/** 
-			 * TemplateManager
-	 		 */
-			self::registerClass(self::getPackage()->php->template->TemplateManager);
 			
 			/**
 			 * Print Stream
@@ -127,11 +69,6 @@ class System {
 			 * Default Print Stream
 			 */
 			self::registerClass(self::getPackage()->php->io->DefaultPrintStream);
-			
-			/**
-			 * XMLUtils
-			 */
-			self::registerClass(self::getPackage()->php->util->xml->XMLUtils);
 			
 			/**
 			 * Annotations
@@ -147,45 +84,28 @@ class System {
 	
 
 	 	}
+	 
 	 	
 	 	/**
-	 	 * Add System Data
-	 	 * @param $name the name
-	 	 * @param $value the value
-	 	 */
-	 	static function addData($name, $value) {
-	 		self::$_DATA[$name] = $value;
-	 	}
-	 	
-	 	/**
-	 	 * on System ready
+	 	 * Invoked when the system is ready.
 	 	 */
 	 	static function systemReady() {
 	 		
-	 		/**
-	 		 * Set the out variable
-	 		 */
-	 		self::$out = new DefaultPrintStream();
-	 		
-	 		/**
-			 * Parse Plugins
-			 */
-			Plugins::parse();
+
 	 	}
 	 	
 	 
 	 	
 	   /**
 	    * Startup the system.
-	    * @param $class the class.
-	    * @param $title the title.
-	    * @param $file the file
+	    * @param $class The class itself.
+	    * @param $title The title of this page.
+	    * @param $file 	
 	    */
 	 	static function startup($class, $title, $file) {
 	 		// The system is already loaded, so skip it.
 	 		if (defined("FaabBB")) 
 	 			return;
-	 			
 	 		if (!$class instanceof Page) 
 	 			self::systemDie(array('The page must be an instance of the page class.'));
 	 		// Start the session
@@ -195,62 +115,23 @@ class System {
 	 		//Load the System
 	 		self::loadSystem();
 	 		// Load the class
-	 		$class->load();
-	 		// Load the template.
-	 		TemplateManager::loadTemplate(self::getTemplate());
 	 		// After loading.
 	 		self::systemReady();
-	 		//Start template
-			TemplateManager::main_above($title);
 	 		// Startup the page.
 	 		$class->main();
-	 		// End the template
-	 		TemplateManager::main_below();
 	 	}
 	 	
-	 	/**
-	 	 * Secure
-	 	 * @param $str the data
-	 	 * @return secure
-	 	 */
-	 	public static function secure($str) {
-	 		return $str;
-	 	}
-	 	
-	 	/**
-	 	 * Get sitename
-	 	 * @return sitename
-	 	 */
-		static function getSiteName() {
-			return "FaabTech";
-		}
 		
 		/**
-		 * Get file
-		 * @return the File
-		 */
-		static function getFile() {
-			return self::$file;
-		}
-		
-		/**
-		 * Get sources directory
-		 * @return sources Directory
-		 */
-		static function getSources() {
-			return dirname(self::getFile()) . "/sources";
-		}
-		
-		/**
-		 * Get scripturl
-		 * @return the scripturl
+		 * Get the url which contains the current file.
+		 * @return the scripturl.
 		 */
 		static function getScriptUrl() {
 			return "http://" . $_SERVER['HTTP_HOST'] . str_replace("/" . substr(strrchr($_SERVER['PHP_SELF'], "/"), 1), "",$_SERVER['PHP_SELF']);
 		}
 	
    	   /**
-		* Register Import
+		* Register an import.
 		* @param $import the import to add
 		*/
 		static function registerImport($import) {
@@ -289,55 +170,15 @@ class System {
 			// Require it.
 			require(dirname(__FILE__) . '/../../' .  $import . '.class.php');
 		}
-		
-		
-		/**
-		 * Get the classes
-		 * @return returns an array with the path of ever classs
-		 */
-		public function getClasses() {
-			return self::$classes;
-		}
-		
-		
 	
-   		
-	
-  		 /**
- 		  * Die with message.
- 		  * @param errors array with errors.
- 		  */
-		 static function systemDie($errors) {
-		 		echo 'Error(s) in ' . get_called_class() . '.class:<br /> <ul>';
- 				foreach($errors as $error) 
-					echo '<li>'.$error.'</li>';
-		
-				echo '</ul>';
-				exit();
-	 	}	
-	 	
+   	
 	 	/**
-	 	 * Exit the System
+	 	 * Terminates the core.
 	 	 */
-	 	static function systemExit() {
+	 	static function terminate() {
 	 		exit();
 	 	}
-	 	
-	 	/**
-	 	 * Get the template
-	 	 * @return the template
-	 	 */
-	 	static function getTemplate() {
-	 		return self::$template;
-	 	}
-	 	
-		/**
-	 	 * Set the template
-	 	 * @param $template the template to be set.
-	 	 */
-	 	static function setTemplate($template) {
-	 		self::$template = $template;
-	 	}
+	 
 	 	
 	 	/**
 	 	 * Get the default package.
@@ -345,20 +186,6 @@ class System {
 	 	 */
 	 	static function getPackage() {
 	 		return new Package(dirname(self::getFile()) . '/classes');
-	 	}
-	 	
-	 	/**
-	 	 * SQL startup
-	 	 * Startup the SQL 
-	 	 */ 
-	 	static function startupSQL() {
-	 		$link = Database::getDatabaseManager()->create(self::$_DATA['DB_HOST'], self::$_DATA['DB_USER'], self::$_DATA['DB_PASS']);
-	 		if (!$link) 
-	 			self::systemDie(array('Error with connecting to the database.'));
-	 			
-	 		$db = Database::getDatabaseManager()->setDatabase(self::$_DATA['DB_DATABASE']);
-	 		if (!$db)
-	 			self::systemDie(array('Unable to select the database.'));
 	 	}
 	 	
 

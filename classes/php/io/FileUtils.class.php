@@ -1,11 +1,9 @@
-<?php
-
-
+<?php 
 /** 
- * Copyright (c) 2010 Fabian M <fabian.m@faabtech.com>
+ * Copyright (c) 2011 FaabTech <faabtech.com>
  *
  * More information about FaabBB may be found on these websites:
- *     http://faabtech.com/faabbb
+ *    http://faabtech.com/faabbb
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,25 +25,47 @@
  *
  */
 
-class XMLUtils {
+class FileUtils {
 	
 	/**
-	 * Get the body of a tag
-	 * @param $xml the simplexmlelement instance
-	 * @return the body
+	 * Get array with files in directory.
+	 * @param String $directory the directory 
+	 * @return array with files.
 	 */
-	static function getBody($xml) {
-		if (!$xml instanceof SimpleXMLElement)
-			return "";
-		$attributes = '';
-		foreach($xml->attributes() as $attribute => $value)
-			$attributes .=  $attribute . '="' . $value . '" ';	
-		$firststring = '<'.$xml->getName() . ' ' .  $attributes . '>';
-		$laststring = '</'.$xml->getName().'>'; 
-	    $firstindex = strpos($xml->asXML(),$firststring);
-	    $lastindex = strrchr($xml->asXML(), $laststring);
-		return substr($xml->asXML(), $firstindex + strlen($firststring), $lastindex - strlen($lastindex));
+	static function getDirectoryList ($directory) {
+
+   	 	// create an array to hold directory list
+   	 	$results = array();
+	
+    	// create a handler for the directory
+    	$handler = opendir($directory);
+    	
+    	if (!$handler)
+    		return NULL;
+
+    	// open directory and walk through the filenames
+    	while ($file = readdir($handler)) 
+			if ($file != "." && $file != "..") 
+        		$results[] = $directory . "/" . $file;
+      
+
+    
+
+    		// tidy up: close the handler
+    		closedir($handler);
+
+    		// done!
+    		return $results;
+	}
+	
+	/**
+	 * Get contents
+	 * @param $file the file
+	 * @return contents
+	 */
+	static function getContents($file) {
+		if (!file_exists($file)) 
+			System::systemDie(array('File doesnt exists: ' . $file));
+		return file_get_contents($file);
 	}
 }
-
-?>

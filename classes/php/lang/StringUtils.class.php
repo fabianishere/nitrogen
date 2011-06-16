@@ -1,8 +1,8 @@
-<?php
-/* 
- * Copyright (c) 2010 FaabTech <faabtech.com>
+<?php 
+/** 
+ * Copyright (c) 2011 FaabTech <faabtech.com>
  *
- * More information about the FaabBB may be found on these websites:
+ * More information about FaabBB may be found on these websites:
  *    http://faabtech.com/faabbb
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,18 +24,18 @@
  * THE SOFTWARE.
  *
  */
- 
- class ThreadUtils 
- {
+
+class StringUtils {
 	
-	function mayEdit($thread) 
-	{	
-	if (!isLoggedIn()) 
-			return false;
-		$sectionalrow = mysqlArray("SELECT * FROM sectional WHERE userid='".getUserId()."' AND boardid='".$thread->getForumId()."'");
-		if ($thread->getPostUserId() == getUserId() || $sectionalrow) 
-			return true;
-			return false;
+	/**
+	 * Get substring between tag
+	 * @param $str the string
+	 * @param $tag the tag
+	 * @param $tag2 the 2nd tag
+	 * @return the substring 
+	 */
+	function subStringBetween($str, $tag, $tag2) {
+		return substr($str, strrpos($str, $tag) + strlen($tag), strrchr($str, $tag2) - strlen($tag2));
 	}
-	 
- }
+	
+}

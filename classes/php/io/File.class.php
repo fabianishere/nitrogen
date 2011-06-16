@@ -26,7 +26,7 @@
  */
 
 /**
- * Holds the data for a file.
+ * Represents a file.
  * @author Fabian M.
  */
 class File {

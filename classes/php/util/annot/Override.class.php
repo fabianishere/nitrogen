@@ -1,6 +1,6 @@
 <?php
 /** 
- * Copyright (c) 2010 FaabTech <faabtech.com>
+ * Copyright (c) 2011 FaabTech <faabtech.com>
  *
  * More information about FaabBB may be found on these websites:
  *    http://faabtech.com/faabbb
@@ -24,32 +24,12 @@
  * THE SOFTWARE.
  *
  */
- 
- include(dirname(__FILE__).'/DatabaseManager.class.php');
- 
- class Database 
- {
-	 
-	 private static $database;
-	 
-	 /**
-	  * Gets the databasemanager
-	  * @return the database manager
-	  */
-	 static function getDatabaseManager()
-	 {
-		if (self::$database instanceof  DatabaseManager)
-			return self::$database;
-	 }
-	 
-	 /**
-	  * sets the databasemanager
-	  * @param $databasemanager the databasemanager to be set.
-	  */
-	 static function setDatabaseManager($manager)
-	 {
-		if ($manager instanceof DatabaseManager)
-			self::$database = $manager;
-	 }
-	 
+
+
+/**
+ * Annotation for overiding methods.
+ * @author Fabian M.
+ */
+ class Override {
+ 	
  }

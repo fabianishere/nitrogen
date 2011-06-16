@@ -45,11 +45,7 @@ class Forum extends Page {
 	 * @see Page::main()
 	 */
 	function main() {
-		// Run the content_start hook
-		Plugins::runHook("forum::content_start");
-		
-		// Run the content_end hook
-		Plugins::runHook("forum::content_end");
+	
 	}
 	
 	

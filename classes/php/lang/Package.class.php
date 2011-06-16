@@ -1,8 +1,8 @@
 <?php
-/* 
- * Copyright (c) 2010 FaabTech <faabtech.com>
+/** 
+ * Copyright (c) 2011 FaabTech <faabtech.com>
  *
- * More information about the FaabBB may be found on these websites:
+ * More information about FaabBB may be found on these websites:
  *    http://faabtech.com/faabbb
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,23 +24,55 @@
  * THE SOFTWARE.
  *
  */
- 
- class UserConfig 
- {
+
+/**
+ * Represents a package, used for importing. 
+ * @author Fabian M.
+ */
+class Package {
 	
-	public static $_adminRights = array(
-											  6
-											  );
-	 
-	 
-	public static $_moderatorRights = array(
-											  5,
-											  6
-											  );
 	
-	public static $_sectionalRights = array(5,
-											6,
-											4
-											 );
-	 
- }
+	/**
+	 * The absolute path of this package.
+	 */
+	private $path = '';
+
+	
+	/**
+	 * Constructs a new package.
+	 * @param path the path of this package.
+	 */
+	function __construct($path) {
+		$this->path = $path;	
+	}
+	
+	/**
+	 * Get a file in the package.
+	 * @param $name the name of this file.
+	 * @return a new package instance.
+	 */
+	function __get($name) {
+		if ($name == "path")
+			return;
+		$file = $this->path . '/' . $name;
+		// Does the file exists?
+		if (!file_exists($file . '.class.php') && !file_exists($file)) {
+			System::systemDie(array('File ' . $file . ' doesn\'t exists.'));
+		}
+		
+		$file = file_exists($file . '.class.php') ? $file . '.class.php' : $file;
+		
+		return new Package($file);
+	}
+	
+	/**
+	 * Returns the path of the file.
+	 * @return the path.
+	 */
+	function getPath() {
+		return $this->path;
+	}
+	
+	
+	
+}

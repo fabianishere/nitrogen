@@ -21,9 +21,9 @@ Recruitments:
 	* Common sense.
 	
 Extract the download and navigate to the following url:
-http://yourwebsite.com/folderinstalled/install.php
+	http://yourwebsite.com/folderinstalled/install.php
 Localhost:
-http://localhost/folderinstalled/install.php
+	http://localhost/folderinstalled/install.php
 
 FaabBB is developed and tested using Eclipse on a Windows system, so you should be able to import
 this project in Eclipse which should detect the project layout
@@ -64,8 +64,8 @@ Credits:
 Thanks:
 	* Runelocus		(http://runelocus.com)
 	* Potstyle		(http://runelocus.com)
-	* Mystic Flow	(http://runelocus.com)
-	* Perfection	(http://runelocus.com)
+	* Mystic Flow		(http://runelocus.com)
+	* Perfection		(http://runelocus.com)
 	* 2kbarrows		(http://runelocus.com)
 	* Fly			(http://runelocus.com)
 	* J I M B O		(http://runelocus.com)
@@ -74,7 +74,7 @@ Thanks:
 	* Skiddies		(http://runelocus.com) (http://skiddies.us)
 	* Justin H		(http://runelocus.com)
 	* Joshua F		(http://runelocus.com)
-	* Fellixombc	(http://runelocus.com) (http://freeflyin.com)
+	* Fellixombc		(http://runelocus.com) (http://freeflyin.com)
 	* Twisted		(http://runelocus.com)
 	* Smudge		(http://runelocus.com) 
 	* Anthony`		(http://runelocus.com) 
@@ -85,11 +85,11 @@ Forgot to add you? Send me a message.
 Contact
 ----------------------------------
 Website:
-http://faabtech.com/faabbb
+	http://faabtech.com/faabbb
 Twitter:
-http://twitter.com/faab234
+	http://twitter.com/faab234
 E-mail: 
-faab234@hotmail.com
+	faab234@hotmail.com
 
 
 

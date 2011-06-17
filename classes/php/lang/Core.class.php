@@ -26,12 +26,16 @@
  */
 
 
-
 /**
  * The core of this website.
  * @author Fabian M.
  */
 class Core {
+	
+		/**
+		 * The name of the main method we call.
+		 */
+		public static $MAIN_METHOD_NAME = 'main';
 		
 		/**
 		 * Contains all imports.
@@ -105,20 +109,20 @@ class Core {
 	 	}
 	 	
 	 	/**
-	 	 * Process the page class.
-	 	 * @param class The class name of the class to process.
+	 	 * Process the main class.
 	 	 */
-	 	public static function process($class) {
-	 		if (!class_exists($class))
+	 	public static function process() {
+			$base = basename($_SERVER['SCRIPT_FILENAME']);
+			$main = substr($base, 0, strpos($base, '.'));
+			if (!class_exists($main))
 				self::terminate();
-			$reflector = new ReflectionClass($class);
-			if (!($reflector->getParentClass() instanceof Page))
-				self::terminate();
-	 		$class->load();
+			$reflector = new ReflectionClass($main);
 	 		//------------------------------\\
 	 		// Load core components here.	\\
 	 		//------------------------------\\
-	 		$class->main();
+	 		if (!$reflector->hasMethod(self::$MAIN_METHOD_NAME))
+				self::terminate();
+			$reflector->getMethod(self::$MAIN_METHOD_NAME)->invokeArgs(null, array());
 	 	}
 	 	
 	 	

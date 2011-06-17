@@ -25,19 +25,22 @@
  *
  */
  
-include(dirname(__FILE__). "/classes/php/lang/Page.class.php");
+include(dirname(__FILE__). "/classes/php/lang/Core.class.php");
 
 /**
  * Homepage of website.
  * @author Fabian M.
  */
-class Index extends Page {
+class Index {
 	
-	function main() {
+	/**
+	 * Main execution method of the program.
+	 */
+	public static function main() {
 		echo 'test';
 	}
 }
 
-Core::process('Index');
+Core::process();
 
 ?>

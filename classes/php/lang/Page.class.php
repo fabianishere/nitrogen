@@ -27,6 +27,7 @@
 
 include(dirname(__FILE__) . "/Core.class.php");
 
+/** @Deprecated */
 abstract class Page extends Core {
 	
 	/**

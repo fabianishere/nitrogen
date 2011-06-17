@@ -24,20 +24,12 @@
  * THE SOFTWARE.
  *
  */
- 
-include(dirname(__FILE__). "/classes/php/lang/Page.class.php");
+
 
 /**
- * Homepage of website.
+ * Represents an annotation.
  * @author Fabian M.
  */
-class Index extends Page {
-	
-	function main() {
-		echo 'test';
-	}
-}
-
-Core::process('Index');
-
-?>
+ class Annotation {
+ 	
+ }

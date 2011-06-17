@@ -30,6 +30,6 @@
  * Annotation for overiding methods.
  * @author Fabian M.
  */
- class Override {
+ class Override extends Annotation {
  	
  }

@@ -33,22 +33,12 @@ abstract class Page extends Core {
 	 * The import block.
 	 * Imports will be added here.
 	 */
-	function load() {
-		
-	}
+	function load() {}
 	
 	/**
-	 * The main function of our system.
-	 * Imports should not be added here.
+	 * Main execution method of the program.
 	 */
-	abstract function main();
-	
-	
-	/**
-	 * The destructor of this class
-	 */
-	function __destruct() {
-		System::startup($this, 'Index', $_SERVER['SCRIPT_FILENAME']);
-	}
+	function main() {}
+
 	
 }

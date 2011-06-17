@@ -25,11 +25,12 @@
  *
  */
 
+
 class FileUtils {
 	
 	/**
 	 * Get array with files in directory.
-	 * @param String $directory the directory 
+	 * @param $directory the directory 
 	 * @return array with files.
 	 */
 	static function getDirectoryList ($directory) {
@@ -47,15 +48,16 @@ class FileUtils {
     	while ($file = readdir($handler)) 
 			if ($file != "." && $file != "..") 
         		$results[] = $directory . "/" . $file;
+    
       
 
     
 
-    		// tidy up: close the handler
-    		closedir($handler);
+    	// tidy up: close the handler
+    	closedir($handler);
 
-    		// done!
-    		return $results;
+    	// done!
+    	return $results;
 	}
 	
 	/**

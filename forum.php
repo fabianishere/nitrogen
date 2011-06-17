@@ -25,25 +25,17 @@
  *
  */
 
- //Include the system.
 include(dirname(__FILE__). "/classes/php/lang/Page.class.php");
 
-// Start the class.
 class Forum extends Page {
 	
 
-	/**
-	 * (non-PHPdoc)
-	 * @see Page::load()
-	 */
+	/** @Override */
 	function load() {
 		
 	}
 	
-	/**
-	 * (non-PHPdoc)
-	 * @see Page::main()
-	 */
+	/** @Override */
 	function main() {
 	
 	}

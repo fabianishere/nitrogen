@@ -26,70 +26,65 @@
  */
 
 
+
 /**
  * The core of this website.
  * @author Fabian M.
  */
 class Core {
+		
+		/**
+		 * Contains all imports.
+		 */	
+		private static $imports = array();
 	
-	   /**
-	    * Load the System
-	    */
-	 	static function loadSystem() {
-	 		
+	   	/**
+	     * Load the core.
+	     */
+	 	public static function loadCore() {
 	 		//Define FaabBB
 	 		define('FaabBB', true);
-	 		//Include Path
-	 		define('includePath', dirname(self::$file));
-	 		
-	 		
+	 	
 	 		/**
 			 * Package
 			 */
-			self::registerClass('php.lang.Package');
+			self::import('php.lang.Package');
 
 
 			/**
 			 * Utils
 			 */
 		
-			self::registerClass(self::getPackage()->php->lang->StringUtils);
+			self::import(self::getPackage()->php->lang->StringUtils);
 	
 			/** 
 			 * Misc
 			 */
-			self::registerClass(self::getPackage()->php->util->Misc);
+			self::import(self::getPackage()->php->util->Misc);
 			
 			/**
 			 * Print Stream
 			 */
-			self::registerClass(self::getPackage()->php->io->PrintStream);
+			self::import(self::getPackage()->php->io->PrintStream);
 			
 			/**
 			 * Default Print Stream
 			 */
-			self::registerClass(self::getPackage()->php->io->DefaultPrintStream);
+			self::import(self::getPackage()->php->io->DefaultPrintStream);
 			
 			/**
 			 * Annotations
 			 */
-			self::registerClass(self::getPackage()->php->util->annot->Override);
-			
-			/**
-			 * Load plugins
-			 */
-			Plugins::loadPlugins();
-		
-			
-	
+			self::import(self::getPackage()->php->util->annot->Annotation);
+			self::import(self::getPackage()->php->util->annot->Override);
 
 	 	}
 	 
 	 	
 	 	/**
-	 	 * Invoked when the system is ready.
+	 	 * Invoked when the core is ready.
 	 	 */
-	 	static function systemReady() {
+	 	public static function coreReady() {
 	 		
 
 	 	}
@@ -97,29 +92,35 @@ class Core {
 	 
 	 	
 	   /**
-	    * Startup the system.
-	    * @param $class The class itself.
-	    * @param $title The title of this page.
-	    * @param $file 	
+	    * Startup the core.
 	    */
-	 	static function startup($class, $title, $file) {
+	 	public static function startup() {
 	 		// The system is already loaded, so skip it.
 	 		if (defined("FaabBB")) 
 	 			return;
-	 		if (!$class instanceof Page) 
-	 			self::systemDie(array('The page must be an instance of the page class.'));
 	 		// Start the session
 	 		session_start();
-	 		//Set the file
-	 		self::$file = $file;
 	 		//Load the System
-	 		self::loadSystem();
-	 		// Load the class
-	 		// After loading.
-	 		self::systemReady();
-	 		// Startup the page.
+	 		self::loadCore();
+	 	}
+	 	
+	 	/**
+	 	 * Process the page class.
+	 	 * @param class The class name of the class to process.
+	 	 */
+	 	public static function process($class) {
+	 		if (!class_exists($class))
+				self::terminate();
+			$reflector = new ReflectionClass($class);
+			if (!($reflector->getParentClass() instanceof Page))
+				self::terminate();
+	 		$class->load();
+	 		//------------------------------\\
+	 		// Load core components here.	\\
+	 		//------------------------------\\
 	 		$class->main();
 	 	}
+	 	
 	 	
 		
 		/**
@@ -131,10 +132,10 @@ class Core {
 		}
 	
    	   /**
-		* Register an import.
+		* Import an file.
 		* @param $import the import to add
 		*/
-		static function registerImport($import) {
+		static function importFile($import) {
 	
 			if (!file_exists(dirname(self::$file) . '/' .  $import))
 				self::systemDie(array('File not found '.dirname(self::$file) . '/' .  $import));
@@ -147,10 +148,10 @@ class Core {
 		
 		
   	   /**
-		* Register Classs
+		* Import a class.
 		* @param $import the import to add
 		*/
-		static function registerClass($import) {
+		public static function import($import) {
 			if ($import instanceof Package) {
 				if (is_dir($import->path))
 					self::systemDie(array('File ' . $import->path . ' is directory.'));
@@ -175,7 +176,7 @@ class Core {
 	 	/**
 	 	 * Terminates the core.
 	 	 */
-	 	static function terminate() {
+	 	public static function terminate() {
 	 		exit();
 	 	}
 	 
@@ -184,12 +185,11 @@ class Core {
 	 	 * Get the default package.
 	 	 * @return the package.
 	 	 */
-	 	static function getPackage() {
-	 		return new Package(dirname(self::getFile()) . '/classes');
-	 	}
-	 	
+	 	public static function getPackage() {
+	 		return new Package(dirname($_SERVER['SCRIPT_FILENAME']) . '/classes');
+	 	}	
 
-	
-		
-		
 }
+
+// Loads the core.
+Core::loadCore();

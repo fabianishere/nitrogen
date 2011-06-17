@@ -1,9 +1,12 @@
+<div style="text-align: center;">
 ---------------------------------
 | FaabBB Version 3.0 ALPHA	|					
 | Copyright (c) 2011 FaabTech	|							
 ---------------------------------
+</div>
+<span style="padding: 5px; margin-bottom:5px border: 1px solid #666;">
 Introduction:
----------------------------------
+</span>
 
 FaabBB is an open-source website management system, designed for managing websites and communities. 
 

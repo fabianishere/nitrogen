@@ -23,7 +23,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- */
+ */ 
 
 
 /**
@@ -43,8 +43,8 @@ class Core {
 		private static $imports = array();
 	
 	   	/**
-	     * Load the core.
-	     */
+	     	 * Load the core.
+	    	 */
 	 	public static function loadCore() {
 	 		//Define FaabBB
 	 		define('FaabBB', true);
@@ -95,9 +95,9 @@ class Core {
 	 	
 	 
 	 	
-	   /**
-	    * Startup the core.
-	    */
+	   	/**
+	   	 * Startup the core.
+	   	 */
 	 	public static function startup() {
 	 		// The system is already loaded, so skip it.
 	 		if (defined("FaabBB")) 
@@ -134,11 +134,10 @@ class Core {
 		public static function getScriptUrl() {
 			return "http://" . $_SERVER['HTTP_HOST'] . str_replace("/" . substr(strrchr($_SERVER['PHP_SELF'], "/"), 1), "",$_SERVER['PHP_SELF']);
 		}
-	
-   	   /**
-		* Import an file.
-		* @param $import the import to add
-		*/
+	 	/**
+		 * Import an file.
+		 * @param $import the import to add
+		 */
 		public static function importFile($import) {
 	
 			if (!file_exists(dirname(self::$file) . '/' .  $import))
@@ -151,10 +150,10 @@ class Core {
 		
 		
 		
-  	   /**
-		* Import a class.
-		* @param $import the import to add
-		*/
+  	  	/**
+		 * Import a class.
+		 * @param $import the import to add
+		 */
 		public static function import($import) {
 			if ($import instanceof Package) {
 				if (is_dir($import->path))
@@ -181,9 +180,9 @@ class Core {
 	 	 * Terminates the core.
 	 	 */
 	 	public static function terminate() {
-	 		exit();
+	 		exit(); 
 	 	}
-	 
+	  
 	 	
 	 	/**
 	 	 * Get the default package.

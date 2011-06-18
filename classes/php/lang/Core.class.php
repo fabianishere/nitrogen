@@ -181,7 +181,7 @@ class Core {
 	 	 * Terminates the core.
 	 	 */
 	 	public static function terminate() {
-	 		exit();
+	 		exit(); 
 	 	}
 	 
 	 	

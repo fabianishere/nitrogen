@@ -41,6 +41,6 @@ class Index {
 	}
 }
 
-Core::process();
+Core::invoke();
 
 ?>

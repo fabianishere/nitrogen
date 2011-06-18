@@ -27,24 +27,20 @@
 
 include(dirname(__FILE__). "/classes/php/lang/Page.class.php");
 
-class Forum extends Page {
+/**
+ * Forum module.
+ * @author Fabian M.
+ */
+class Forum {
 	
-
-	/** @Override */
-	function load() {
-		
+	/**
+	 * Main execution method of the program.
+	 */
+	public static function main() {
+		echo 'Forum';
 	}
-	
-	/** @Override */
-	function main() {
-	
-	}
-	
-	
 }
 
-new Forum();
-
-
+Core::invoke();
 
 ?>

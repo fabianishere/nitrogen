@@ -33,8 +33,8 @@
 class Core {
 	
 		/**
-		 * The name of the main method we call.
-		 */
+	 	 * The name of the main method we call.
+	 	 */
 		public static $MAIN_METHOD_NAME = 'main';
 		
 		/**
@@ -131,7 +131,7 @@ class Core {
 		 * Get the url which contains the current file.
 		 * @return the scripturl.
 		 */
-		static function getScriptUrl() {
+		public static function getScriptUrl() {
 			return "http://" . $_SERVER['HTTP_HOST'] . str_replace("/" . substr(strrchr($_SERVER['PHP_SELF'], "/"), 1), "",$_SERVER['PHP_SELF']);
 		}
 	
@@ -139,7 +139,7 @@ class Core {
 		* Import an file.
 		* @param $import the import to add
 		*/
-		static function importFile($import) {
+		public static function importFile($import) {
 	
 			if (!file_exists(dirname(self::$file) . '/' .  $import))
 				self::systemDie(array('File not found '.dirname(self::$file) . '/' .  $import));

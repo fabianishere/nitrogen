@@ -31,7 +31,7 @@ include(dirname(__FILE__). "/classes/php/lang/Page.class.php");
  * Forum module.
  * @author Fabian M.
  */
-class Forum {
+class Forum { 
 	
 	/**
 	 * Main execution method of the program.

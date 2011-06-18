@@ -109,9 +109,9 @@ class Core {
 	 	}
 	 	
 	 	/**
-	 	 * Process the main class.
+	 	 * Invoke the main class.
 	 	 */
-	 	public static function process() {
+	 	public static function invoke() {
 			$base = basename($_SERVER['SCRIPT_FILENAME']);
 			$main = substr($base, 0, strpos($base, '.'));
 			if (!class_exists($main))

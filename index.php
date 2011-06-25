@@ -23,9 +23,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- */
- 
-include(dirname(__FILE__). "/classes/php/lang/Core.class.php");
+ */ 
+
+include_once(dirname(__FILE__). "/classes/php/lang/Core.class.php");
 
 /**
  * Homepage of website.
@@ -42,5 +42,7 @@ class Index {
 }
 
 Core::invoke();
+
+throw new Exception("test");
 
 ?>

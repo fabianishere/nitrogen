@@ -27,6 +27,9 @@
 
 include(dirname(__FILE__) . "/Core.class.php");
 
+if (!defined('FaabBB'))
+	exit();
+	
 /** @Deprecated */
 abstract class Page extends Core {
 	

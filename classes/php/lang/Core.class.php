@@ -43,23 +43,25 @@ class Core {
 		private static $imports = array();
 	
 	   	/**
-	     	 * Load the core.
-	    	 */
+	     * Load the core.
+	     */
 	 	public static function loadCore() {
-	 		//Define FaabBB
 	 		define('FaabBB', true);
 	 	
-	 		/**
+	 		/** 
 			 * Package
 			 */
 			self::import('php.lang.Package');
 
+			/**
+			 * Reflection
+			 */
+			self::import(self::getPackage()->php->lang->reflect->PharLoader);
 
 			/**
-			 * Utils
+			 * File
 			 */
-		
-			self::import(self::getPackage()->php->lang->StringUtils);
+			self::import(self::getPackage()->php->io->File);
 	
 			/** 
 			 * Misc
@@ -99,9 +101,6 @@ class Core {
 	   	 * Startup the core.
 	   	 */
 	 	public static function startup() {
-	 		// The system is already loaded, so skip it.
-	 		if (defined("FaabBB")) 
-	 			return;
 	 		// Start the session
 	 		session_start();
 	 		//Load the System
@@ -120,6 +119,8 @@ class Core {
 	 		//------------------------------\\
 	 		// Load core components here.	\\
 	 		//------------------------------\\
+	 		set_error_handler("Core::errorHandler");
+	 		set_exception_handler("Core::exceptionHandler");
 	 		if (!$reflector->hasMethod(self::$MAIN_METHOD_NAME))
 				self::terminate();
 			$reflector->getMethod(self::$MAIN_METHOD_NAME)->invokeArgs(null, array());
@@ -191,6 +192,44 @@ class Core {
 	 	public static function getPackage() {
 	 		return new Package(dirname($_SERVER['SCRIPT_FILENAME']) . '/classes');
 	 	}	
+	 	
+	 	/**
+	 	 * The core error handler.
+	 	 */
+		private static function errorHandler($errno, $errstr, $errfile, $errline) {
+    		if (!(error_reporting() & $errno)) 
+       			return;
+    
+
+   			switch ($errno) {
+   				case E_USER_ERROR:
+        			echo "<b>My ERROR</b> [$errno] $errstr<br />\n";
+        			echo "  Fatal error on line $errline in file $errfile";
+        			echo ", PHP " . PHP_VERSION . " (" . PHP_OS . ")<br />\n";
+        			echo "Aborting...<br />\n";
+       
+       		 	break;
+
+    			case E_USER_WARNING:
+        			echo "<b>My WARNING</b> [$errno] $errstr<br />\n";
+        		break;
+
+    			case E_USER_NOTICE:
+        			echo "<b>My NOTICE</b> [$errno] $errstr<br />\n";
+        		break;
+
+  
+    		}
+
+    		return true;
+		}
+		
+		/**
+		 * The core exception handler.
+		 */
+		public static function exceptionHandler($exception) {
+  			echo "Uncaught exception: " , $exception->getMessage(), "\n";
+		}
 
 }
 

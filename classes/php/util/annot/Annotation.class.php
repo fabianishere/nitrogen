@@ -25,6 +25,8 @@
  *
  */
 
+if (!defined('FaabBB'))
+	exit();
 
 /**
  * Represents an annotation.

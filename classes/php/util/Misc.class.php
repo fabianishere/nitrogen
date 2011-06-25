@@ -24,27 +24,10 @@
  * THE SOFTWARE.
  *
  */
+if (!defined('FaabBB'))
+	exit();
 
 class Misc {
-	
-	   /**
- 		* Cuts a string like bla bla ... [Read more]
- 		* @param $text the string
- 		* @param $limit the string limit
- 		* @param $msg ' ...'
-		* @return the result
- 		*/
-		static function wordCut($text, $limit, $msg){ 
-    		if (strlen($text) > $limit){ 
-        		$txt1 = wordwrap($text, $limit, '[cut]'); 
-       			$txt2 = explode('[cut]', $txt1); 
-        		$ourTxt = $txt2[0]; 
-        	$finalTxt = $ourTxt.$msg; 
-    		} else 
-       		 $finalTxt = $text; 
-   
-    		return $finalTxt; 
-		} 
 	
 	
 	

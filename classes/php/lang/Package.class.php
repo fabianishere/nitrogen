@@ -24,7 +24,9 @@
  * THE SOFTWARE.
  *
  */
-
+if (!defined('FaabBB'))
+	exit();
+	
 /**
  * Represents a package, used for importing. 
  * @author Fabian M.
@@ -57,7 +59,7 @@ class Package {
 		$file = $this->path . '/' . $name;
 		// Does the file exists?
 		if (!file_exists($file . '.class.php') && !file_exists($file)) {
-			System::systemDie(array('File ' . $file . ' doesn\'t exists.'));
+			Core::terminate();
 		}
 		
 		$file = file_exists($file . '.class.php') ? $file . '.class.php' : $file;

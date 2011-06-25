@@ -25,7 +25,7 @@
  *
  */
 
-include(dirname(__FILE__). "/classes/php/lang/Page.class.php");
+include_once(dirname(__FILE__). "/classes/php/lang/Page.class.php");
 
 /**
  * Forum module.

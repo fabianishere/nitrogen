@@ -25,36 +25,35 @@
  *
  */
 
+if (!defined('FaabBB'))
+	exit();
+	
+/**
+ * Represents a Uniform Resource Locator.
+ * @see http://wikipedia.org/wiki/Uniform_Resource_Locator
+ * @author Fabian M.
+ */
 class URL {
 	
 	/**
-	 * The current using url
+	 * The given url stored in a String.
 	 */
 	private $url;
 	
 	
 	/**
-	 * The constructor of this class
-	 * @param $url the url.
+	 * Creates a URL object from the String representation. 
+	 * @param $url the String to parse as a URL.
 	 */
 	function __construct($url) {
 		$this->url = $url;
+		
 	}
-	
-   /**
-  	* Generates an Browserfriendly Url
-  	* @param $phrase the url
- 	* @return the browserfriendly Url
-  	*/
- 	 static function generateSlug($phrase) {
-    	$result = strtolower($phrase);
-
-    	$result = preg_replace("/[^a-z0-9\s-]/", "", $result);
-   	 	$result = trim(preg_replace("/[\s-]+/", " ", $result));
-   	 	$result = preg_replace("/\s/", "-", $result);
-
-   	 	return $result;
-  	}	
+		
+	/** @Override */
+	function __toString() {
+		return self::$url;
+	}
 	
 	
 

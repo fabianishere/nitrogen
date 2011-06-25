@@ -56,15 +56,15 @@ class PharLoader {
     		if (!$handle)
     			Core::terminate();
 		 	if (zip_entry_open($zip, $zip_entry)) {
-      			$contents = zip_entry_read($zip_entry, zip_entry_filesize($zip_entry));
-      			zip_entry_close($zip_entry);
-      			if (!(fwrite($handle, $contents))) 
-     				Core::terminate();
-     			include($tmpfname);
-     			fclose($handle);
+      				$contents = zip_entry_read($zip_entry, zip_entry_filesize($zip_entry));
+      				zip_entry_close($zip_entry);
+      				if (!(fwrite($handle, $contents))) 
+     					Core::terminate();
+     				iclude($tmpfname);
+     				fclose($handle);
  				unlink($tmpfname);
     
-      		}
+      			}
     		
 		}
 		zip_close($zip);

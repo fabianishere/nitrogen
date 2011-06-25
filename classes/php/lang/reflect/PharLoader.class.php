@@ -60,7 +60,7 @@ class PharLoader {
       				zip_entry_close($zip_entry);
       				if (!(fwrite($handle, $contents))) 
      					Core::terminate();
-     				iclude($tmpfname);
+     				include($tmpfname);
      				fclose($handle);
  				unlink($tmpfname);
     

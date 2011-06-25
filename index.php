@@ -43,6 +43,4 @@ class Index {
 
 Core::invoke();
 
-throw new Exception("test");
-
 ?>

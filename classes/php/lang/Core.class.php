@@ -197,38 +197,22 @@ class Core {
 	 	 * The core error handler.
 	 	 */
 		private static function errorHandler($errno, $errstr, $errfile, $errline) {
-    		if (!(error_reporting() & $errno)) 
-       			return;
+    			if (!(error_reporting() & $errno)) 
+       				return;
     
 
    			switch ($errno) {
-   				case E_USER_ERROR:
-        			echo "<b>My ERROR</b> [$errno] $errstr<br />\n";
-        			echo "  Fatal error on line $errline in file $errfile";
-        			echo ", PHP " . PHP_VERSION . " (" . PHP_OS . ")<br />\n";
-        			echo "Aborting...<br />\n";
-       
-       		 	break;
+  				// TODO
+    			}
 
-    			case E_USER_WARNING:
-        			echo "<b>My WARNING</b> [$errno] $errstr<br />\n";
-        		break;
-
-    			case E_USER_NOTICE:
-        			echo "<b>My NOTICE</b> [$errno] $errstr<br />\n";
-        		break;
-
-  
-    		}
-
-    		return true;
+    			return true;
 		}
 		
 		/**
 		 * The core exception handler.
 		 */
 		public static function exceptionHandler($exception) {
-  			echo "Uncaught exception: " , $exception->getMessage(), "\n";
+  			// TODO
 		}
 
 }

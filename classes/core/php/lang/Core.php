@@ -74,12 +74,12 @@ class Core {
 		 */
 		public static function importFile($import) {
 	
-			if (!file_exists(dirname(self::$file) . '/' .  $import))
+			if (!file_exists(dirname($_SERVER['SCRIPT_FILENAME']) . '/' .  $import))
 				self::terminate();
 			// Add to the array.
 			self::$imports[ count(self::$imports) ] = $import;
 			// Require it.
-			require(dirname(self::$file) . '/' .  $import);
+			require(dirname($_SERVER['SCRIPT_FILENAME']) . '/' .  $import);
 		}
 		
 		
@@ -102,32 +102,35 @@ class Core {
 			$import = str_replace('.php', '', $import);
 	
 			if (!file_exists(dirname(__FILE__) . '/../../' .  $import . '.php'))
-				self::systemDie(array('File not found: '. dirname(__FILE__) . '/../../' .  $import . '.class.php'));
+				if (!file_exists($import)) {
+					self::terminate();
+				} else {
+					// Add to the array.
+					self::$imports[ count(self::$imports) ] = $import;
+					// Require it.
+					require($import);
+				}
 			// Add to the array.
 			self::$imports[ count(self::$imports) ] = $import;
 			// Require it.
-			require(dirname(__FILE__) . '/../../../lib/' .  $import . '.php');
+			require(dirname(__FILE__) . '/../../../' .  $import . '.php');
 		}
 		
 		/**
 		 * Import the core classes.
 		 */
 		private static function importCoreClasses($folder) {
-			$results = array();
-
-			$handler = opendir($folder);
-
-			while ($file = readdir($handler)) {
-
-				if ($file != "." && $file != "..") {
-					if (is_dir($folder . $file))
-						self::importCoreClasses($folder . $file);
-					else if (is_file($folder . $file))
-						self::importFile($folder . $file);
-				}
-
+			if ($handle = opendir($folder)) {
+   				while (false !== ($file = readdir($handle))) {		
+        			if ($file != "." && $file != "..") {
+        				if (is_dir($folder . $file))
+        					self::importCoreClasses($folder . $file . '/');
+           				else if (is_file($folder . $file))
+           					self::import($folder . $file);
+        			}
+    			}
+    			closedir($handle);
 			}
-			closedir($handler);
 		}   	
 	 	/**
 	 	 * Terminates the core.

@@ -1,5 +1,5 @@
 <?php
-include_once(dirname(__FILE__). "/classes/core/php/lang/Core.class.php");
+include_once(dirname(__FILE__). "/classes/core/php/lang/Core.php");
 
 /**
  * Homepage of website.

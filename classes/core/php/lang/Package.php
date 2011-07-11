@@ -36,11 +36,11 @@ class Package {
 			return;
 		$file = $this->path . '/' . $name;
 		// Does the file exists?
-		if (!file_exists($file . '.class.php') && !file_exists($file)) {
+		if (!file_exists($file . '.php') && !file_exists($file)) {
 			Core::terminate();
 		}
 		
-		$file = file_exists($file . '.class.php') ? $file . '.class.php' : $file;
+		$file = file_exists($file . '.php') ? $file . '.php' : $file;
 		
 		return new Package($file);
 	}

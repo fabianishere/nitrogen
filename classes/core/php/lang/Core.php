@@ -101,12 +101,12 @@ class Core {
 			// Replace the .php
 			$import = str_replace('.php', '', $import);
 	
-			if (!file_exists(dirname(__FILE__) . '/../../' .  $import . '.class.php'))
+			if (!file_exists(dirname(__FILE__) . '/../../' .  $import . '.php'))
 				self::systemDie(array('File not found: '. dirname(__FILE__) . '/../../' .  $import . '.class.php'));
 			// Add to the array.
 			self::$imports[ count(self::$imports) ] = $import;
 			// Require it.
-			require(dirname(__FILE__) . '/../../../lib/' .  $import . '.class.php');
+			require(dirname(__FILE__) . '/../../../lib/' .  $import . '.php');
 		}
 		
 		/**

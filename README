@@ -14,7 +14,7 @@ for communities.
 Using FaabBB
 ---------------------------------
 
-Recruitments:
+Requirements:
 	* PHP 5.1+
 	* An SQL Server, MySQL approved.
 	* Common sense.

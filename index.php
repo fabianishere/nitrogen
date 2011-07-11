@@ -25,7 +25,7 @@
  *
  */ 
 
-include_once(dirname(__FILE__). "/classes/php/lang/Core.class.php");
+include_once(dirname(__FILE__). "/classes/core/php/lang/Core.class.php");
 
 /**
  * Homepage of website.

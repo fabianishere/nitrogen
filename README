@@ -7,17 +7,16 @@ Introduction:
 FaabBB is an open-source website management system and development framework written in PHP.
 You can use it as Community or CMS as well for your PHP application. 
 
-FaabBB has support for several SQL servers including MySQL and Microsoft SQL. FaabBB uses an abstract design, which
-can be ripped off the source-code, an SQL system with Logic, a powerful content management system and plenty plugins
-for communities.
+FaabBB has support for several SQL servers including MySQL and Microsoft SQL. FaabBB has a
+SQL system with Logic, a powerful content management system and plenty plugins.
 
 ---------------------------------
 Using FaabBB
 ---------------------------------
 
 Requirements:
-	* PHP 5.1+
-	* An SQL Server, MySQL approved.
+	* PHP 5.3+
+	* A SQL Server. (MySQL)
 	* Common sense.
 	
 Extract the download and navigate to the following url:
@@ -25,7 +24,7 @@ Extract the download and navigate to the following url:
 Localhost:
 	http://localhost/folderinstalled/install.php
 
-FaabBB is developed and tested using Eclipse on a Windows system, so you should be able to import
+FaabBB is developed and tested using Eclipse on a Ubuntu system, so you should be able to import
 this project in Eclipse which should detect the project layout
 automatically.
 

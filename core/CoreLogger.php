@@ -1,0 +1,120 @@
+<?php
+if (!defined('FaabBB'))
+	exit();
+
+// Import CoreLoggingLevel.
+include(CORE_FOLDER . DS . 'CoreLoggingLevel' . PHP_SUFFIX);
+	
+/**
+ * A {@link CoreLogger} object is used by the {@link Core} to log messages.
+ * The CoreLogger class stores the logs into the given log file(s).
+ * Each log has a level, from the lowest level; <code>FINE</code>. To the highest level <code>SEVERE</code>
+ * By using the {@link CoreLogger}, be sure you only log {@link Core} related messages.
+ * 
+ * @category Core Logging
+ * @version Version 3.006 ALPHA
+ * @copyright Copyright &copy; 2011, FaabTech
+ * @author Fabian M.
+ */
+class CoreLogger {
+	
+	/**
+	 * A boolean which is <code>true</code> when the {@link CoreLogger} is initialized,
+	 * 	and <code>false</code> when not.
+	 */
+	private static $init = false;
+	
+	/**
+	 * Get the log file location.
+	 * 
+	 * TODO: Grab this from configuration.
+	 * @return the location of the log file.
+	 */
+	public static function getLogFile() {
+		return CORE_FOLDER . '/../data/logs/core.log';
+	}
+	
+	/**
+	 * Initialize the {@link CoreLogger}.
+	 */
+	public static function init() {
+		if (self::$init) 
+			return;
+		$f = fopen(self::getLogFile(), 'w');
+		
+		if (!$f) {
+			die("Failed to initialize the CoreLogger. Try to change permissions.");
+		}
+		fwrite($f, "");
+		fclose($f);
+		self::$init = true;
+	}
+	/**
+	 * Logs a <code>FINE</code> message.
+	 *
+	 * @param $msg The message to log.
+	 */
+	public static function fine($msg) {
+		self::log(CoreLoggingLevel::FINE, $msg);
+	}
+	
+	/**
+	 * Logs a <code>CONFIG</code> message.
+	 *
+	 * @param $msg The message to log.
+	 */
+	public static function config($msg) {
+		self::log(CoreLoggingLevel::CONFIG, $msg);
+	}
+	
+	/**
+	 * Logs a <code>INFO</code> message.
+	 *
+	 * @param $msg The message to log.
+	 */
+	public static function info($msg) {
+		self::log(CoreLoggingLevel::INFO, $msg);
+	}
+	
+	/**
+	 * Logs a <code>WARNING</code> message.
+	 *
+	 * @param $msg The message to log.
+	 */
+	public static function warning($msg) {
+		self::log(CoreLoggingLevel::WARNING, $msg);
+	}
+	
+	/**
+	 * Logs a <code>SEVERE</code> message.
+	 *
+	 * @param $msg The message to log.
+	 */
+	public static function severe($msg) {
+		self::log(CoreLoggingLevel::SEVERE, $msg);
+	}
+	
+	/**
+	 * Log a message.
+	 * 
+	 * @param $level The {@link CoreLoggingLevel} of this message.
+	 * @param $msg The message to log.
+	 */
+	public static function log($level, $msg) {
+		$f = fopen(self::getLogFile(), 'a');
+		if (!$f) {
+			self::warning("Failed to log message: " . $msg);
+		}
+		$log = date("M m, Y G:i:s A") . ' ' . __CLASS__ . ' ' . __FUNCTION__ . "\n";
+		fwrite($f, $log);
+		$log = $level . ': ' . $msg;
+		fwrite($f, $log);
+		fclose($f);
+		
+	}
+	
+}
+
+CoreLogger::init();
+
+?>

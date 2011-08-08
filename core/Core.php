@@ -67,7 +67,7 @@ class Core {
 	 		CoreLogger::warning("Core::init invoked when Core is already initialized.");
 	 		return;
 	 	}
-	 	
+	 	 
 	 	CoreLogger::info("Loading FaabBB " . FaabBB_VERSION);
 	 }
 	 

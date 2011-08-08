@@ -1,18 +1,9 @@
 <?php
-include_once(dirname(__FILE__). "/classes/core/php/lang/Core.php");
+// Import the core.
+include_once(dirname(__FILE__). "/core/Core.php");
 
-/**
- * Forum module.
- * @author Fabian M.
- */
-class Forum { 
-	
-	/**
-	 * Main execution method of the program.
-	 */
-	public static function main() {
-		echo 'Forum';
-	}
+class Forum {
+	// TODO: Finish this.
 }
 
 Core::invoke();

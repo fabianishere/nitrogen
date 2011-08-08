@@ -6,8 +6,8 @@ Introduction:
 ---------------------------------
 FaabBB is an open-source website management system, designed for managing websites and communities. 
 
-FaabBB has support for serveral SQL servers including MySQL and Microsoft SQL. FaabBB uses an abstract design, which
-can be ripped off the source-code, an SQL system with Logic, a powerfull content management system and plenty plugins
+FaabBB has support for several SQL servers including MySQL and Microsoft SQL. FaabBB uses an abstract design, which
+can be ripped off the source-code, an SQL system with Logic, a powerful content management system and plenty plugins
 for communities.
 
 ---------------------------------
@@ -31,7 +31,7 @@ automatically.
 ----------------------------------
 Licensing
 ----------------------------------
-  Copyright (c) 2011 FaabTech <faabtech.com>
+  Copyright (c) 2011 FaabTech <Faabtech.com>
  
   More information about FaabBB may be found on these websites:
      http://faabtech.com/faabbb

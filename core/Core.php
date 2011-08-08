@@ -30,18 +30,16 @@ class Core {
 	/**
 	 * This variable contains the {@link State} we're in. 
 	 */
-	private static $STATE = null;
+	public static $STATE = State::INIT;
 	
 	/**
-	 * Contains serveral states FaabBB can be in stored in a 'enum'.
-	 * <note>Be careful when selecting a state, as example the 'INIT' will initialize the FaabBB system again.</note>
+	 * Updates the current core state.
 	 * 
-	 * @category Core
-	 * @version Version 3.006 ALPHA
-	 * @copyright Copyright &copy; 2011, FaabTech
-	 * @author Fabian M.
+	 * @param $state The state to update to.
 	 */
-	public static $State;
+	public static function checkpoint(State $state) {
+		self::$STATE = $state;
+	}
 	 
 	
 	
@@ -53,10 +51,7 @@ class Core {
 	 * 
 	 * @since Version 3.006 ALPHA
 	 */
-	 public static function init() {
-	 	// Load the state var
-	 	self::$State = new State();
-	 	
+	 public static function init() {	
 	 	// TODO: Finish this.
 	 }
 	 

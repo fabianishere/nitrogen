@@ -58,7 +58,7 @@ class Core {
 	 }
 	 
 	 /**
-	  * Invokes the {@link Controller}s, {@link Model}s, {@link View}s and the main method.
+	  * Invokes the {@link Controller}s, the {@link Application}s, the {@link Module}s and the main method.
 	  * After this process, FaabBB successfully loaded and the HTTP response is send.
 	  * 
 	  * @since Version 3.006 ALPHA

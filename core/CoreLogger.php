@@ -23,16 +23,7 @@ class CoreLogger {
 	 * 	and <code>false</code> when not.
 	 */
 	private static $init = false;
-	
-	/**
-	 * Get the log file location.
-	 * 
-	 * TODO: Grab this from configuration.
-	 * @return the location of the log file.
-	 */
-	public static function getLogFile() {
-		return CORE_FOLDER . '/../data/logs/core.log';
-	}
+
 	
 	/**
 	 * Initialize the {@link CoreLogger}.
@@ -40,7 +31,7 @@ class CoreLogger {
 	public static function init() {
 		if (self::$init) 
 			return;
-		$f = fopen(self::getLogFile(), 'w');
+		$f = fopen(CORE_LOG_FILE, 'w');
 		
 		if (!$f) {
 			die("Failed to initialize the CoreLogger. Try to change permissions.");
@@ -55,7 +46,7 @@ class CoreLogger {
 	 * @param $msg The message to log.
 	 */
 	public static function fine($msg) {
-		self::log(CoreLoggingLevel::FINE, $msg);
+		self::log(CoreLoggingLevel::FINE, $msg, 2);
 	}
 	
 	/**
@@ -64,7 +55,7 @@ class CoreLogger {
 	 * @param $msg The message to log.
 	 */
 	public static function config($msg) {
-		self::log(CoreLoggingLevel::CONFIG, $msg);
+		self::log(CoreLoggingLevel::CONFIG, $msg, 2);
 	}
 	
 	/**
@@ -73,7 +64,7 @@ class CoreLogger {
 	 * @param $msg The message to log.
 	 */
 	public static function info($msg) {
-		self::log(CoreLoggingLevel::INFO, $msg);
+		self::log(CoreLoggingLevel::INFO, $msg, 2);
 	}
 	
 	/**
@@ -82,7 +73,7 @@ class CoreLogger {
 	 * @param $msg The message to log.
 	 */
 	public static function warning($msg) {
-		self::log(CoreLoggingLevel::WARNING, $msg);
+		self::log(CoreLoggingLevel::WARNING, $msg, 2);
 	}
 	
 	/**
@@ -91,7 +82,7 @@ class CoreLogger {
 	 * @param $msg The message to log.
 	 */
 	public static function severe($msg) {
-		self::log(CoreLoggingLevel::SEVERE, $msg);
+		self::log(CoreLoggingLevel::SEVERE, $msg, 2);
 	}
 	
 	/**
@@ -100,18 +91,22 @@ class CoreLogger {
 	 * @param $level The {@link CoreLoggingLevel} of this message.
 	 * @param $msg The message to log.
 	 */
-	public static function log($level, $msg) {
-		$f = fopen(self::getLogFile(), 'a');
+	public static function log($level, $msg, $index = null) {
+		$f = fopen(CORE_LOG_FILE, 'a');
 		if (!$f) {
 			self::warning("Failed to log message: " . $msg);
 		}
-		$log = date("M m, Y G:i:s A") . ' ' . __CLASS__ . ' ' . __FUNCTION__ . "\n";
+		$backtrace = debug_backtrace();
+		$log = date("M m, Y G:i:s A") . ' ' . $backtrace[$index == null ? 1 : $index]['class'] . ' ' . 
+			$backtrace[$index == null ? 1 : $index]['function'] . "\n";
 		fwrite($f, $log);
 		$log = $level . ': ' . $msg;
 		fwrite($f, $log);
 		fclose($f);
 		
 	}
+	
+	
 	
 }
 

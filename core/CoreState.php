@@ -2,7 +2,7 @@
 if (!defined('FaabBB'))
 	exit();
 /**
- * Contains serveral states FaabBB can be in stored in a 'enum'.
+ * Contains serveral states FaabBB can be in; stored in an 'enum'.
  * <note>Be careful when selecting a state, as example the 'INIT' will initialize the FaabBB system again.</note>
  * 
  * @category Core
@@ -10,7 +10,7 @@ if (!defined('FaabBB'))
  * @copyright Copyright &copy; 2011, FaabTech
  * @author Fabian M.
  */
- class State {
+ class CoreState {
  	/**
  	 * Represents the state where the {@link Core} isn't initialized yet.
  	 */

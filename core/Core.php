@@ -1,6 +1,8 @@
 <?php 
 if (defined('FaabBB'))
 	exit();
+	
+
 
 // We define this constant, so Core classes can check that they are imported by the core.
 define('FaabBB', true);
@@ -13,7 +15,8 @@ define('PHP_SUFFIX', '.php');
 define('DS', DIRECTORY_SEPARATOR);
 
 // Here we import the core classes.
-include(CORE_FOLDER . DS . 'State' . PHP_SUFFIX);
+include(CORE_FOLDER . DS . 'CoreConfiguration' . PHP_SUFFIX);
+include(CORE_FOLDER . DS . 'CoreState' . PHP_SUFFIX);
 include(CORE_FOLDER . DS . 'CoreLogger' . PHP_SUFFIX);
 
 
@@ -37,7 +40,7 @@ class Core {
 	/**
 	 * This variable contains the {@link State} we're in. 
 	 */
-	public static $STATE = State::INIT;
+	public static $STATE = CoreState::INIT;
 	
 	/**
 	 * Updates the current core state.
@@ -59,13 +62,13 @@ class Core {
 	 * @since Version 3.006 ALPHA
 	 */
 	 public static function init() {	
-	 	if (self::$STATE != State::INIT) {
+	 	if (self::$STATE != CoreState::INIT) {
 	 		// Method invoked when Core is already initialized.
 	 		CoreLogger::warning("Core::init invoked when Core is already initialized.");
 	 		return;
 	 	}
 	 	
-	 	CoreLogger::info("Loading FaabBB core..");
+	 	CoreLogger::info("Loading FaabBB " . FaabBB_VERSION);
 	 }
 	 
 	 /**

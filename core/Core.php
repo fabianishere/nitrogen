@@ -14,10 +14,12 @@ define('DS', DIRECTORY_SEPARATOR);
 include(CORE_FOLDER . DS . 'State' . PHP_SUFFIX);
 
 /**
- * Represents the <code>core</code> of this webpage. The {@link Core} class will receive incomming requests and handle them.
- * The core will load the {@link Core} components and will check for errors. The {@link Core} class will never use
- * 	any files of the FaabBB class library, so the {@link Core} uses pre-defined functions, variables and classes that comes along 
- *	with the PHP function library that can be found at <a href="http://php.net/manual/en/funcref.php">http://php.net/manual/en/funcref.php</a>
+ * Represents the <code>core</code> of this webpage. The {@link Core} class will receive 
+ * 	incomming requests and handle them.
+ * The core will load the {@link Core} components and will check for errors. The {@link Core} class 
+ * 	will never use any files of the FaabBB class library, so the {@link Core} uses 
+ * 	pre-defined functions, variables and classes that comes along with the PHP function library 
+ * 	that can be found at <a href="http://php.net/manual/en/funcref.php">http://php.net/manual/en/funcref.php</a>
  * The {@link Core} uses a static pattern which means there's only one {@link Core}. 
  * 
  * @category Core
@@ -45,8 +47,8 @@ class Core {
 	
 	/**
 	 * Initializes the {@link Core} for use.
-	 * This method will load the <code>core</code> classes and components, define global constants, load the Command line interface
-	 * 	and finally loads the FaabBB class library.
+	 * This method will load the <code>core</code> classes and components, define global constants, 
+	 * 	load the Command line interface and finally loads the FaabBB class library.
 	 * This method should not be invoked by any classes. Ofcourse FaabBB will check this.
 	 * 
 	 * @since Version 3.006 ALPHA

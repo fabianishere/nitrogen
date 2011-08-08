@@ -1,4 +1,6 @@
 <?php 
+if (defined('FaabBB'))
+	exit();
 
 // We define this constant, so Core classes can check that they are imported by the core.
 define('FaabBB', true);
@@ -12,6 +14,9 @@ define('DS', DIRECTORY_SEPARATOR);
 
 // Here we import the core classes.
 include(CORE_FOLDER . DS . 'State' . PHP_SUFFIX);
+include(CORE_FOLDER . DS . 'CoreLogger' . PHP_SUFFIX);
+
+
 
 /**
  * Represents the <code>core</code> of this webpage. The {@link Core} class will receive 
@@ -39,7 +44,7 @@ class Core {
 	 * 
 	 * @param $state The state to update to.
 	 */
-	public static function checkpoint(State $state) {
+	public static function checkpoint($state) {
 		self::$STATE = $state;
 	}
 	 
@@ -54,7 +59,13 @@ class Core {
 	 * @since Version 3.006 ALPHA
 	 */
 	 public static function init() {	
-	 	// TODO: Finish this.
+	 	if (self::$STATE != State::INIT) {
+	 		// Method invoked when Core is already initialized.
+	 		CoreLogger::warning("Core::init invoked when Core is already initialized.");
+	 		return;
+	 	}
+	 	
+	 	CoreLogger::info("Loading FaabBB core..");
 	 }
 	 
 	 /**

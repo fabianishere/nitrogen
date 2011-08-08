@@ -1,5 +1,5 @@
 <?php 
-if (defined('FaabBB'))
+if (!defined('FaabBB'))
 	exit();
 /**
  * Contains serveral states FaabBB can be in stored in a 'enum'.
@@ -10,7 +10,7 @@ if (defined('FaabBB'))
  * @copyright Copyright &copy; 2011, FaabTech
  * @author Fabian M.
  */
- class State extends SplEnum {
+ class State {
  	/**
  	 * Represents the state where the {@link Core} isn't initialized yet.
  	 */

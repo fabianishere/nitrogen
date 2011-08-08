@@ -4,7 +4,8 @@
 ---------------------------------
 Introduction:
 ---------------------------------
-FaabBB is an open-source website management system, designed for managing websites and communities. 
+FaabBB is an open-source website management system and development framework written in PHP.
+You can use it as Community or CMS as well for your PHP application. 
 
 FaabBB has support for several SQL servers including MySQL and Microsoft SQL. FaabBB uses an abstract design, which
 can be ripped off the source-code, an SQL system with Logic, a powerful content management system and plenty plugins

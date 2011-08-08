@@ -7,7 +7,7 @@ if (!defined('FaabBB'))
  * You should use the pre-defined level constants such as <code>CoreLoggingLevel::SEVERE</code>
  * The levels in descending order are: 
  * <ul>
- * <li>SEVERE (highest value)</li>
+ *  <li>SEVERE (highest value)</li>
  *  <li>WARNING</li>
  *  <li>INFO</li>
  *  <li>CONFIG</li> 

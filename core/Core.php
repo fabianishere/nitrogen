@@ -69,7 +69,7 @@ class Core {
 	 	}
 	 	 
 	 	CoreLogger::info("Loading FaabBB " . FaabBB_VERSION);
-	 	
+	 	 
 	 	self::checkpoint(CoreState::INVOKE);
 	 }
 	 

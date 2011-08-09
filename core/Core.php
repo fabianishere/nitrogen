@@ -6,48 +6,27 @@ if (defined('FaabBB'))
 // We define this constant, so Core classes can check that they are imported by the core.
 define('FaabBB', true);
 
-// We define this constants, so importing core classes is easier.
+// We define this constants, so importing classes is easier.
 define('CORE_FOLDER', dirname(__FILE__));
 define('PHP_SUFFIX', '.php');
 
-// Define the directory seperator.
+// Define the directory seperator. 
 define('DS', DIRECTORY_SEPARATOR);
+
+define('CLASSES_FOLDER', dirname(__FILE__)  . DS .  '..' . DS . 'classes' . DS);
 
 // Here we import the core classes.
 include(CORE_FOLDER . DS . 'CoreConfiguration' . PHP_SUFFIX);
 include(CORE_FOLDER . DS . 'CoreState' . PHP_SUFFIX);
 include(CORE_FOLDER . DS . 'CoreLogger' . PHP_SUFFIX);
+include(CORE_FOLDER . DS . 'CoreException' . PHP_SUFFIX);
 include(CORE_FOLDER . DS . 'CoreLibraryLoader' . PHP_SUFFIX);
 include(CORE_FOLDER . DS . 'CoreErrorHandler' . PHP_SUFFIX);
 
 
 
 /**
- * Represents the <code>core</code> of this weAug 08, 2011 15:51:15 PM Core init
-INFO: Loading FaabBB 3.006 ALPHA
-Aug 08, 2011 15:51:15 PM Core init
-INFO: Disabling error reporting.
-Aug 08, 2011 15:51:15 PM Core init
-INFO: Done disabling error reporting.
-Aug 08, 2011 15:51:15 PM Core init
-INFO: Initializing CoreErrorHandler.
-Aug 08, 2011 15:51:15 PM CoreErrorHandler init
-INFO: Setting error handler to CoreErrorHandler::onError
-Aug 08, 2011 15:51:15 PM CoreErrorHandler init
-INFO: Setting error handler to CoreErrorHandler::onException
-Aug 08, 2011 15:51:15 PM CoreErrorHandler init
-INFO: Registering shutdown function  CoreErrorHandler::onShutdown
-Aug 08, 2011 15:51:15 PM CoreErrorHandler init
-INFO: CoreErrorHandler initialized.
-Aug 08, 2011 15:51:15 PM Core init
-INFO: Initializing CoreLibraryLoader.
-Aug 08, 2011 15:51:15 PM CoreLibraryLoader init
-INFO: Core libraries successfully loaded.
-Aug 08, 2011 15:51:15 PM CoreErrorHandler onShutdown
-SEVERE: Runtime shutdown unexpectedly.
-Runtime error in thread "main"
-	at CoreErrorHandler::onShutdown
-bpage. The {@link Core} class will receive 
+ * Represents the <code>core</code> of this webpage. The {@link Core} class will receive 
  * 	incomming requests and handle them.
  * The core will load the {@link Core} components and will check for errors. The {@link Core} class 
  * 	will never use any files of the FaabBB class library, so the {@link Core} uses 
@@ -95,7 +74,7 @@ class Core {
 	 	}
 	 	CoreLogger::info("Loading FaabBB " . FaabBB_VERSION);
 	 	CoreLogger::info("Disabling error reporting.");
-	 	error_reporting(0);
+	 	error_reporting((DEVELOPER_MODE ? -1 : 0));
 	 	CoreLogger::info("Done disabling error reporting.");
 	 	CoreLogger::info("Initializing CoreErrorHandler.");
 	 	CoreErrorHandler::init();

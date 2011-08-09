@@ -36,11 +36,12 @@ class CoreErrorHandler {
 	 */
 	public static function onError($errno, $errstr, $errfile, $errline) {
 		$traces = debug_backtrace();
-		$err = "Error in thread \"main\"\n";
+		$err = "Error in thread \"main\":" . $errstr . "\n";
 		foreach($traces as $trace) {
-			$err .= "	at " . $trace['class'] . '::' . $trace['function'];
+			$err .= "	at " . (isset($trace['class']) ? $trace['class'] : 'null') . '::' . $trace['function'] . "\n";
 		}
 		CoreLogger::severe($err);
+		echo 'Something bad happend, we are fixing it... (Error)';
 		return true;
 	}
 	
@@ -49,9 +50,9 @@ class CoreErrorHandler {
 	 */
 	public static function onException($exception) {
 		$traces = debug_backtrace();
-		$err = "Uncaught exception in thread \"main\"\n";
+		$err = "Uncaught exception in thread \"main\": " . $exception->getMessage() . "\n";
 		foreach($traces as $trace) {
-			$err .= "	at " . $trace['class'] . '::' . $trace['function'];
+			$err .= "	at " . (isset($trace['class']) ? $trace['class'] : 'null') . '::' . $trace['function'] . "\n";
 		}
 		CoreLogger::severe($err);
 	}
@@ -65,9 +66,11 @@ class CoreErrorHandler {
 		$traces = debug_backtrace();
 		$err = "Runtime error in thread \"main\"\n";
 		foreach($traces as $trace) {
-			$err .= "	at " . $trace['class'] . '::' . $trace['function'];
+			$err .= "	at " . (isset($trace['class']) ? $trace['class'] : 'null') . '::' . $trace['function'] . "\n";
 		}
 		CoreLogger::severe("Runtime shutdown unexpectedly.\n" . $err);
+		
+		echo 'Something bad happend, we are fixing it... (Runtime error)';
 	
 	}
 	

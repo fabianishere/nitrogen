@@ -1,0 +1,32 @@
+<?php
+if (!defined('FaabBB'))
+	exit();
+
+/**
+ * PHP clone library.
+ *
+ * @version Version 3.008 ALPHA
+ * @copyright Copyright &copy; 2011, FaabTech
+ * @author Fabian M.
+ */
+ 
+ function lib_clone($cls) {
+ 	try {
+ 		$reflector = new ReflectionClass($cls);
+ 	} catch(Exception $e) {
+ 		CoreLogger::warning("Failed to clone object.");
+ 		return null;
+ 	}
+ 	
+ 	if(!in_array("Cloneable", $reflector->getInterfaceNames())) {
+ 		throw new CoreException("Class " . $reflector->getName() . " not Cloneable. If you want to clone this " .
+ 			"class,\n please implement your class with the php.lang.Cloneable interface.");
+ 	}
+ 	
+ 	$clone_ = clone $cls;
+ 	CoreLogger::info("Cloned Class " . $reflector->getName());
+ 	
+ }
+ 
+ 
+ 

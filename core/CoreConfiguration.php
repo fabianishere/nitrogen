@@ -11,5 +11,6 @@ define('CORE_LIBRARY_FOLDER', CORE_FOLDER . DS . 'lib');
 define('ERROR_HANDLING_METHOD', "CoreErrorHandler::onError");
 define('EXCEPTION_HANDLING_METHOD', "CoreErrorHandler::onException");
 define('SHUTDOWN_HANDLING_METHOD', "CoreErrorHandler::onShutdown");
+define('DEVELOPER_MODE', true)
 
 ?>

@@ -97,7 +97,9 @@ class CoreLogger {
 			self::warning("Failed to log message: " . $msg);
 		}
 		$backtrace = debug_backtrace();
-		$log = date("M m, Y G:i:s A") . ' ' . $backtrace[$index == null ? 1 : $index]['class'] . ' ' . 
+		
+		$log = date("M m, Y G:i:s A") . ' ' . (isset($backtrace[$index == null ? 1 : $index]['class']) ? 
+			$backtrace[$index == null ? 1 : $index]['class'] : 'null') . ' ' . 
 			$backtrace[$index == null ? 1 : $index]['function'] . "\n";
 		fwrite($f, $log);
 		$log = $level . ': ' . $msg . "\n";

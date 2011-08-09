@@ -6,30 +6,43 @@ You can use it as Community or CMS as well for your PHP application.
 Features
 -----------
 *	**Manage your website easily**
+
 	`FaabBB` 3 provides some website management plugins that makes
 	 managing your website easily.
+	 
 *	**Create communities**
+
 	`FaabBB` allowes you to create communities with support for many plugin, 
 	and template formats. Already have a community? No problem, FaabBB will convert
 	the sql, plugins and themes to a FaabBB format, so you can still enjoy the lovely plugins
 	from other Bulletin boards.
+	
 * 	**Lost some data?**
+
 	`FaabBB` 3 provides backup utilities in 4 forms;
 		* Locally saved on your PC.
 		* Saved on your SQL server.
 		* Saved on your webhost.
 		* Saved on a other webhost.
 	This will help you to recover the data.
-* 	**Error in plugin? **
+	
+* 	**Error in plugin?**
+
 	No problem, `FaabBB` 3 will report this error to the logs and to the administrator/administrators, but
 	will not show it, instead it will show a customizable error page.
+	
 * 	**Class library**
+
 	`FaabBB` 3 provides many classes in it's own class library, this 
 	will making application allot easier.
+	
 *	**Customize**
+
 	`FaabBB` 3 provides many plugins to customize your website. Instead of having the same look 
 	at your community, you could have another look.
+	
 *	**Free**
+
 	FaabBB is free and open-source, and it always will be.
 	
 Credits

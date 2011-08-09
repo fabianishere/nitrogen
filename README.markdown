@@ -21,10 +21,10 @@ Features
 
 	`FaabBB` 3 provides backup utilities in 4 forms;
 	
-		* **Locally saved on your PC.**
-		* **Saved on your SQL server.**
-		* **Saved on your webhost.**
-		* **Saved on a other webhost.**
+	* **Locally saved on your PC.**
+	* **Saved on your SQL server.**
+	* **Saved on your webhost.**
+	* **Saved on a other webhost.**
 		
 	This will help you to recover the data.
 	

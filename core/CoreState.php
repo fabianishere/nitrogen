@@ -10,7 +10,7 @@ if (!defined('FaabBB'))
  * @copyright Copyright &copy; 2011, FaabTech
  * @author Fabian M.
  */
- class CoreState {
+ class CoreState { 
  	/**
  	 * Represents the state where the {@link Core} isn't initialized yet.
  	 */

@@ -34,7 +34,7 @@ Features
 * 	**Class library**
 
 	`FaabBB` 3 provides many classes in it's own class library, this 
-	will making application allot easier.
+	will making applications allot easier.
 	
 *	**Customize**
 
@@ -48,6 +48,7 @@ Features
 Credits
 ----------
 FaabBB is contributed by the following authors:
+
 	Fabian M. (mail.fabianm@gmail.com)
 	
 Licencing

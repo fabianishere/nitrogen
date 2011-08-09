@@ -1,0 +1,4 @@
+This folder contains files which represents the FaabBB <b>core</b> of your website.
+The <b>core</b> class is the one who handles errors and exception. This means it can't handle it's own errors.
+
+ONLY EDIT THE CORE WHEN YOU KNOW WHAT YOU'RE DOING!!

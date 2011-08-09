@@ -17,14 +17,25 @@ if (!defined('FaabBB'))
  	const INIT = 0; 
  	
  	/**
- 	 * Represents the state where the {@link Core} is successfully initialized.
+ 	 * Represents the state where the {@link Core} is successfully initialized, 
+ 	 * 	so the invoke method can be called.
  	 */
- 	const INIT_SUCCESS = 1;
+ 	const INVOKE = 1;
  	
  	/**
  	 * Represents the state where the {@link Core} failed to initialize.
  	 */
  	const INIT_FAILED = 2;
+ 	
+ 	/**
+ 	 * Represents the state where the {@link Core} failed to invoke.
+ 	 */
+ 	const INVOKE_FAILED = 3;
+ 	
+ 	/**
+ 	 * Represents the state where everything is done and  the HTTP Response is send.
+ 	 */
+ 	const SUCCESS = 4;
  	
  	// TODO: Finish this.
  }

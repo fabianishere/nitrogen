@@ -1,9 +1,8 @@
 <?php 
+// Check if the Core is already imported.
 if (defined('FaabBB'))
 	exit();
 	
-
-
 // We define this constant, so Core classes can check that they are imported by the core.
 define('FaabBB', true);
 
@@ -27,7 +26,8 @@ include(CORE_FOLDER . DS . 'CoreLogger' . PHP_SUFFIX);
  * The core will load the {@link Core} components and will check for errors. The {@link Core} class 
  * 	will never use any files of the FaabBB class library, so the {@link Core} uses 
  * 	pre-defined functions, variables and classes that comes along with the PHP function library 
- * 	that can be found at <a href="http://php.net/manual/en/funcref.php">http://php.net/manual/en/funcref.php</a>
+ * 	that can be found at <a href="http://php.net/manual/en/funcref.php">http://php.net/manual/en/funcref.php</a> or
+ * 	classes from the Core library.
  * The {@link Core} uses a static pattern which means there's only one {@link Core}. 
  * 
  * @category Core
@@ -64,20 +64,27 @@ class Core {
 	 public static function init() {	
 	 	if (self::$STATE != CoreState::INIT) {
 	 		// Method invoked when Core is already initialized.
-	 		CoreLogger::warning("Core::init invoked when Core is already initialized.");
+	 		CoreLogger::warning("Core::init() invoked when Core is already initialized.");
 	 		return;
 	 	}
 	 	 
 	 	CoreLogger::info("Loading FaabBB " . FaabBB_VERSION);
+	 	
+	 	self::checkpoint(CoreState::INVOKE);
 	 }
 	 
 	 /**
-	  * Invokes the {@link Controller}s, the {@link Application}s, the {@link Module}s and the main method.
-	  * After this process, FaabBB successfully loaded and the HTTP response is send.
+	  * Invokes the {@link Application}s and the main method.
+	  * After this process, FaabBB is successfully loaded and the HTTP response is send.
 	  * 
 	  * @since Version 3.006 ALPHA
 	  */
 	  public static function invoke() {
+	  	// May not invoke since the state is wrong.
+	  	if (self::$STATE != CoreState::INVOKE) {
+	 		CoreLogger::warning("Can not invoke since the state is wrong.");
+	 		return;
+	 	}
 	  	// TODO: Finish this.
 	  }
 	

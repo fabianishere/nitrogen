@@ -45,7 +45,7 @@ Features
 	
 *	**Free**
 
-	FaabBB is free and open-source, and it always will be.
+	`FaabBB` is free and open-source, and it always will be.
 	
 Credits
 ----------

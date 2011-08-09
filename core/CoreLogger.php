@@ -100,7 +100,7 @@ class CoreLogger {
 		$log = date("M m, Y G:i:s A") . ' ' . $backtrace[$index == null ? 1 : $index]['class'] . ' ' . 
 			$backtrace[$index == null ? 1 : $index]['function'] . "\n";
 		fwrite($f, $log);
-		$log = $level . ': ' . $msg;
+		$log = $level . ': ' . $msg . "\n";
 		fwrite($f, $log);
 		fclose($f);
 		

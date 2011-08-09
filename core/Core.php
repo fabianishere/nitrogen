@@ -17,11 +17,37 @@ define('DS', DIRECTORY_SEPARATOR);
 include(CORE_FOLDER . DS . 'CoreConfiguration' . PHP_SUFFIX);
 include(CORE_FOLDER . DS . 'CoreState' . PHP_SUFFIX);
 include(CORE_FOLDER . DS . 'CoreLogger' . PHP_SUFFIX);
+include(CORE_FOLDER . DS . 'CoreLibraryLoader' . PHP_SUFFIX);
+include(CORE_FOLDER . DS . 'CoreErrorHandler' . PHP_SUFFIX);
 
 
 
 /**
- * Represents the <code>core</code> of this webpage. The {@link Core} class will receive 
+ * Represents the <code>core</code> of this weAug 08, 2011 15:51:15 PM Core init
+INFO: Loading FaabBB 3.006 ALPHA
+Aug 08, 2011 15:51:15 PM Core init
+INFO: Disabling error reporting.
+Aug 08, 2011 15:51:15 PM Core init
+INFO: Done disabling error reporting.
+Aug 08, 2011 15:51:15 PM Core init
+INFO: Initializing CoreErrorHandler.
+Aug 08, 2011 15:51:15 PM CoreErrorHandler init
+INFO: Setting error handler to CoreErrorHandler::onError
+Aug 08, 2011 15:51:15 PM CoreErrorHandler init
+INFO: Setting error handler to CoreErrorHandler::onException
+Aug 08, 2011 15:51:15 PM CoreErrorHandler init
+INFO: Registering shutdown function  CoreErrorHandler::onShutdown
+Aug 08, 2011 15:51:15 PM CoreErrorHandler init
+INFO: CoreErrorHandler initialized.
+Aug 08, 2011 15:51:15 PM Core init
+INFO: Initializing CoreLibraryLoader.
+Aug 08, 2011 15:51:15 PM CoreLibraryLoader init
+INFO: Core libraries successfully loaded.
+Aug 08, 2011 15:51:15 PM CoreErrorHandler onShutdown
+SEVERE: Runtime shutdown unexpectedly.
+Runtime error in thread "main"
+	at CoreErrorHandler::onShutdown
+bpage. The {@link Core} class will receive 
  * 	incomming requests and handle them.
  * The core will load the {@link Core} components and will check for errors. The {@link Core} class 
  * 	will never use any files of the FaabBB class library, so the {@link Core} uses 
@@ -31,7 +57,7 @@ include(CORE_FOLDER . DS . 'CoreLogger' . PHP_SUFFIX);
  * The {@link Core} uses a static pattern which means there's only one {@link Core}. 
  * 
  * @category Core
- * @version Version 3.006 ALPHA
+ * @version Version 3.007 ALPHA
  * @copyright Copyright &copy; 2011, FaabTech
  * @author Fabian M.
  */
@@ -55,7 +81,7 @@ class Core {
 	
 	/**
 	 * Initializes the {@link Core} for use.
-	 * This method will load the <code>core</code> classes and components, define global constants, 
+	 * This method will load the <code>core</code> libraries and components, define global constants, 
 	 * 	load the Command line interface and finally loads the FaabBB class library.
 	 * This method should not be invoked by any classes. Ofcourse FaabBB will check this.
 	 * 
@@ -67,9 +93,17 @@ class Core {
 	 		CoreLogger::warning("Core::init() invoked when Core is already initialized.");
 	 		return;
 	 	}
-	 	 
 	 	CoreLogger::info("Loading FaabBB " . FaabBB_VERSION);
+	 	CoreLogger::info("Disabling error reporting.");
+	 	error_reporting(0);
+	 	CoreLogger::info("Done disabling error reporting.");
+	 	CoreLogger::info("Initializing CoreErrorHandler.");
+	 	CoreErrorHandler::init();
+	 	CoreLogger::info("Initializing CoreLibraryLoader.");
+	 	CoreLibraryLoader::init();
+	 	
 	 	 
+	 	// Successfully initialized.
 	 	self::checkpoint(CoreState::INVOKE);
 	 }
 	 
@@ -80,12 +114,14 @@ class Core {
 	  * @since Version 3.006 ALPHA
 	  */
 	  public static function invoke() {
-	  	// May not invoke since the state is wrong.
+	  	// Can not invoke.. Core state is wrong.
 	  	if (self::$STATE != CoreState::INVOKE) {
-	 		CoreLogger::warning("Can not invoke since the state is wrong.");
+	 		CoreLogger::warning("Can not invoke.. Core state is wrong.");
 	 		return;
 	 	}
 	  	// TODO: Finish this.
+	  	
+	  	self::checkpoint(CoreState::SUCCESS);
 	  }
 	
 	

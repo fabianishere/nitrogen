@@ -1,52 +1,34 @@
-Aug 08, 2011 19:50:57 PM Core init
+Aug 08, 2011 17:26:56 PM Core init
 INFO: Loading FaabBB 3.006 ALPHA
-Aug 08, 2011 19:50:57 PM Core init
+Aug 08, 2011 17:26:56 PM Core init
 INFO: Disabling error reporting.
-Aug 08, 2011 19:50:57 PM Core init
+Aug 08, 2011 17:26:56 PM Core init
 INFO: Done disabling error reporting.
-Aug 08, 2011 19:50:57 PM Core init
+Aug 08, 2011 17:26:56 PM Core init
 INFO: Initializing CoreErrorHandler.
-Aug 08, 2011 19:50:57 PM CoreErrorHandler init
+Aug 08, 2011 17:26:56 PM CoreErrorHandler init
 INFO: Setting error handler to CoreErrorHandler::onError
-Aug 08, 2011 19:50:57 PM CoreErrorHandler init
+Aug 08, 2011 17:26:56 PM CoreErrorHandler init
 INFO: Setting error handler to CoreErrorHandler::onException
-Aug 08, 2011 19:50:57 PM CoreErrorHandler init
+Aug 08, 2011 17:26:56 PM CoreErrorHandler init
 INFO: Registering shutdown function CoreErrorHandler::onShutdown
-Aug 08, 2011 19:50:57 PM CoreErrorHandler init
+Aug 08, 2011 17:26:56 PM CoreErrorHandler init
 INFO: CoreErrorHandler initialized.
-Aug 08, 2011 19:50:57 PM Core init
-INFO: Initializing CoreLibraryLoader.
-Aug 08, 2011 19:50:57 PM CoreLibraryLoader init
-INFO: Found: libarr.plib.
-Aug 08, 2011 19:50:57 PM CoreLibraryLoader init
-INFO: Found PHP library: libarr.plib
-Aug 08, 2011 19:50:57 PM CoreLibraryLoader init
-SEVERE: Successfully loaded PHP file libarr.plib
-Aug 08, 2011 19:50:57 PM CoreLibraryLoader init
+Aug 08, 2011 17:26:56 PM Core init
+INFO: Intializing CoreLibraryLoader.
+Aug 08, 2011 17:26:56 PM CoreLibraryLoader init
 INFO: Found: README.markdown.
-Aug 08, 2011 19:50:57 PM CoreLibraryLoader init
+Aug 08, 2011 17:26:56 PM CoreLibraryLoader init
 WARNING: README.markdown not a PHP library.
-Aug 08, 2011 19:50:57 PM CoreLibraryLoader init
-INFO: Found: libclone.plib.
-Aug 08, 2011 19:50:57 PM CoreLibraryLoader init
-INFO: Found PHP library: libclone.plib
-Aug 08, 2011 19:50:57 PM CoreLibraryLoader init
-SEVERE: Successfully loaded PHP file libclone.plib
-Aug 08, 2011 19:50:57 PM CoreLibraryLoader init
-INFO: Found: libstr.plib.
-Aug 08, 2011 19:50:57 PM CoreLibraryLoader init
-INFO: Found PHP library: libstr.plib
-Aug 08, 2011 19:50:57 PM CoreLibraryLoader init
-SEVERE: Successfully loaded PHP file libstr.plib
-Aug 08, 2011 19:50:57 PM CoreLibraryLoader init
-INFO: Core libraries successfully loaded.
-Aug 08, 2011 19:50:57 PM CoreErrorHandler onException
-SEVERE: Uncaught exception in thread "main": Class Object not Cloneable. If you want to clone this class,
- please implement your class with the php.lang.Cloneable interface.
-	at CoreErrorHandler::onException
-
-Aug 08, 2011 19:50:57 PM CoreErrorHandler onShutdown
-SEVERE: Runtime shutdown unexpectedly.
-Runtime error in thread "main"
-	at CoreErrorHandler::onShutdown
-
+Aug 08, 2011 17:26:56 PM CoreLibraryLoader init
+INFO: PHP libraries successfully loaded.
+Aug 08, 2011 17:26:56 PM Core init
+INFO: Initializing configuration loader.
+Aug 08, 2011 17:26:56 PM CoreConfigurationLoader init
+INFO: Found configuration file: /var/www/FaabBB/core/../data/configuration.ini
+Aug 08, 2011 17:26:56 PM CoreConfigurationLoader init
+INFO: Parsing file.
+Aug 08, 2011 17:26:56 PM CoreConfigurationLoader init
+INFO: Constant: test=lol
+Aug 08, 2011 17:26:56 PM CoreConfigurationLoader init
+INFO: Configuration loaded.

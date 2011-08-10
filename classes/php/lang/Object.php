@@ -14,6 +14,21 @@ if (!defined('FaabBB'))
 class Object {
 	
 	/**
+	 * Constructs a new Object.
+	 */
+	public function __construct() {
+		$this->construct();
+	}
+	
+	/**
+	 * Constructs a new Object.
+	 */
+	public function construct() {
+		
+	}
+	
+	
+	/**
 	 * Indicates whether some other object is "equal to" this one.
 	 * 
 	 * @param $obj the reference object with which to compare.
@@ -57,7 +72,7 @@ class Object {
 	 * @return a clone of this instance.
 	 */
 	public function clone_() {
-		return lib_clone($this);
+		// TODO: FINISH this
 	}
 }
 

@@ -6,21 +6,34 @@ if (defined('FaabBB'))
 // We define this constant, so Core classes can check that they are imported by the core.
 define('FaabBB', true);
 
-// We define this constants, so importing classes is easier.
-define('CORE_FOLDER', dirname(__FILE__));
+// Other constants.
+define('FaabBB_VERSION', '3.006 ALPHA');
+
 define('PHP_SUFFIX', '.php');
+define('INI_SUFFIX', '.ini');
 
 // Define the directory seperator. 
 define('DS', DIRECTORY_SEPARATOR);
 
-define('CLASSES_FOLDER', dirname(__FILE__)  . DS .  '..' . DS . 'classes' . DS);
+define('ROOT', dirname(__FILE__)  . DS .  '..'); 
+define('CORE_FOLDER', ROOT . DS . 'core');
+define('CORE_LIBRARY_FOLDER', CORE_FOLDER . DS . 'lib');
+define('CLASSES_FOLDER', ROOT . DS . 'classes' . DS); 
+define('DATA_FOLDER', ROOT . DS . 'data');
+define('CONFIGURATION_FILE', DATA_FOLDER . DS . 'configuration' . INI_SUFFIX);
+define('CORE_LOG_FILE', CORE_FOLDER .  DS . '..' . DS . 'data' . DS . 'logs' . DS . 'core.log');
+define('ERROR_HANDLING_METHOD', "CoreErrorHandler::onError");
+define('EXCEPTION_HANDLING_METHOD', "CoreErrorHandler::onException");
+define('SHUTDOWN_HANDLING_METHOD', "CoreErrorHandler::onShutdown");
+define('DEBUG', 2);
 
 // Here we import the core classes.
-include(CORE_FOLDER . DS . 'CoreConfiguration' . PHP_SUFFIX);
+include(CORE_FOLDER . DS . 'CoreConfigurationLoader' . PHP_SUFFIX);
 include(CORE_FOLDER . DS . 'CoreState' . PHP_SUFFIX);
 include(CORE_FOLDER . DS . 'CoreLogger' . PHP_SUFFIX);
 include(CORE_FOLDER . DS . 'CoreException' . PHP_SUFFIX);
 include(CORE_FOLDER . DS . 'CoreLibraryLoader' . PHP_SUFFIX);
+include(CORE_FOLDER . DS . 'CorePharCreator' . PHP_SUFFIX);
 include(CORE_FOLDER . DS . 'CoreErrorHandler' . PHP_SUFFIX);
 
 
@@ -74,12 +87,14 @@ class Core {
 	 	}
 	 	CoreLogger::info("Loading FaabBB " . FaabBB_VERSION);
 	 	CoreLogger::info("Disabling error reporting.");
-	 	error_reporting((DEVELOPER_MODE ? -1 : 0));
+	 	error_reporting((DEBUG == 2 ? -1 : 0));
 	 	CoreLogger::info("Done disabling error reporting.");
 	 	CoreLogger::info("Initializing CoreErrorHandler.");
 	 	CoreErrorHandler::init();
-	 	CoreLogger::info("Initializing CoreLibraryLoader.");
+	 	CoreLogger::info("Intializing CoreLibraryLoader.");
 	 	CoreLibraryLoader::init();
+	 	CoreLogger::info("Initializing configuration loader.");
+	 	CoreConfigurationLoader::init();
 	 	
 	 	 
 	 	// Successfully initialized.

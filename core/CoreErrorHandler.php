@@ -36,12 +36,12 @@ class CoreErrorHandler {
 	 */
 	public static function onError($errno, $errstr, $errfile, $errline) {
 		$traces = debug_backtrace();
-		$err = "Error in thread \"main\":" . $errstr . "\n";
+		$err = "Error in thread \"main\": " . $errstr . " on line " . $errline . " in file " . $errfile . "\n";
 		foreach($traces as $trace) {
 			$err .= "	at " . (isset($trace['class']) ? $trace['class'] : 'null') . '::' . $trace['function'] . "\n";
 		}
 		CoreLogger::severe($err);
-		echo 'Something bad happend, we are fixing it... (Error)';
+		die();
 		return true;
 	}
 	
@@ -70,7 +70,7 @@ class CoreErrorHandler {
 		}
 		CoreLogger::severe("Runtime shutdown unexpectedly.\n" . $err);
 		
-		echo 'Something bad happend, we are fixing it... (Runtime error)';
+		echo 'Something bad happend, we are fixing it...';
 	
 	}
 	

@@ -37,6 +37,7 @@ class CoreLibraryLoader {
         		}
         		CoreLogger::info("Loading PHP library: " . $file);
         		require_once($filePath);
+        		
         		try {
         			$files = new DirectoryIterator("phar://" . CORE_LIBRARY_FOLDER . DS . $file . DS);
         		} catch(Exception $e) {
@@ -58,6 +59,7 @@ class CoreLibraryLoader {
         			}
         			
         		}
+        	
     			
  			}
 	 	}

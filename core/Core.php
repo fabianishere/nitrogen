@@ -20,7 +20,7 @@ define('CORE_FOLDER', ROOT . DS . 'core');
 define('CORE_LIBRARY_FOLDER', CORE_FOLDER . DS . 'lib');
 define('CLASSES_FOLDER', ROOT . DS . 'classes' . DS); 
 define('DATA_FOLDER', ROOT . DS . 'data');
-define('CONFIGURATION_FILE', DATA_FOLDER . DS . 'configuration' . INI_SUFFIX);
+define('CONFIGURATION_FILE', DATA_FOLDER . DS . 'configuration' . INI_SUFFIX . PHP_SUFFIX);
 define('CORE_LOG_FILE', CORE_FOLDER .  DS . '..' . DS . 'data' . DS . 'logs' . DS . 'core.log');
 define('ERROR_HANDLING_METHOD', "CoreErrorHandler::onError");
 define('EXCEPTION_HANDLING_METHOD', "CoreErrorHandler::onException");
@@ -32,8 +32,8 @@ include(CORE_FOLDER . DS . 'CoreConfigurationLoader' . PHP_SUFFIX);
 include(CORE_FOLDER . DS . 'CoreState' . PHP_SUFFIX);
 include(CORE_FOLDER . DS . 'CoreLogger' . PHP_SUFFIX);
 include(CORE_FOLDER . DS . 'CoreException' . PHP_SUFFIX);
-include(CORE_FOLDER . DS . 'CoreLibraryLoader' . PHP_SUFFIX);
-include(CORE_FOLDER . DS . 'CorePharCreator' . PHP_SUFFIX);
+//include(CORE_FOLDER . DS . 'CoreLibraryLoader' . PHP_SUFFIX);
+//include(CORE_FOLDER . DS . 'CorePharCreator' . PHP_SUFFIX);
 include(CORE_FOLDER . DS . 'CoreErrorHandler' . PHP_SUFFIX);
 
 
@@ -91,8 +91,8 @@ class Core {
 	 	CoreLogger::info("Done disabling error reporting.");
 	 	CoreLogger::info("Initializing CoreErrorHandler.");
 	 	CoreErrorHandler::init();
-	 	CoreLogger::info("Intializing CoreLibraryLoader.");
-	 	CoreLibraryLoader::init();
+	 	//CoreLogger::info("Intializing CoreLibraryLoader.");
+	 	//CoreLibraryLoader::init();
 	 	CoreLogger::info("Initializing configuration loader.");
 	 	CoreConfigurationLoader::init();
 	 	

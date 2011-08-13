@@ -2,6 +2,10 @@
 if (!defined('FaabBB'))
 	exit();
 
+include_once(CLASSES_FOLDER . DS . 'php' . DS . 'lang' . 'Class_' . 
+	PHP_SUFFIX);
+	
+
 /**
  * Class Object is the root of the class hierarchy. 
  * Every class has Object as a superclass. 
@@ -19,14 +23,6 @@ class Object {
 	public function __construct() {
 		$this->construct();
 	}
-	
-	/**
-	 * Constructs a new Object.
-	 */
-	public function construct() {
-		
-	}
-	
 	
 	/**
 	 * Indicates whether some other object is "equal to" this one.
@@ -63,7 +59,7 @@ class Object {
 	 * @return The php.lang.Class object that represents the runtime class of the object.
 	 */
 	public final function getClass() {
-		// TODO: FINISH this
+		return new Class_(__CLASS__);
 	}
 	
 	/**

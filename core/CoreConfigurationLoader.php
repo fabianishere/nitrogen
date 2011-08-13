@@ -22,7 +22,7 @@ class CoreConfigurationLoader {
 		
 		if ($exists) {
 			CoreLogger::info("Found configuration file: " . CONFIGURATION_FILE);
-			CoreLogger::info("Parsing file.");
+			CoreLogger::info("Parsing configuration file.");
 			$content = file_get_contents(CONFIGURATION_FILE);	
 			$key = null;
 			$value = null;

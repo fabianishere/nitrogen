@@ -8,6 +8,7 @@ define('FaabBB', true);
 
 // Other constants.
 define('FaabBB_VERSION', '3.006 ALPHA');
+define('PHP_VERSION_NEEDED', '5.3.0');
 
 define('PHP_SUFFIX', '.php');
 define('INI_SUFFIX', '.ini');
@@ -19,23 +20,27 @@ define('ROOT', dirname(__FILE__)  . DS .  '..');
 define('CORE_FOLDER', ROOT . DS . 'core');
 define('CORE_LIBRARY_FOLDER', CORE_FOLDER . DS . 'lib');
 define('CLASSES_FOLDER', ROOT . DS . 'classes' . DS); 
+define('APP_FOLDER', ROOT . DS . 'app' . DS); 
 define('DATA_FOLDER', ROOT . DS . 'data');
-define('CONFIGURATION_FILE', DATA_FOLDER . DS . 'configuration' . INI_SUFFIX . PHP_SUFFIX);
-define('CORE_LOG_FILE', CORE_FOLDER .  DS . '..' . DS . 'data' . DS . 'logs' . DS . 'core.log');
+define('CONFIGURATION_FILE', DATA_FOLDER . DS . 'core' . INI_SUFFIX . PHP_SUFFIX);
+define('CORE_LOG_FILE', CORE_FOLDER .  DS . '..' . DS . 'data' . DS . 'logs' . DS . 'core.log' 
+	. PHP_SUFFIX);
 define('ERROR_HANDLING_METHOD', "CoreErrorHandler::onError");
 define('EXCEPTION_HANDLING_METHOD', "CoreErrorHandler::onException");
 define('SHUTDOWN_HANDLING_METHOD', "CoreErrorHandler::onShutdown");
 define('DEBUG', 2);
 
 // Here we import the core classes.
-include(CORE_FOLDER . DS . 'CoreConfigurationLoader' . PHP_SUFFIX);
-include(CORE_FOLDER . DS . 'CoreState' . PHP_SUFFIX);
-include(CORE_FOLDER . DS . 'CoreLogger' . PHP_SUFFIX);
-include(CORE_FOLDER . DS . 'CoreException' . PHP_SUFFIX);
+include_once(CORE_FOLDER . DS . 'CoreConfiguration' . PHP_SUFFIX);
+include_once(CORE_FOLDER . DS . 'CoreState' . PHP_SUFFIX);
+include_once(CORE_FOLDER . DS . 'CoreLogger' . PHP_SUFFIX);
+include_once(CORE_FOLDER . DS . 'CoreException' . PHP_SUFFIX);
 //include(CORE_FOLDER . DS . 'CoreLibraryLoader' . PHP_SUFFIX);
 //include(CORE_FOLDER . DS . 'CorePharCreator' . PHP_SUFFIX);
-include(CORE_FOLDER . DS . 'CoreErrorHandler' . PHP_SUFFIX);
+include_once(CORE_FOLDER . DS . 'CoreErrorHandler' . PHP_SUFFIX);
 
+// MVC bootstrap class
+include_once(CORE_FOLDER . DS . 'mvc' . DS . 'MVCBootstrap' . PHP_SUFFIX);
 
 
 /**
@@ -86,6 +91,13 @@ class Core {
 	 		return;
 	 	}
 	 	CoreLogger::info("Loading FaabBB " . FaabBB_VERSION);
+	 	CoreLogger::info("Checking PHP version..");
+	 	if (version_compare(PHP_VERSION, '5.3.0') >= 0) {
+	 		CoreLogger::fine("PHP version is " . PHP_VERSION . ". Fine..");
+	 	} else {
+	 		CoreLogger::severe("PHP version must be higher than 5.3.0. Yours is " . PHP_VERSION);
+	 		exit();
+	 	}
 	 	CoreLogger::info("Disabling error reporting.");
 	 	error_reporting((DEBUG == 2 ? -1 : 0));
 	 	CoreLogger::info("Done disabling error reporting.");
@@ -94,7 +106,7 @@ class Core {
 	 	//CoreLogger::info("Intializing CoreLibraryLoader.");
 	 	//CoreLibraryLoader::init();
 	 	CoreLogger::info("Initializing configuration loader.");
-	 	CoreConfigurationLoader::init();
+	 	CoreConfiguration::getInstance()->init();
 	 	
 	 	 
 	 	// Successfully initialized.
@@ -113,8 +125,7 @@ class Core {
 	 		CoreLogger::warning("Can not invoke.. Core state is wrong.");
 	 		return;
 	 	}
-	  	// TODO: Finish this.
-	  	
+	 	MVCBootstrap::init();
 	  	self::checkpoint(CoreState::SUCCESS);
 	  }
 	

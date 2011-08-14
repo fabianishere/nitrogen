@@ -36,7 +36,7 @@ class CoreLogger {
 		if (!$f) {
 			die("Failed to initialize the CoreLogger. Try to change permissions.");
 		}
-		fwrite($f, "");
+		fwrite($f, "<?php exit(); ?>\n");
 		fclose($f);
 		self::$init = true;
 	}

@@ -3,21 +3,40 @@ if (!defined('FaabBB'))
 	exit();
 	
 /**
- * The {@link CoreConfigurationLoader} will load the configuration file ("$root/data/faabbb.ini.php"),
+ * The {@link CoreConfiguration} will load the configuration file ("$root/data/core.ini.php"),
  * 	read it and parses it. After that, the settings will be defined as constants. When no configuration file exists,
  * 	we'll load the default configuration.
  * 
  * @category Core configuration.
- * @version Version 3.007 ALPHA
+ * @version Version 3.009 ALPHA
  * @copyright Copyright &copy; 2011, FaabTech
  * @author Fabian M.
  */
-class CoreConfigurationLoader {
+class CoreConfiguration {
 	
 	/**
-	 * Initializes the {@link CoreConfigurationLoader} class
+	 * Contains all the found keys and values.
 	 */
-	public static function init() {
+	private $list;
+	
+	/**
+	 * The {@link CoreConfiguration} instance.
+	 */
+	private static $instance = null;
+	
+	/**
+	 * Get the {@link CoreConfiguration} instance.
+	 */
+	public static function getInstance() {
+		return self::$instance == null ? self::$instance = new CoreConfiguration() 
+			: self::$instance;
+	}
+	
+	
+	/**
+	 * Initializes the {@link CoreConfiguration} class
+	 */
+	public function init() {
 		$exists = file_exists(CONFIGURATION_FILE);
 		
 		if ($exists) {
@@ -55,7 +74,7 @@ class CoreConfigurationLoader {
 					if ($value != null) {
 						if (!defined($key)) {
 							CoreLogger::info("Constant: " . $key . "=" . $value);
-							define($key, $value);
+							$this->list[$key] = $value;
 						}
 						
 					}
@@ -71,6 +90,10 @@ class CoreConfigurationLoader {
 			return;
 		}
 		CoreLogger::info("Configuration loaded.");
+	}
+	
+	public function __get($key) {
+		return $this->list[$key];
 	}
 	
 }

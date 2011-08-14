@@ -61,8 +61,10 @@ class CoreErrorHandler {
 	 * This method is invoked when the runtime shutdown unexpectedly.
 	 */
 	public static function onShutdown() {
-		if (Core::$STATE == CoreState::SUCCESS)
+		if (Core::$STATE == CoreState::SUCCESS) {
+			CoreLogger::fine("Everything went good.");
 			return;
+		}
 		$traces = debug_backtrace();
 		$err = "Runtime error in thread \"main\"\n";
 		foreach($traces as $trace) {

@@ -2,7 +2,7 @@
 if (!defined('FaabBB'))
 	exit();
 
-include_once(CLASSES_FOLDER . DS . 'php' . DS . 'lang' . 'Class_' . 
+include_once(CLASSES_FOLDER . DS . 'php' . DS . 'lang' . DS . 'Class_' . 
 	PHP_SUFFIX);
 	
 
@@ -21,7 +21,7 @@ class Object {
 	 * Constructs a new Object.
 	 */
 	public function __construct() {
-		$this->construct();
+	
 	}
 	
 	/**

@@ -40,8 +40,9 @@ class Object {
 	 * 
 	 * @return a string representation of the object.
 	 */
-	public function toString() {
-		return $this->__toString();
+	public function __toString() {
+		// TODO
+		return "";
 	}
 	
 	/**

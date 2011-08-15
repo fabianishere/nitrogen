@@ -54,7 +54,7 @@ include_once(CORE_FOLDER . DS . 'mvc' . DS . 'MVCBootstrap' . PHP_SUFFIX);
  * The {@link Core} uses a static pattern which means there's only one {@link Core}. 
  * 
  * @category Core
- * @version Version 3.007 ALPHA
+ * @version Version 3.009 ALPHA
  * @copyright Copyright &copy; 2011, FaabTech
  * @author Fabian M.
  */
@@ -98,9 +98,9 @@ class Core {
 	 		CoreLogger::severe("PHP version must be higher than 5.3.0. Yours is " . PHP_VERSION);
 	 		exit();
 	 	}
-	 	CoreLogger::info("Disabling error reporting.");
+	 	CoreLogger::info("Changing error reporting level.");
 	 	error_reporting((DEBUG == 2 ? -1 : 0));
-	 	CoreLogger::info("Done disabling error reporting.");
+	 	CoreLogger::info("Done changinh error reporting level to " . DEBUG . ".");
 	 	CoreLogger::info("Initializing CoreErrorHandler.");
 	 	CoreErrorHandler::init();
 	 	//CoreLogger::info("Intializing CoreLibraryLoader.");

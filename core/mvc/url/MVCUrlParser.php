@@ -4,7 +4,7 @@ if (!defined('FaabBB'))
 	
 /**
  * Blueprint for a {@link MVCUrlParser} which parses the current
- * 	url into a {@link MVCUrlObject} instance.
+ * 	url.
  * 
  * @category Model-Controller-View 
  * @version Version 3.009 ALPHA

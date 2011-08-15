@@ -3,7 +3,7 @@ if (!defined('FaabBB'))
 	exit();
 
 /**
- * All intances of the {@link Class_} class represent classes and interfaces running
+ * All instances of the {@link Class_} class represent classes and interfaces running
  * 	in this PHP application.
  *
  * @version Version 3.008 ALPHA

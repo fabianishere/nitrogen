@@ -3,7 +3,7 @@ if (!defined('FaabBB'))
 	exit();
 	
 include_once(CLASSES_FOLDER . DS . 'php' . DS .
-	'lang' . DS . 'Serializable' . PHP_SUFFIX);
+	'io' . DS . 'Serializable' . PHP_SUFFIX);
 	
 /**
  * The {@link Model} interface actually represents a SQL result.

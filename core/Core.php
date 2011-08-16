@@ -7,7 +7,7 @@ if (defined('FaabBB'))
 define('FaabBB', true);
 
 // Other constants.
-define('FaabBB_VERSION', '3.006 ALPHA');
+define('FaabBB_VERSION', '3.009 ALPHA');
 define('PHP_VERSION_NEEDED', '5.3.0');
 
 define('PHP_SUFFIX', '.php');

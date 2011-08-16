@@ -5,6 +5,7 @@ if (!defined('FaabBB'))
 /**
  * All instances of the {@link Class_} class represent classes and interfaces running
  * 	in this PHP application.
+ * The {@link Class_} class provides easier reflection.
  *
  * @version Version 3.008 ALPHA
  * @copyright Copyright &copy; 2011, Oracle

@@ -35,7 +35,6 @@ include_once(CORE_FOLDER . DS . 'CoreConfiguration' . PHP_SUFFIX);
 include_once(CORE_FOLDER . DS . 'CoreState' . PHP_SUFFIX);
 include_once(CORE_FOLDER . DS . 'CoreLogger' . PHP_SUFFIX);
 include_once(CORE_FOLDER . DS . 'CoreException' . PHP_SUFFIX);
-//include(CORE_FOLDER . DS . 'CoreLibraryLoader' . PHP_SUFFIX);
 include_once(CORE_FOLDER . DS . 'CoreErrorHandler' . PHP_SUFFIX);
 
 // MVC bootstrap class

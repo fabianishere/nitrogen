@@ -10,7 +10,7 @@ include_once(CORE_FOLDER . DS . 'mvc' . DS . 'url' . DS .
  * 	like searching for controllers, auto-loading models, etc.
  * The {@link MVCBootstrap} class in intialized and invoked by 
  * 	the {@link Core} class. The {@link MVCBootstrap} should not be invoked
- * 	by any other classes than the {@link Core} class.
+ * 	by any classes other than the {@link Core} class.
  * 
  * @category Model-Controller-View 
  * @version Version 3.009 ALPHA

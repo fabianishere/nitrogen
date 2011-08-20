@@ -32,17 +32,38 @@ class CoreConfiguration {
 			: self::$instance;
 	}
 	
-	
 	/**
-	 * Initializes the {@link CoreConfiguration} class
+	 * Initializes the {@link CoreConfiguration} class.
 	 */
 	public function init() {
-		$exists = file_exists(CONFIGURATION_FILE);
+		if (!file_exists(CONFIGURATION_FOLDER)) {
+			CoreLogger::info("No configuration folder found.");
+			return;
+		}
+		
+	
+		$iterator = new DirectoryIterator(CONFIGURATION_FOLDER);
+		
+		foreach($iterator as $file) {
+			if ($file->isFile()) {
+				$info = pathinfo(CONFIGURATION_FOLDER . DS . $file);
+				if ($info['extension'] != 'php')
+					continue;
+				$this->parse(CONFIGURATION_FOLDER . DS . $file);
+			}
+		}
+	}
+	
+	/**
+	 * Parses <code>$file</code>.
+	 */
+	private function parse($file) {
+		$exists = file_exists($file);
 		
 		if ($exists) {
-			CoreLogger::info("Found configuration file: " . CONFIGURATION_FILE);
+			CoreLogger::info("Found configuration file: " . $file);
 			CoreLogger::info("Parsing configuration file.");
-			$content = file_get_contents(CONFIGURATION_FILE);	
+			$content = file_get_contents($file);	
 			$key = null;
 			$value = null;
 			$inKey = true;
@@ -73,7 +94,7 @@ class CoreConfiguration {
 					}
 					if ($value != null) {
 						if (!defined($key)) {
-							CoreLogger::info("Constant: " . $key . "=" . $value);
+							CoreLogger::config($key . "=" . $value);
 							$this->list[$key] = $value;
 						}
 						
@@ -84,16 +105,13 @@ class CoreConfiguration {
 					$inValue = false;
 				}
 			}
-		} else {
-			CoreLogger::warning("No configuration file found, loading default configuration.");
-			include(CORE_FOLDER . DS . 'DefaultCoreConfiguration' . PHP_SUFFIX);
-			return;
-		}
-		CoreLogger::info("Configuration loaded.");
+			
+		} 
+		CoreLogger::info("Configuration file " . $file . " loaded.");
 	}
 	
 	public function __get($key) {
-		return $this->list[$key];
+		return isset($this->list[$key]) ? $this->list[$key] : null;
 	}
 	
 }

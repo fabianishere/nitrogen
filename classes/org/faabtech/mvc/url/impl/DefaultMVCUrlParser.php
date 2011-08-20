@@ -2,8 +2,8 @@
 if (!defined('FaabBB'))
 	exit();
 	
-include_once(CORE_FOLDER . DS . 'mvc' . DS . 'url' . DS .
-	'MVCUrlParser' . PHP_SUFFIX);
+include_once(CLASSES_FOLDER . DS  . 'org' . DS . 'faabtech' . DS .
+	'mvc' . DS . 'url' . DS . 'MVCUrlParser' . PHP_SUFFIX);
 	
 /**
  * The {@link DefaultMvcUrlParser} is the default MVC url parser.

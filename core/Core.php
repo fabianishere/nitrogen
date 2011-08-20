@@ -22,8 +22,9 @@ define('CORE_LIBRARY_FOLDER', CORE_FOLDER . DS . 'lib');
 define('CLASSES_FOLDER', ROOT . DS . 'classes' . DS); 
 define('APP_FOLDER', ROOT . DS . 'app' . DS); 
 define('DATA_FOLDER', ROOT . DS . 'data');
-define('CONFIGURATION_FILE', DATA_FOLDER . DS . 'core' . INI_SUFFIX . PHP_SUFFIX);
-define('CORE_LOG_FILE', CORE_FOLDER .  DS . '..' . DS . 'data' . DS . 'logs' . DS . 'core.log' 
+define('CONFIGURATION_FOLDER', DATA_FOLDER . DS . 'config');
+define('LOGS_FOLDER', DATA_FOLDER . DS . 'logs');
+define('CORE_LOG_FILE', LOGS_FOLDER . DS . 'core.log' 
 	. PHP_SUFFIX);
 define('ERROR_HANDLING_METHOD', "CoreErrorHandler::onError");
 define('EXCEPTION_HANDLING_METHOD', "CoreErrorHandler::onException");
@@ -37,8 +38,6 @@ include_once(CORE_FOLDER . DS . 'CoreLogger' . PHP_SUFFIX);
 include_once(CORE_FOLDER . DS . 'CoreException' . PHP_SUFFIX);
 include_once(CORE_FOLDER . DS . 'CoreErrorHandler' . PHP_SUFFIX);
 
-// MVC bootstrap class
-include_once(CORE_FOLDER . DS . 'mvc' . DS . 'MVCBootstrap' . PHP_SUFFIX);
 
 
 /**
@@ -112,8 +111,12 @@ class Core {
 	 }
 	 
 	 /**
-	  * Invokes the {@link Application}s and the main method.
-	  * After this process, FaabBB is successfully loaded and the HTTP response is send.
+	  * The {@link Core#invoke} method will read, parse
+	  * 	and invoke.
+	  * When the command <code>FaabBB</code> is used
+	  * 	without any options. The core will execute
+	  * 	normally.
+	  * Otherwise a custom command will be invoked.
 	  * 
 	  * @since Version 3.006 ALPHA
 	  */
@@ -121,9 +124,41 @@ class Core {
 	  	// Can not invoke.. Core state is wrong.
 	  	if (self::$STATE != CoreState::INVOKE) {
 	 		CoreLogger::warning("Can not invoke.. Core state is wrong.");
-	 		return;
+	 		return; 
 	 	}
-	 	MVCBootstrap::init();
+	 	$run = CoreConfiguration::getInstance()->run;
+	 	if ($run == null || empty($run)) 
+	 		throw new CoreException("Nothing to run...");
+	 	
+	 	$explode = explode(" ", $run);
+	 	$file = $explode[0];
+	 	$args = array();
+	 	
+	 	for ($i = 1; $i < count($explode); $i++)
+	 		$args[($i - 1)] = $explode[$i];
+	 	$aFile = CLASSES_FOLDER . DS . $file . PHP_SUFFIX;
+	 	
+	 	if (!file_exists($aFile))
+	 		throw new CoreException("File not exists " . $aFile);
+	 		
+	 	include($aFile);
+	 	
+	 	$info = pathinfo($aFile);
+	 	$clsName = $info['filename'];
+	 	
+	 	if (!class_exists($clsName))
+	 		throw new CoreException("Class " . $clsName . " does not exists.");
+	 		
+	 	$reflector = new ReflectionClass($clsName);
+	 	
+	 	if (!$reflector) 
+	 		throw new CoreException("Failed to get main class: " . $clsName);
+	 		
+	 	if (!$reflector->hasMethod('main'))
+	 		throw new CoreException("Method main not found in class " . $clsName);
+	 		
+	 	$reflector->getMethod('main')->invoke(null, $args);
+	 	
 	  	self::checkpoint(CoreState::SUCCESS);
 	  }
 	

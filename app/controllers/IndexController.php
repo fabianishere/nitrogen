@@ -15,8 +15,10 @@ include_once(CLASSES_FOLDER . DS . 'org' . DS . 'faabtech' . DS .
  */
 class IndexController extends Controller {
 	
+	public $aliases = 'index';
+	
 	function defaultAction() {
-		echo 'Hello world!!';
+		echo '!! Hello world !!';
 	}
 	
 }

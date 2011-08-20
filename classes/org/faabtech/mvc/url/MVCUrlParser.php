@@ -2,6 +2,9 @@
 if (!defined('FaabBB'))
 	exit();
 	
+include_once(CLASSES_FOLDER . DS . 'php' . DS .
+	'lang' . DS . 'Object' . PHP_SUFFIX);
+	
 /**
  * Blueprint for a {@link MVCUrlParser} which parses the current
  * 	url.
@@ -11,7 +14,7 @@ if (!defined('FaabBB'))
  * @copyright Copyright &copy; 2011, FaabTech
  * @author Fabian M.
  */
-abstract class MVCUrlParser {
+abstract class MVCUrlParser extends Object {
 
 	
 	/**

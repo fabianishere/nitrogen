@@ -1,23 +1,22 @@
 <?php
 if (!defined('FaabBB'))
 	exit();
+include_once(CLASSES_FOLDER . DS . 'php' . DS .
+	'lang' . DS . 'Object' . PHP_SUFFIX);
+include_once(CLASSES_FOLDER . DS  . 'org' . DS . 'faabtech' . DS .
+	'mvc' . DS . 'url' . DS . 'MVCUrlParser' . PHP_SUFFIX);
 	
-include_once(CORE_FOLDER . DS . 'mvc' . DS . 'url' . DS .
-	'MVCUrlParser' . PHP_SUFFIX);
 	
 /**
  * The {@link MVCBootstrap} class loads/handles all MVC related things,
  * 	like searching for controllers, auto-loading models, etc.
- * The {@link MVCBootstrap} class in intialized and invoked by 
- * 	the {@link Core} class. The {@link MVCBootstrap} should not be invoked
- * 	by any classes other than the {@link Core} class.
  * 
  * @category Model-Controller-View 
  * @version Version 3.009 ALPHA
  * @copyright Copyright &copy; 2011, FaabTech
  * @author Fabian M.
  */
-class MVCBootstrap {
+class MVCBootstrap extends Object {
 	
 	/**
 	 * Initializes the {@link MVCBootstrap} class.
@@ -43,10 +42,12 @@ class MVCBootstrap {
 		
 		foreach($iterator as $file) {
 			$info = pathinfo($path . $file);
-			
+			$info2 = pathinfo($_SERVER['SCRIPT_FILENAME']);
 			if ($info['extension'] != 'php') 
 				continue;
 			$name = $info['filename'];
+			$search = $info2['filename'];
+			CoreLogger::info(strtolower($search));
    			$end = strlen($name);
    			$start = $end - strlen("Controller"); 
 			$check = substr($name, $start, $end);
@@ -64,16 +65,15 @@ class MVCBootstrap {
 			}
 			// Split aliases.
 			$aliases = explode('|', trim($instance->aliases));
-			
-			if ($aliases == false) {
-				if ($name != trim($instance->aliases)) 
+			if (strpos(trim($instance->aliases), '|') === false) {
+				if (strtolower($search) != strtolower(trim($instance->aliases))) 
 					continue;
 				else 
 					return new $cls();
 			}
 			
 			foreach($aliases as $alias) {
-				if ($name == $alias) 
+				if (strtolower($search) == $alias) 
 					return new $cls();
 			}
 		}
@@ -87,8 +87,8 @@ class MVCBootstrap {
 	 * @return the {@link MVCUrlParser} instance.
 	 */
 	public static function getMvcUrlParser() {
-		$path = CORE_FOLDER . DS . 'mvc' . DS . 'url' .
-			DS . 'impl' . DS;
+		$path = CLASSES_FOLDER . DS  . 'org' . DS . 'faabtech' . DS .
+					'mvc' . DS . 'url' . DS . 'impl' . DS;
 			
 		$name = CoreConfiguration::getInstance()->mvc_urlparser;
 		

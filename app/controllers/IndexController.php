@@ -18,7 +18,8 @@ class IndexController extends Controller {
 	public $aliases = 'index';
 	
 	function defaultAction() {
-		echo '!! Hello world !!';
+		$str = new String("!! Hello world !!");
+		echo $str->toUppercase();
 	}
 	
 }

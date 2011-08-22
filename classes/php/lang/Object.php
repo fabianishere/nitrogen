@@ -41,7 +41,7 @@ class Object {
 	 * @return a string representation of the object.
 	 */
 	public function __toString() {
-		return var_export($this);
+		return serialize($this);
 	}
 	
 	/**

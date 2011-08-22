@@ -2,11 +2,9 @@
 if (!defined('FaabBB'))
 	exit();
 
-include_once(CLASSES_FOLDER . DS . 'php' . DS .
-	'lang' . DS . 'Object' . PHP_SUFFIX);	
 	
 /**
- * FaabBB core example class.
+ * FaabBB example class.
  *
  * @category Examples
  * @version Version 3.009 ALPHA

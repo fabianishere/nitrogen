@@ -34,13 +34,15 @@ class CoreLogger {
 		if (!is_writeable(CORE_LOG_FILE)) {
 			die("Failed to initialize the CoreLogger. Core log file isn't writeable.");
 		}
-		$f = fopen(CORE_LOG_FILE, 'w');
-		
-		if (!$f) {
-			die("Failed to initialize the CoreLogger. ");
+		if (filesize(CORE_LOG_FILE) == 0 || filesize(CORE_LOG_FILE) > 10000) {
+			$f = fopen(CORE_LOG_FILE, 'w');
+			if (!$f) {
+				die("Failed to initialize the CoreLogger. ");
+			}
+			fwrite($f, "<?php exit(); ?>\n");
+			fclose($f);
 		}
-		fwrite($f, "<?php exit(); ?>\n");
-		fclose($f);
+		
 		self::$init = true;
 	}
 	/**

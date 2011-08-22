@@ -2,9 +2,7 @@
 if (!defined('FaabBB'))
 	exit();
 	
-include_once(CLASSES_FOLDER . DS . 'php' . DS .
-	'lang' . DS . 'Object' . PHP_SUFFIX);
-	
+
 /**
  * The {@link Controller} represent a FaabBB controller. 
  * This class provides a basic blue print for controllers.

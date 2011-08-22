@@ -62,7 +62,7 @@ class CoreErrorHandler {
 	 */
 	public static function onShutdown() {
 		if (Core::$STATE == CoreState::SUCCESS) {
-			CoreLogger::fine("Everything went good.");
+			CoreLogger::fine("Everything went good.\n");
 			return;
 		}
 		$traces = debug_backtrace();

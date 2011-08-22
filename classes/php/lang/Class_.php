@@ -20,6 +20,7 @@ if (!defined('FaabBB'))
  	
  	/**
  	 * Constructs a new Class instance.
+ 	 * 
  	 * @param name The class' name.
  	 */
  	public function __construct($name) {
@@ -33,6 +34,7 @@ if (!defined('FaabBB'))
  	
 	/**
 	 * Returns the Class object associated with the class or interface with the given string name.
+	 * 
 	 * @param $name Fully qualified name of the desired class.
 	 * @return Class object representing the desired class.
 	 */
@@ -43,6 +45,7 @@ if (!defined('FaabBB'))
 
 	/**
 	 * Returns the name of the entity represented by this Class object, as a String.
+	 * 
 	 * @return the name of the class or interface represented by this object.
 	 */
 	public function getName() {
@@ -51,6 +54,7 @@ if (!defined('FaabBB'))
 
 	/**
 	 * Creates a new instance of the class represented by this Class object. 
+	 * 
 	 * @param $args Accepts a variable number of arguments which are passed to the class constructor.
 	 * @return A new instance of this object.
 	 */
@@ -59,7 +63,9 @@ if (!defined('FaabBB'))
 	}
 
 	/**
-	 * Determines if the specified Object is assignment-compatible with the object represented by this Class. This method is the dynamic equivalent of the PHP language <code>instanceof</code> operator.
+	 * Determines if the specified Object is assignment-compatible with the object represented by this Class. 
+	 * 	This method is the dynamic equivalent of the PHP language <code>instanceof</code> operator.
+	 * 
 	 * @param $obj The object to check
 	 * @return <code>true<code> if <code>obj</code> is an instance of this class; <code>false</code> otherwise.
 	 */
@@ -69,6 +75,7 @@ if (!defined('FaabBB'))
 
 	/**
 	 * Determines if the specified Class object represents an interface type.
+	 * 
 	 * @return <code>true</code> if this object represents an interface; <code>false</code> otherwise.
 	 */
 	public function isInterface() {
@@ -77,6 +84,7 @@ if (!defined('FaabBB'))
 
 	/**
 	 * Determines if the specified Class object represents an class type.
+	 * 
 	 * @return <code>true</code> if this object represents an class; <code>false</code> otherwise.
 	 */
 	public function isClass() {
@@ -86,12 +94,23 @@ if (!defined('FaabBB'))
 
 	/**
 	 * Determines if the specified Class object is abstract.
+	 * 
 	 * @return <code>true</code> if this object is abstract; <code>false</code> otherwise.
 	 */
 	public function isAbstract() {
 		return $this->reflector->isAbstract();
 	}
-
+	
+	/**
+	 * Determines if the specified Class object implements an inteface.
+	 * 
+	 * @param $interface The interface name.
+	 * @return <code>true</code> if this object implements an interface;
+	 * 	 <code>false</code> otherwise.
+	 */
+	public function implementsInterface($interface) {
+		return $this->reflector->implementsInterface($interface);
+	}
  	
  	
  }

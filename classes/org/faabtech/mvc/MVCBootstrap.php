@@ -1,8 +1,7 @@
 <?php
 if (!defined('FaabBB'))
 	exit();
-include_once(CLASSES_FOLDER . DS . 'php' . DS .
-	'lang' . DS . 'Object' . PHP_SUFFIX);
+	
 include_once(CLASSES_FOLDER . DS  . 'org' . DS . 'faabtech' . DS .
 	'mvc' . DS . 'url' . DS . 'MVCUrlParser' . PHP_SUFFIX);
 	
@@ -47,7 +46,6 @@ class MVCBootstrap extends Object {
 				continue;
 			$name = $info['filename'];
 			$search = $info2['filename'];
-			CoreLogger::info(strtolower($search));
    			$end = strlen($name);
    			$start = $end - strlen("Controller"); 
 			$check = substr($name, $start, $end);

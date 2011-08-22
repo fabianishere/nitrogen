@@ -39,7 +39,6 @@ include_once(CORE_FOLDER . DS . 'CoreException' . PHP_SUFFIX);
 include_once(CORE_FOLDER . DS . 'CoreErrorHandler' . PHP_SUFFIX);
 
 
-
 /**
  * Represents the <code>core</code> of this webpage. The {@link Core} class will receive 
  * 	incomming requests and handle them.
@@ -97,7 +96,7 @@ class Core {
 	 	}
 	 	CoreLogger::info("Changing error reporting level.");
 	 	error_reporting((DEBUG == 2 ? -1 : 0));
-	 	CoreLogger::info("Done changinh error reporting level to " . DEBUG . ".");
+	 	CoreLogger::info("Done changing error reporting level to " . DEBUG . ".");
 	 	CoreLogger::info("Initializing CoreErrorHandler.");
 	 	CoreErrorHandler::init();
 	 	//CoreLogger::info("Intializing CoreLibraryLoader.");
@@ -167,3 +166,22 @@ class Core {
 
 // Initialize the Core after defining the Core class.
 Core::init();
+
+// Define autoloader.
+/**
+ * Autoload not imported classes.
+ * <note>This will only autoload the php.lang library</note>
+ * 
+ * @param $class_name The name of the class to auto import.
+ */
+function __autoload($class_name) {
+	if (!class_exists($class_name)) {
+		$path = CLASSES_FOLDER . DS . 'php' . DS . 'lang' . 
+			DS . $class_name . PHP_SUFFIX;
+		if (!file_exists($path))
+			throw new CoreException("File not found: " . $path . ". Failed to import.");
+			
+		include($path);
+	}
+}
+

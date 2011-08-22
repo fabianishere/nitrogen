@@ -2,8 +2,6 @@
 if (!defined('FaabBB'))
 	exit();
 	
-include_once(CLASSES_FOLDER . DS . 'php' . DS .
-	'lang' . DS . 'Object' . PHP_SUFFIX);
 include_once(CLASSES_FOLDER . DS  . 'org' . DS . 'faabtech' . DS .
 	'mvc' . DS .  'MVCBootstrap' . PHP_SUFFIX);
 

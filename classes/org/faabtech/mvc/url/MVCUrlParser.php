@@ -2,8 +2,6 @@
 if (!defined('FaabBB'))
 	exit();
 	
-include_once(CLASSES_FOLDER . DS . 'php' . DS .
-	'lang' . DS . 'Object' . PHP_SUFFIX);
 	
 /**
  * Blueprint for a {@link MVCUrlParser} which parses the current

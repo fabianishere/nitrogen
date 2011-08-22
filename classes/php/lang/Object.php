@@ -11,7 +11,7 @@ include_once(CLASSES_FOLDER . DS . 'php' . DS . 'lang' . DS . 'Class_' .
  * Every class has Object as a superclass. 
  * All objects implement the methods of this class.
  * 
- * @version Version 3.008 ALPHA
+ * @version Version 3.009 ALPHA
  * @copyright Copyright &copy; 2011, Oracle
  * @author Fabian M. 
  */
@@ -31,7 +31,7 @@ class Object {
 	 * @return <code>true</code> if this object is the same as the obj argument; 
 	 * 	<code>false</code> otherwise.
 	 */
-	public function equals(Object $obj) {
+	public function equals($obj) {
 		return $this == $obj;
 	}
 	
@@ -41,8 +41,7 @@ class Object {
 	 * @return a string representation of the object.
 	 */
 	public function __toString() {
-		// TODO
-		return "";
+		return var_export($this);
 	}
 	
 	/**
@@ -69,7 +68,12 @@ class Object {
 	 * @return a clone of this instance.
 	 */
 	public function clone_() {
-		// TODO: FINISH this
+		$cls = $this->getClass();
+		if (!$cls->implementsInterface("Cloneable")) {
+			throw new Exception("Class " . $cls->getName() . " not cloneable. " .
+				"Implement the Cloneable interface to make it cloneable.");
+		}
+		return clone $this;
 	}
 }
 

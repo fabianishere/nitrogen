@@ -30,9 +30,7 @@ Features
 	
 * 	**Error in plugin?**
 
-	No problem, `FaabBB` 3 will report this error to the logs and to the administrator/administrators, but
-	will not show it, instead it will show a customizable error page.
-	
+	No problem, `FaabBB` 3 will report this error to the logs.
 * 	**Class library**
 
 	`FaabBB` 3 provides many classes in it's own class library, this 

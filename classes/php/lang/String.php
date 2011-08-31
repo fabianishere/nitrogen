@@ -1,6 +1,10 @@
 <?php
+namespace php\lang;
+
 if (!defined('FaabBB'))
 	exit();
+	
+use php\lang\Object as Object;
 
 /**
  * The {@link String} class provides the built-in PHP string functions wrapped

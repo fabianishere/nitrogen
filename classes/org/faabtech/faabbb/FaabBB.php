@@ -1,9 +1,7 @@
 <?php
 if (!defined('FaabBB'))
 	exit();
-	
-include_once(CLASSES_FOLDER . DS  . 'org' . DS . 'faabtech' . DS .
-	'mvc' . DS .  'MVCBootstrap' . PHP_SUFFIX);
+
 
 /**
  * The {@link FaabBB} class is the <code>main</code> class of the FaabBB application,
@@ -20,7 +18,7 @@ class FaabBB extends Object {
 	 * @param args The arguments.
 	 */
 	public static function main($args) {
-		MVCBootstrap::init();
+
 	}
 	
 }

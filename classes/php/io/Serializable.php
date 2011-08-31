@@ -1,4 +1,6 @@
 <?php
+namespace php\io;
+
 if (!defined('FaabBB'))
 	exit();
 	

@@ -1,9 +1,10 @@
 <?php
+namespace php\lang;
+
 if (!defined('FaabBB'))
 	exit();
 
-include_once(CLASSES_FOLDER . DS . 'php' . DS . 'lang' . DS . 'Class_' . 
-	PHP_SUFFIX);
+use php\lang\Class_ as Class_;
 	
 
 /**

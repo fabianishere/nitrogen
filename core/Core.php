@@ -32,16 +32,15 @@ define('SHUTDOWN_HANDLING_METHOD', "CoreErrorHandler::onShutdown");
 define('DEBUG', 2);
 
 // Here we import the core classes.
-include_once(CORE_FOLDER . DS . 'CoreConfiguration' . PHP_SUFFIX);
+include_once(CORE_FOLDER . DS . 'Configuration' . PHP_SUFFIX);
 include_once(CORE_FOLDER . DS . 'CoreState' . PHP_SUFFIX);
-include_once(CORE_FOLDER . DS . 'CoreLogger' . PHP_SUFFIX);
+include_once(CORE_FOLDER . DS . 'Logger' . PHP_SUFFIX);
 include_once(CORE_FOLDER . DS . 'CoreException' . PHP_SUFFIX);
-include_once(CORE_FOLDER . DS . 'CoreErrorHandler' . PHP_SUFFIX);
+include_once(CORE_FOLDER . DS . 'ErrorHandler' . PHP_SUFFIX);
 
 
 /**
- * Represents the <code>core</code> of this webpage. The {@link Core} class will receive 
- * 	incomming requests and handle them.
+ * Represents the <code>core</code> of FaabBB.
  * The core will load the {@link Core} components and will check for errors. The {@link Core} class 
  * 	will never use any files of the FaabBB class library, so the {@link Core} uses 
  * 	pre-defined functions, variables and classes that comes along with the PHP function library 
@@ -99,8 +98,6 @@ class Core {
 	 	CoreLogger::info("Done changing error reporting level to " . DEBUG . ".");
 	 	CoreLogger::info("Initializing CoreErrorHandler.");
 	 	CoreErrorHandler::init();
-	 	//CoreLogger::info("Intializing CoreLibraryLoader.");
-	 	//CoreLibraryLoader::init();
 	 	CoreLogger::info("Initializing configuration loader.");
 	 	CoreConfiguration::getInstance()->init();
 	 	
@@ -109,17 +106,17 @@ class Core {
 	 	self::checkpoint(CoreState::INVOKE);
 	 }
 	 
-	 /**
-	  * The {@link Core#invoke} method will read, parse
-	  * 	and invoke.
-	  * When the command <code>FaabBB</code> is used
-	  * 	without any options. The core will execute
-	  * 	normally.
-	  * Otherwise a custom command will be invoked.
-	  * 
-	  * @since Version 3.006 ALPHA
-	  */
-	  public static function invoke() {
+	/**
+	 * The {@link Core#invoke} method will read, parse
+	 * 	and invoke.
+	 * When the command <code>FaabBB</code> is used
+	 * 	without any options. The core will execute
+	 * 	normally.
+	 * Otherwise a custom command will be invoked.
+	 * 
+	 * @since Version 3.006 ALPHA
+	 */
+	 public static function invoke() {
 	  	// Can not invoke.. Core state is wrong.
 	  	if (self::$STATE != CoreState::INVOKE) {
 	 		CoreLogger::warning("Can not invoke.. Core state is wrong.");

@@ -1,7 +1,10 @@
 <?php
+namespace org\faabtech\mvc;
+
 if (!defined('FaabBB'))
 	exit();
-	
+
+use php\lang\Object as Object;
 
 /**
  * The {@link Controller} represent a FaabBB controller. 

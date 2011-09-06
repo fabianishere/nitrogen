@@ -1,8 +1,11 @@
 <?php
+namespace org\faabtech\examples;
+
 if (!defined('FaabBB'))
 	exit();
-
 	
+use php\lang\Object as Object;
+
 /**
  * FaabBB example class.
  *

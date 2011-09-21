@@ -7,6 +7,7 @@ if (!defined('FaabBB'))
 use php\lang\Object as Object;
 
 /**
+ * 
  * The {@link FaabBB} class is the <code>main</code> class of the FaabBB application,
  * 	<b>not</b> the <code>core</code>.
  * 

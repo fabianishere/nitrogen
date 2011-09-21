@@ -2,8 +2,7 @@
 if (!defined('FaabBB'))
 	exit();
 	
-include_once(CLASSES_FOLDER . DS . 'org' . DS . 'faabtech' . DS .
-	'mvc' . DS . 'Controller' . PHP_SUFFIX);
+use org\faabtech\faabbb\mvc\Controller as Controller;
 	
 /**
  * The first written FaabBB {@link Controller}.

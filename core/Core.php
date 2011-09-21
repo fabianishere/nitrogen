@@ -147,7 +147,7 @@ class Core {
 	 */
 	private static function resolveMainClass() {
 		// File that the configuration gave use.
-		$file = CoreConfiguration::getInstance()->faabbb;
+		$file = self::resolveFile();
 		// Some people may forget to define a main class in the configuration, so we check it.
 		if ($file == null || empty($file)) 
 	 		throw new CoreException("Could not resolve main class, no one defined in configuration.");
@@ -198,6 +198,37 @@ class Core {
 	 	
 	  	self::checkpoint(CoreState::SUCCESS);
 	  }
+	  
+	  /**
+	   * Resolve the file given through the command line.
+	   * 
+	   * @return the file found.
+	   */
+	  private static function resolveFile() {
+	  	// PHP didn't even gave us the arguments. :-(
+	  	if (!isset($_SERVER['argv'])) {
+	  		// Then return from the configuration.
+	  		return CoreConfiguration::getInstance()->faabbb;
+	  	}
+	  	// Get arguments.
+	  	$args = $_SERVER['argv'];
+	  	// Does index 1 of the arguments array exists?
+	  	if (!isset($args[1])) {
+	  		// Return from configuration if there aren't any arguments.
+	  		// This may happen when you're using a webserver.
+	  		return CoreConfiguration::getInstance()->faabbb;
+	  	}
+	  	$file = null;
+	  	// Loop through all arguments.
+	  	foreach($args as $arg) {
+	  		// If argument starts with '-', then it's an option. 
+	  		// Otherwise we want it.
+	  		if (substr($arg, 0, 1) != '-') {
+	  			$file = $arg;	
+	  		}
+	  	}
+	  	return $file;
+	  }
 	
 	
 }
@@ -213,13 +244,16 @@ Core::init();
  * @param $class_name The name of the class to auto import.
  */
 function __autoload($class_name) {
+	// We can't include a class that's already included. So we check it ;-)
 	if (!class_exists($class_name)) {
+		// We aren't using namespaces? Ok, then use php.lang.$class_name
 		if (strpos($class_name, '\\') === false) 
 			$path = CLASSES_FOLDER . DS . 'php' . DS . 'lang' . 
 				DS . $class_name . PHP_SUFFIX;
+		// We are using namespaces.
 		else 
 			$path = CLASSES_FOLDER . str_replace('\\', '/', $class_name) . PHP_SUFFIX;
-			
+		// O NOES, the file doesn't exists. We should throw an exception.
 		if (!file_exists($path))
 			throw new CoreException("File not found: " . $path . ". Failed to import.");
 			

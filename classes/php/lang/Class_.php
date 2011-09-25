@@ -1,5 +1,6 @@
 <?php
 namespace php\lang;
+
 if (!defined('FaabBB'))
 	exit();
 

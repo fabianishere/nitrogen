@@ -1,10 +1,11 @@
 <?php
+namespace org\faabtech\mvc;
+
 if (!defined('FaabBB'))
 	exit();
-	
-include_once(CLASSES_FOLDER . DS . 'php' . DS .
-	'io' . DS . 'Serializable' . PHP_SUFFIX);
-	
+
+use php\io\Serializable as Serializable;	
+
 /**
  * The {@link Model} interface actually represents a SQL result.
  * All the methods represents a SQL field..

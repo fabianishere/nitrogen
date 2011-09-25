@@ -87,25 +87,91 @@ class Core {
 	 	}
 	 	CoreLogger::info("Loading FaabBB " . FaabBB_VERSION);
 	 	CoreLogger::info("Checking PHP version..");
-	 	if (version_compare(PHP_VERSION, '5.3.0') >= 0) {
+	 	// Compare PHP version with the required one.
+	 	if (version_compare(PHP_VERSION, PHP_VERSION_NEEDED) >= 0) {
 	 		CoreLogger::fine("PHP version is " . PHP_VERSION . ". Fine..");
 	 	} else {
-	 		CoreLogger::severe("PHP version must be higher than 5.3.0. Yours is " . PHP_VERSION);
+	 		CoreLogger::severe("PHP version must be higher than " . PHP_VERSION_NEEDED . " Yours is " . PHP_VERSION);
 	 		exit();
 	 	}
 	 	CoreLogger::info("Changing error reporting level.");
+	 	// Prevent all errors if we are in de production mode.
 	 	error_reporting((DEBUG == 2 ? -1 : 0));
-	 	CoreLogger::info("Done changing error reporting level to " . DEBUG . ".");
 	 	CoreLogger::info("Initializing CoreErrorHandler.");
+	 	// Load Error handler.
 	 	CoreErrorHandler::init();
+	 	// Check the HTTP request.
+	 	self::checkRequest();
 	 	CoreLogger::info("Initializing configuration loader.");
+	 	// Load configuration.
 	 	CoreConfiguration::getInstance()->init();
-	 	
+	 
 	 	 
-	 	// Successfully initialized.
+	 	// Set the state to CpreState::INVOKE.
 	 	self::checkpoint(CoreState::INVOKE);
 	 }
 	 
+	/**
+	 * Check and fix the HTTP request.
+	 */
+	private static function checkRequest() {
+		// Copyright (c) Drupal
+		if (!isset($_SERVER['HTTP_REFERER'])) {
+    		$_SERVER['HTTP_REFERER'] = '';
+  		}
+  		if (!isset($_SERVER['SERVER_PROTOCOL']) || ($_SERVER['SERVER_PROTOCOL'] != 'HTTP/1.0' && $_SERVER['SERVER_PROTOCOL'] != 'HTTP/1.1')) {
+    		$_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.0';
+  		}
+  		if (isset($_SERVER['HTTP_HOST'])) {
+    		// As HTTP_HOST is user input, ensure it only contains characters allowed
+    		// in hostnames. See RFC 952 (and RFC 2181).
+    		// $_SERVER['HTTP_HOST'] is lowercased here per specifications.
+   			$_SERVER['HTTP_HOST'] = strtolower($_SERVER['HTTP_HOST']);
+    		if (!preg_match('/^\[?(?:[a-zA-Z0-9-:\]_]+\.?)+$/', $_SERVER['HTTP_HOST'])) {
+      			// HTTP_HOST is invalid, e.g. if containing slashes it may be an attack.
+      			header($_SERVER['SERVER_PROTOCOL'] . ' 400 Bad Request');
+     	 		exit;
+    		}
+  		} else {
+			// Some pre-HTTP/1.1 clients will not send a Host header. Ensure the key is
+   			// defined for E_ALL compliance.
+    		$_SERVER['HTTP_HOST'] = '';
+  		}
+  		
+	}
+	 
+	/**
+	 * Get the main class to invoke.
+	 * 
+	 * @return the main class.
+	 */
+	private static function resolveMainClass() {
+		// File that the configuration gave use.
+		$file = self::resolveFile();
+		// Some people may forget to define a main class in the configuration, so we check it.
+		if ($file == null || empty($file)) 
+	 		throw new CoreException("Could not resolve main class, no one defined in configuration.");
+	 	
+		$aFile = CLASSES_FOLDER . DS . $file . PHP_SUFFIX;
+		
+		// Is the file readable?
+		if (!is_readable($aFile))
+			throw new CoreException("Main class isn't readable.");
+		
+		// Include main class.
+		include_once($aFile);
+		
+		// Get the namespace of this class.
+		$namespace = str_replace('/', '\\', $file);
+		
+		// Get reflector.
+		try {
+			$reflector = new ReflectionClass($namespace);
+		} catch(Exception $e) {
+			throw new CoreException("Class does not exists: " . $namespace);
+		}
+		return $reflector;
+	}
 	/**
 	 * The {@link Core#invoke} method will read, parse
 	 * 	and invoke.
@@ -122,40 +188,46 @@ class Core {
 	 		CoreLogger::warning("Can not invoke.. Core state is wrong.");
 	 		return; 
 	 	}
-	 	$run = CoreConfiguration::getInstance()->run;
-	 	if ($run == null || empty($run)) 
-	 		throw new CoreException("Nothing to run...");
 	 	
-	 	$explode = explode(" ", $run);
-	 	$file = $explode[0];
-	 	$args = array();
-	 	
-	 	for ($i = 1; $i < count($explode); $i++)
-	 		$args[($i - 1)] = $explode[$i];
-	 	$aFile = CLASSES_FOLDER . DS . $file . PHP_SUFFIX;
-	 	
-	 	if (!file_exists($aFile))
-	 		throw new CoreException("File not exists " . $aFile);
-	 		
-	 	include($aFile);
-	 	
-	 	$info = pathinfo($aFile);
-	 	$clsName = $info['filename'];
-	 	
-	 	if (!class_exists($clsName))
-	 		throw new CoreException("Class " . $clsName . " does not exists.");
-	 		
-	 	$reflector = new ReflectionClass($clsName);
-	 	
-	 	if (!$reflector) 
-	 		throw new CoreException("Failed to get main class: " . $clsName);
+	 	$reflector = self::resolveMainClass();
 	 		
 	 	if (!$reflector->hasMethod('main'))
-	 		throw new CoreException("Method main not found in class " . $clsName);
+	 		throw new CoreException("Main method not found for class " . $reflector->getName());
 	 		
-	 	$reflector->getMethod('main')->invoke(null, $args);
+	 	$reflector->getMethod('main')->invoke(null, null);
 	 	
 	  	self::checkpoint(CoreState::SUCCESS);
+	  }
+	  
+	  /**
+	   * Resolve the file given through the command line.
+	   * 
+	   * @return the file found.
+	   */
+	  private static function resolveFile() {
+	  	// PHP didn't even gave us the arguments. :-(
+	  	if (!isset($_SERVER['argv'])) {
+	  		// Then return from the configuration.
+	  		return CoreConfiguration::getInstance()->faabbb;
+	  	}
+	  	// Get arguments.
+	  	$args = $_SERVER['argv'];
+	  	// Does index 1 of the arguments array exists?
+	  	if (!isset($args[1])) {
+	  		// Return from configuration if there aren't any arguments.
+	  		// This may happen when you're using a webserver.
+	  		return CoreConfiguration::getInstance()->faabbb;
+	  	}
+	  	$file = null;
+	  	// Loop through all arguments.
+	  	foreach($args as $arg) {
+	  		// If argument starts with '-', then it's an option. 
+	  		// Otherwise we want it.
+	  		if (substr($arg, 0, 1) != '-') {
+	  			$file = $arg;	
+	  		}
+	  	}
+	  	return $file;
 	  }
 	
 	
@@ -172,13 +244,20 @@ Core::init();
  * @param $class_name The name of the class to auto import.
  */
 function __autoload($class_name) {
+	// We can't include a class that's already included. So we check it ;-)
 	if (!class_exists($class_name)) {
-		$path = CLASSES_FOLDER . DS . 'php' . DS . 'lang' . 
-			DS . $class_name . PHP_SUFFIX;
+		// We aren't using namespaces? Ok, then use php.lang.$class_name
+		if (strpos($class_name, '\\') === false) 
+			$path = CLASSES_FOLDER . DS . 'php' . DS . 'lang' . 
+				DS . $class_name . PHP_SUFFIX;
+		// We are using namespaces.
+		else 
+			$path = CLASSES_FOLDER . str_replace('\\', '/', $class_name) . PHP_SUFFIX;
+		// O NOES, the file doesn't exists. We should throw an exception.
 		if (!file_exists($path))
 			throw new CoreException("File not found: " . $path . ". Failed to import.");
 			
-		include($path);
+		include_once($path);
 	}
 }
 

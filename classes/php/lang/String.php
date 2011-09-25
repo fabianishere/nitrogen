@@ -73,7 +73,7 @@ final class String extends Object {
 	public function contains($s) {
 		$anotherStringObject = $s instanceof String ? 
 			$s : new String($s);
-		return strpos($this->string, $anotherStringObject) !== false ? true 
+		return \strpos($this->string, $anotherStringObject) !== false ? true 
 			: false;
 	}
 	/**
@@ -121,8 +121,8 @@ final class String extends Object {
  	 * 	represented by this object, or -1 if the character does not occur.
 	 */
 	public function indexOf($ch) {
-		return strpos($this->string, $ch) === false ? -1 : 
-			strpos($this->string, $ch);
+		return \strpos($this->string, $ch) === false ? -1 : 
+			\strpos($this->string, $ch);
 	}
 	
 	/**
@@ -137,8 +137,8 @@ final class String extends Object {
  	 *  represented by this object, or -1 if the character does not occur.
 	 */
 	public function lastIndexOf($ch) {
-		return strrpos($this->string, $ch) === false ? -1 : 
-			strrpos($this->string, $ch);
+		return \strrpos($this->string, $ch) === false ? -1 : 
+			\strrpos($this->string, $ch);
 	}
 	
 	/**
@@ -148,7 +148,7 @@ final class String extends Object {
 	 * @return the length of the sequence of characters represented by this object.
 	 */
 	public function length() {
-		return strlen($this->string);
+		return \strlen($this->string);
 	}
 	
 	/**
@@ -174,7 +174,7 @@ final class String extends Object {
      * 	 with <code>newChar</code>.
 	 */
 	public function replace($oldChar, $newChar) {
-		return new String(str_replace($oldChar, $newChar, $this->string));
+		return new String(\str_replace($oldChar, $newChar, $this->string));
 	}
 	
 	/**
@@ -185,7 +185,7 @@ final class String extends Object {
 	 * @return The new string.
 	 */
 	public function replaceAll($regex, $replace) {
-		return new String(preg_replace($regex,$replace, $this->string));
+		return new String(\preg_replace($regex,$replace, $this->string));
 	}
 	
 	/**
@@ -198,8 +198,8 @@ final class String extends Object {
 	 */
 	public function substring($beginIndex, $endIndex = null) {
 		return $endIndex == null ?
-			new String(substr($this->string, $beginIndex)) : 
-			new String(substr($this->string, $beginIndex, $endIndex));
+			new String(\substr($this->string, $beginIndex)) : 
+			new String(\substr($this->string, $beginIndex, $endIndex));
 	}
 	
 	/**
@@ -213,8 +213,8 @@ final class String extends Object {
 	 */
 	public function split($regex, $limit = null) {
 		return $limit == null ?
-			new String(preg_split($regex, $this->string)) : 
-			new String(preg_split($regex, $this->string, $limit));
+			new String(\preg_split($regex, $this->string)) : 
+			new String(\preg_split($regex, $this->string, $limit));
 	}
 	
 	/**
@@ -233,7 +233,7 @@ final class String extends Object {
 	 * @return The {@link String}, converted to lowercase.
 	 */
 	public function toLowercase() {
-		return new String(strtolower($this->string));
+		return new String(\strtolower($this->string));
 	}
 	
 	/**
@@ -242,7 +242,7 @@ final class String extends Object {
 	 * @return The {@link String}, converted to uppercase.
 	 */
 	public function toUppercase() {
-		return new String(strtoupper($this->string));
+		return new String(\strtoupper($this->string));
 	}
 	
 	/**
@@ -263,7 +263,7 @@ final class String extends Object {
 	 * 	leading or trailing white space.
 	 */
 	public function trim() {
-		return trim($this->string);
+		return \trim($this->string);
 	}
 	
 	/** @Override */

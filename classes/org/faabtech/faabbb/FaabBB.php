@@ -1,9 +1,13 @@
 <?php
+namespace org\faabtech\faabbb;
+
 if (!defined('FaabBB'))
 	exit();
 
+use php\lang\Object as Object;
 
 /**
+ * 
  * The {@link FaabBB} class is the <code>main</code> class of the FaabBB application,
  * 	<b>not</b> the <code>core</code>.
  * 
@@ -18,7 +22,7 @@ class FaabBB extends Object {
 	 * @param args The arguments.
 	 */
 	public static function main($args) {
-
+		echo "My simple application.";
 	}
 	
 }

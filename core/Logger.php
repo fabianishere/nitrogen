@@ -38,7 +38,14 @@ class CoreLogger {
 			|| filesize(CORE_LOG_FILE) == 0 
 			|| filesize(CORE_LOG_FILE) > 10000) {
 				
+<<<<<<< HEAD
 			$f = @fopen(CORE_LOG_FILE, 'w') or die("Failed to initialize CoreLogger.");
+=======
+			$f = fopen(CORE_LOG_FILE, 'w');
+			if (!$f) {
+				die("Failed to initialize the CoreLogger. ");
+			}
+>>>>>>> 9a6d2c3467051785defd155c7f1ae76204dd03f4
 			fwrite($f, "<?php exit(); ?>\n");
 			fclose($f);
 		}

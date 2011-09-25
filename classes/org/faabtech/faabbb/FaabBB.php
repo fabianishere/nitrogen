@@ -22,11 +22,7 @@ class FaabBB extends Object {
 	 * @param args The arguments.
 	 */
 	public static function main($args) {
-<<<<<<< HEAD
 		echo "My simple application.";
-=======
-		echo '!! Hello World !!';
->>>>>>> 9a6d2c3467051785defd155c7f1ae76204dd03f4
 	}
 	
 }

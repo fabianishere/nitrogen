@@ -99,7 +99,19 @@ class CoreAccessManager implements NonCoreAccessible {
 				. " that can't be accessed.");
 		$reflector = $this->getReflector($class_name);
 		
-		// TODO: Return variable.
+		if ($reflector->hasProperty($var_name)) {
+			throw new CoreException($this->cls . " tries to access variable " . $var_name
+				. " that doesn't exists.");
+		}
+		
+		$var = $reflector->getProperty($var_name);
+		
+		if (!$var->isStatic() || !$var->isPublic()) {
+			throw new CoreException($this->cls . " tries to access variable " . $var_name
+				. " that can't be accessed.");
+		}
+		
+		return $var->getValue();
 	}
 	
 	/**
@@ -132,6 +144,7 @@ class CoreAccessManager implements NonCoreAccessible {
 		}
 		return $val;
 	}
+	
 	
 	/**
 	 * Create a new reflector instance for the given class

@@ -31,9 +31,15 @@ class CoreLogger {
 	public static function init() {
 		if (self::$init) 
 			return;
+		// Does the logs folder exists?
+		if (!file_exists(LOGS_FOLDER))
+			@mkdir(LOGS_FOLDER) or die("Can't create logs folder automatically. " .
+			 "Please do it manualy.");
+		// Is the file writeable?
 		if (!is_writeable(CORE_LOG_FILE) && file_exists(CORE_LOG_FILE)) {
 			die("Failed to initialize the CoreLogger. Core log file isn't writeable.");
 		}
+		// Does the file exists or is the filesize to big.
 		if (!file_exists(CORE_LOG_FILE) 
 			|| filesize(CORE_LOG_FILE) == 0 
 			|| filesize(CORE_LOG_FILE) > 10000) {

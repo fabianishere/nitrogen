@@ -22,6 +22,7 @@ define('CORE_LIBRARY_FOLDER', CORE_FOLDER . DS . 'lib');
 define('CLASSES_FOLDER', ROOT . DS . 'classes' . DS); 
 define('APP_FOLDER', ROOT . DS . 'app' . DS); 
 define('DATA_FOLDER', ROOT . DS . 'data');
+define('RESOURCES_FOLDER', ROOT . DS . 'res');
 define('CONFIGURATION_FOLDER', DATA_FOLDER . DS . 'config');
 define('LOGS_FOLDER', DATA_FOLDER . DS . 'logs');
 define('CORE_LOG_FILE', LOGS_FOLDER . DS . 'core.log' 

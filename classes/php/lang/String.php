@@ -161,17 +161,17 @@ final class String extends Object {
 	 * 	<code>oldChar</code> is replaced by an occurrence of <code>newChar</code>.
 	 * Examples:
 	 * <code>new String("mesquite in your cellar")->replace('e', 'o')
-     *    returns "mosquito in your collar"</code>
+     	 *    returns "mosquito in your collar"</code>
  	 * <code>new String("the war of baronets")->replace('r', 'y')
-     *    returns "the way of bayonets"</code>
+    	 *    returns "the way of bayonets"</code>
  	 * <code>new String("sparring with a purple porpoise")->replace('p', 't')
-     *    returns "starring with a turtle tortoise"</code>
+    	 *    returns "starring with a turtle tortoise"</code>
  	 * <code>new String("JonL")->replace('q', 'x') returns "JonL" (no change)</code>
  	 * 
  	 * @param $oldChar The old character.
-     * @param $newChar The new character.
-     * @return a string derived from this string by replacing every occurrence of <code>oldChar</code>
-     * 	 with <code>newChar</code>.
+    	 * @param $newChar The new character.
+    	 * @return a string derived from this string by replacing every occurrence of <code>oldChar</code>
+    	 * 	 with <code>newChar</code>.
 	 */
 	public function replace($oldChar, $newChar) {
 		return new String(\str_replace($oldChar, $newChar, $this->string));
@@ -204,8 +204,8 @@ final class String extends Object {
 	
 	/**
 	 * Splits this string around matches of the given regular expression.
-     * This method works as if by invoking the two-argument split method with the given expression 
-     * 	and a limit argument of zero. 
+    	 * This method works as if by invoking the two-argument split method with the given expression 
+    	 * 	and a limit argument of zero. 
 	 * Trailing empty strings are therefore not included in the resulting array.
 	 * 
 	 * @param $regex The delimiting regular expression
@@ -247,11 +247,11 @@ final class String extends Object {
 	
 	/**
 	 * Returns a copy of the string, with leading and trailing whitespace omitted.
-     * If this String object represents an empty character sequence, or the first and last characters 
-     * 	of character sequence represented by this String object both have codes greater than '\u0020' (the space character), 
-     * 	then a reference to this String object is returned.
-     * Otherwise, if there is no character with a code greater than '\u0020' in the string, 
-     * 	then a new {@link String} object representing an empty string is created and returned.
+    	 * If this String object represents an empty character sequence, or the first and last characters 
+   	 * 	of character sequence represented by this String object both have codes greater than '\u0020' (the space character), 
+    	 * 	then a reference to this String object is returned.
+    	 * Otherwise, if there is no character with a code greater than '\u0020' in the string, 
+     	 * 	then a new {@link String} object representing an empty string is created and returned.
  	 * Otherwise, let k be the index of the first character in the string whose code is greater than '\u0020', 
  	 * 	and let m be the index of the last character in the string whose code is greater than '\u0020'. A new String object is created, 
  	 * 	representing the substring of this string that begins with the character at index k and 

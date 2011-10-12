@@ -21,3 +21,5 @@ use php\lang\Object as Object;
  	}
  	
  }
+ 
+?>

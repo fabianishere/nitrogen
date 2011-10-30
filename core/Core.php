@@ -47,7 +47,6 @@ include_once(CORE_FOLDER . DS . 'ErrorHandler' . PHP_SUFFIX);
  * 	pre-defined functions, variables and classes that comes along with the PHP function library
  * 	that can be found at <a href="http://php.net/manual/en/funcref.php">http://php.net/manual/en/funcref.php</a> or
  * 	classes from the Core library.
- * The {@link Core} uses a static pattern which means there's only one {@link Core}.
  *
  * @category Core
  * @version Version 3.009 ALPHA
@@ -108,7 +107,7 @@ class Core {
 	 	CoreConfiguration::getInstance()->init();
 
 
-	 	// Set the state to CpreState::INVOKE.
+	 	// Set the state to CoreState::INVOKE.
 	 	self::checkpoint(CoreState::INVOKE);
 	 }
 
@@ -118,25 +117,25 @@ class Core {
 	private static function checkRequest() {
 		// Copyright (c) Drupal
 		if (!isset($_SERVER['HTTP_REFERER'])) {
-    		$_SERVER['HTTP_REFERER'] = '';
+    			$_SERVER['HTTP_REFERER'] = '';
   		}
   		if (!isset($_SERVER['SERVER_PROTOCOL']) || ($_SERVER['SERVER_PROTOCOL'] != 'HTTP/1.0' && $_SERVER['SERVER_PROTOCOL'] != 'HTTP/1.1')) {
-    		$_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.0';
+    			$_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.0';
   		}
   		if (isset($_SERVER['HTTP_HOST'])) {
-    		// As HTTP_HOST is user input, ensure it only contains characters allowed
-    		// in hostnames. See RFC 952 (and RFC 2181).
-    		// $_SERVER['HTTP_HOST'] is lowercased here per specifications.
+    			// As HTTP_HOST is user input, ensure it only contains characters allowed
+    			// in hostnames. See RFC 952 (and RFC 2181).
+    			// $_SERVER['HTTP_HOST'] is lowercased here per specifications.
    			$_SERVER['HTTP_HOST'] = strtolower($_SERVER['HTTP_HOST']);
-    		if (!preg_match('/^\[?(?:[a-zA-Z0-9-:\]_]+\.?)+$/', $_SERVER['HTTP_HOST'])) {
-      			// HTTP_HOST is invalid, e.g. if containing slashes it may be an attack.
-      			header($_SERVER['SERVER_PROTOCOL'] . ' 400 Bad Request');
-     	 		exit;
-    		}
+    			if (!preg_match('/^\[?(?:[a-zA-Z0-9-:\]_]+\.?)+$/', $_SERVER['HTTP_HOST'])) {
+      				// HTTP_HOST is invalid, e.g. if containing slashes it may be an attack.
+      				header($_SERVER['SERVER_PROTOCOL'] . ' 400 Bad Request');
+     	 			exit;
+    			}
   		} else {
 			// Some pre-HTTP/1.1 clients will not send a Host header. Ensure the key is
    			// defined for E_ALL compliance.
-    		$_SERVER['HTTP_HOST'] = '';
+    			$_SERVER['HTTP_HOST'] = '';
   		}
 
 	}
@@ -186,7 +185,7 @@ class Core {
 	 public static function invoke() {
 	  	// Can not invoke.. Core state is wrong.
 	  	if (self::$STATE != CoreState::INVOKE) {
-	 		CoreLogger::warning("Can not invoke.. Core state is wrong.");
+	 		CoreLogger::warning("State invalid.");
 	 		return;
 	 	}
 
@@ -240,7 +239,6 @@ Core::init();
 // Define autoloader.
 /**
  * Autoload not imported classes.
- * <note>This will only autoload the php.lang library</note>
  *
  * @param $class_name The name of the class to auto import.
  */

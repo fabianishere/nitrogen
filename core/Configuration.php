@@ -1,11 +1,11 @@
 <?php
-if (!defined('FaabBB')) 
+if (!defined('FaabBB'))
 	exit();
 
 /**
- * The {@link CoreConfiguration} will load the configuration file ("$root/data/core.ini.php") and other 
+ * The {@link CoreConfiguration} will load the configuration file ("$root/data/core.ini.php") and other
  * 	configuration files. After that, the files are interpreted and parsed.
- * 
+ *
  * @category Core configuration.
  * @version Version 3.009 ALPHA
  * @copyright Copyright &copy; 2011, FaabTech
@@ -27,7 +27,7 @@ class CoreConfiguration {
 	 * Get the {@link CoreConfiguration} instance.
 	 */
 	public static function getInstance() {
-		return self::$instance == null ? self::$instance = new CoreConfiguration() 
+		return self::$instance == null ? self::$instance = new CoreConfiguration()
 			: self::$instance;
 	}
 
@@ -62,7 +62,7 @@ class CoreConfiguration {
 		if ($exists) {
 			CoreLogger::info("Found configuration file: " . $file);
 			CoreLogger::info("Parsing configuration file.");
-			$content = file_get_contents($file);	
+			$content = file_get_contents($file);
 			$key = null;
 			$value = null;
 			$inKey = true;
@@ -79,9 +79,9 @@ class CoreConfiguration {
 							if ($key == null)
 								$key = "";
 							$key .= $char;
-						} else if($inKey && !$inValue && $char == ' ') { 
+						} else if($inKey && !$inValue && $char == ' ') {
 							$inKey = false;
-						} else if (!$inKey && !$inValue && $char == '=') { 
+						} else if (!$inKey && !$inValue && $char == '=') {
 							$inValue = true;
 						} else if (!$inKey && $inValue && $char != ' ') {
 							if ($value == null)
@@ -105,7 +105,7 @@ class CoreConfiguration {
 				}
 			}
 
-		} 
+		}
 		CoreLogger::info("Configuration file " . $file . " loaded.");
 	}
 

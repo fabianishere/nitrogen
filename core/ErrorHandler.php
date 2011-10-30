@@ -1,13 +1,13 @@
 <?php
-if (!defined('FaabBB')) 
+if (!defined('FaabBB'))
 	exit();
 
 /**
  * The {@link CoreErrorHandler} will handle any php errors/exceptions during the runtime.
  * But... The {@link CoreErrorHandler} doesn't expect a error in the core itself.
- * The {@link CoreErrorHandler} will report the error to the core log file and at shutdown errors, it will show 
+ * The {@link CoreErrorHandler} will report the error to the core log file and at shutdown errors, it will show
  * 	a error page.
- * 
+ *
  * @category Core error handling
  * @version Version 3.007 ALPHA
  * @copyright Copyright &copy; 2011, FaabTech
@@ -17,16 +17,16 @@ class CoreErrorHandler {
 
 
 	/**
-	 * Initializes the {@link CoreErrorHandler}. 
+	 * Initializes the {@link CoreErrorHandler}.
 	 */
-	public static function init() {  
-		CoreLogger::info("Setting error handler to " . ERROR_HANDLING_METHOD); 
+	public static function init() {
+		CoreLogger::info("Setting error handler to " . ERROR_HANDLING_METHOD);
 		set_error_handler( ERROR_HANDLING_METHOD);
-		CoreLogger::info("Setting error handler to " . EXCEPTION_HANDLING_METHOD); 
+		CoreLogger::info("Setting error handler to " . EXCEPTION_HANDLING_METHOD);
 		set_exception_handler(EXCEPTION_HANDLING_METHOD);
-		CoreLogger::info("Registering shutdown function " . SHUTDOWN_HANDLING_METHOD); 
+		CoreLogger::info("Registering shutdown function " . SHUTDOWN_HANDLING_METHOD);
 		register_shutdown_function(SHUTDOWN_HANDLING_METHOD);
-		CoreLogger::info("CoreErrorHandler initialized."); 
+		CoreLogger::info("CoreErrorHandler initialized.");
 	}
 
 	/**
@@ -77,7 +77,7 @@ class CoreErrorHandler {
 
 
 }
- 
+
 
 
 

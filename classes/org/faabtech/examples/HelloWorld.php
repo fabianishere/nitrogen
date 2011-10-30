@@ -3,7 +3,7 @@ namespace org\faabtech\examples;
 
 if (!defined('FaabBB'))
 	exit();
-	
+
 use php\lang\Object as Object;
 
 /**
@@ -15,11 +15,11 @@ use php\lang\Object as Object;
  * @author Fabian M.
  */
  class HelloWorld extends Object {
- 	
+
  	public static function main($args) {
- 		echo '!! Hello World !!';	
+ 		echo '!! Hello World !!';
  	}
- 	
+
  }
- 
+
 ?>

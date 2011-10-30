@@ -1,7 +1,7 @@
 <?php
 if (!defined('FaabBB'))
 	exit();
-	
+
 /**
  * {@link CoreException} is the exception that's thrown by any Core/Runtime exceptions.
  *
@@ -10,8 +10,7 @@ if (!defined('FaabBB'))
  * @author Fabian M.
  */
 class CoreException extends Exception {
-	
-	
-	
+
+
+
 }
- 

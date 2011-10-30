@@ -10,7 +10,7 @@ include(CORE_FOLDER . DS . 'LoggingLevel' . PHP_SUFFIX);
  * The CoreLogger class stores the logs into the given log file(s).
  * Each log has a level, from the lowest level; <code>FINE</code>. To the highest level <code>SEVERE</code>
  * By using the {@link CoreLogger}, be sure you only log {@link Core} related messages.
- * 
+ *
  * @category Core Logging
  * @version Version 3.006 ALPHA
  * @copyright Copyright &copy; 2011, FaabTech
@@ -29,7 +29,7 @@ class CoreLogger {
 	 * Initialize the {@link CoreLogger}.
 	 */
 	public static function init() {
-		if (self::$init) 
+		if (self::$init)
 			return;
 		// Does the logs folder exists?
 		if (!file_exists(LOGS_FOLDER))
@@ -40,10 +40,10 @@ class CoreLogger {
 			die("Failed to initialize the CoreLogger. Core log file isn't writeable.");
 		}
 		// Does the file exists or is the filesize to big.
-		if (!file_exists(CORE_LOG_FILE) 
-			|| filesize(CORE_LOG_FILE) == 0 
+		if (!file_exists(CORE_LOG_FILE)
+			|| filesize(CORE_LOG_FILE) == 0
 			|| filesize(CORE_LOG_FILE) > 10000) {
-				
+
 			$f = @fopen(CORE_LOG_FILE, 'w') or die("Failed to initialize CoreLogger.");
 			fwrite($f, "<?php exit(); ?>\n");
 			fclose($f);
@@ -98,7 +98,7 @@ class CoreLogger {
 
 	/**
 	 * Log a message.
-	 * 
+	 *
 	 * @param $level The {@link CoreLoggingLevel} of this message.
 	 * @param $msg The message to log.
 	 */
@@ -109,8 +109,8 @@ class CoreLogger {
 		}
 		$backtrace = debug_backtrace();
 
-		$log = date("M m, Y G:i:s A") . ' ' . (isset($backtrace[$index == null ? 1 : $index]['class']) ? 
-			$backtrace[$index == null ? 1 : $index]['class'] : 'null') . ' ' . 
+		$log = date("M m, Y G:i:s A") . ' ' . (isset($backtrace[$index == null ? 1 : $index]['class']) ?
+			$backtrace[$index == null ? 1 : $index]['class'] : 'null') . ' ' .
 			$backtrace[$index == null ? 1 : $index]['function'] . "\n";
 		fwrite($f, $log);
 		$log = $level . ': ' . $msg . "\n";

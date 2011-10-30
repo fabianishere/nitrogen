@@ -4,7 +4,7 @@ if (!defined('FaabBB'))
 
 /**
  * The {@link CoreConfiguration} will load the configuration file ("$root/data/core.ini.php") and other
- * 	configuration files. After that, the files are interpreted and parsed.
+ * 	configuration files. After that, the files are read and parsed.
  *
  * @category Core configuration.
  * @version Version 3.009 ALPHA

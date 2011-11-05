@@ -1,7 +1,7 @@
 FaabBB 3
 ============================================================
 `FaabBB` is an open-source website management system and development framework written in PHP.
-You can use it as Community or CMS as well for your PHP application.
+You can use it as cmmunity software or CMS as well for your PHP application.
 
 Features
 -----------

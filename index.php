@@ -1,6 +1,5 @@
 <?php
 // Include core
-include(dirname(__FILE__). "/core/Core.php");
-// Invoke core
-Core::invoke();
+include_once(dirname(__FILE__). "/app/Main.php");
+
 ?> 

@@ -132,10 +132,10 @@ class Application {
 		
 		// Bind the default task.
 		// Configure the application here.
-		!isset($this->config['cli']) or $this->bind('cli', 
-			new $this->config['cli']);
-		isset($this->config['default']) ? $this->bind('default', 
-			new $this->config['default']) : 
+		!isset($this->config['cli_task']) or $this->bind('cli', 
+			new $this->config['cli_task']);
+		isset($this->config['default_task']) ? $this->bind('default', 
+			new $this->config['default_task']) : 
 			$this->bind('default', new RequestHandlerTask());
 
 		// Launch default task.

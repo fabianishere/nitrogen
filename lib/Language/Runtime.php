@@ -3,9 +3,11 @@ namespace Language;
 
 if (!defined('FaabBB'))
 	die;
+use Language\Net\HTTP\HttpRequest as HttpRequest;
 /**
  * Every FaabBB application has a single instance of class {@link Runtime} that 
- *	allows the application to interface with the environment in which the application is running
+ *	allows the application to interface with the environment in 
+ * 	which the application is running
  *
  * @category language
  * @version 3.010
@@ -16,15 +18,24 @@ if (!defined('FaabBB'))
 class Runtime {
 	
 	/**
-	 * Array with properties of the runtime.
+	 * Array with properties of this {@link Runtime}.
 	 */
-	protected $properties;
+	protected $properties = array();
+
+	/**
+	 * The {@link HttpRequest} of this {@link Runtime}.	
+	 */
+	protected $request = null;
 
 	/**
 	 * Constructs a new {@link Runtime} instance.
 	 */
 	public function __construct() {
 		$this->properties = $_SERVER;
+		$this->request = new HttpRequest($this->properties['REQUEST_METHOD'],
+			$this->properties['REQUEST_URI'], 
+			$this->properties['SERVER_PROTOCOL'],
+			$_GET, $_POST, $_COOKIE);
 	}
 
 	/**
@@ -38,7 +49,8 @@ class Runtime {
 	}
 	
 	/**
-	 * Returns the array of arguments passed to the script. When the script is run on the command line, 
+	 * Returns the array of arguments passed to the script. When the script 
+	 * 	is run on the command line, 
 	 *	this gives C-style access to the command line parameters. 
 	 * When called via the GET method, this will contain the query string.
 	 *
@@ -59,4 +71,13 @@ class Runtime {
 		return $this->properties['DOCUMENT_ROOT'];
 	}
 
+	/**
+	 * Returns the current {@link HttpRequest} of this {@link Runtime}.
+	 *
+	 * @since 3.010
+	 * @return The current {@link HttpRequest} of this {@link Runtime}.
+ 	 */ 
+	public function getRequest() {
+		return $this->request;
+	}
 }

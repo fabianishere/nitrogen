@@ -23,5 +23,5 @@ abstract class Task {
 	 * 	this {@link Task}.
 	 * @param $args Arguments of this {@link Task}.
 	 */
-	public abstract function start($application, $args);
+	public abstract function start($application, $request, $response, $args);
 }

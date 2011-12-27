@@ -24,7 +24,7 @@ class ConsoleTask extends Task {
 	 * @param $application The {@link Application} that tries to start
 	 * 	this {@link Task}.
 	 */
-	public function start($application, $args) {
+	public function start($application, $request, $response, $args) {
 		// Parse Args.
 	}
 }

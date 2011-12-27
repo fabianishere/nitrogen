@@ -18,40 +18,6 @@ if (!defined('FaabBB'))
 class Dispatcher {
 
 	/**
-	 * Array with registered {@link DispatchListener}s.
-	 */
-	protected $listeners = array();
-	
-	/**	
-	 * Registers a {@link DispatchListener}.
-	 *
-	 * @since 3.010
-	 * @param $listener The {@link DispatchListener} to register.
-	 */
-	public function addListener($listener) {
-		if ($listener instanceof DispatchListener)
-			array_push($this->listeners, $listener);
-	}
-
-	/**
-	 * Invokes all {@link DispatchListener}s that are in 
-	 * 	the {@link Dispatcher#listeners} array.
-	 * 	
-	 * @since 3.010
-	 * @param $response The {@link DispatcherResponse}.
-	 * @return $response
- 	 */
-	public function invoke($response) {
-		if (!$response instanceof DispatcherResponse)
-			return null;
-		for ($this->listeners as $listener) {
-			$listener->handle($response);
-
-		return $response;
-	}
-
-
-	/**
 	 * Dispatches the given {@link HttpRequest} 
 	 * 	and translates it into a 
  	 * 	{@link DispatcherResponse}..
@@ -61,6 +27,6 @@ class Dispatcher {
 	 */
 	public function dispatch($request) {
 
-		return $this->invoke(new DispatchResponse());
+		return new DispatchResponse();
 	}
 }

@@ -33,8 +33,6 @@ spl_autoload_register(function($class_name) {
 });
 
 use Core\Application as Application;
-use Logging\Logger as Logger;
-
 
 /**
  * The {@link Main} class is the main class of

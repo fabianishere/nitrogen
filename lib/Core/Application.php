@@ -16,6 +16,8 @@ use Configuration\ConfigurationException as ConfigurationException;
 
 use Logging\Logger as Logger;
 use Logging\FileHandler as FileHandler;
+
+use MVC\RequestHandlerTask as RequestHandlerTask;
 	
 /**
  * The {@link Application} class is a container for
@@ -90,7 +92,8 @@ class Application {
 	 */
 	public function launch($name, $args = array()) {
 		!isset($this->tasks[$name]) or
-			$this->tasks[$name]->start($this, $args); 
+			$this->tasks[$name]->start($this, $this->runtime->getRequest(),
+				null, $args); 
 	}
 	/**
 	 * Bind the given {@link Task} to the given
@@ -121,12 +124,22 @@ class Application {
 	public function configure($configurationManager = null) {
 		if ($configurationManager == null ||
 			$configurationManager instanceof ConfigurationManager) {
-			$configurationManager = new ConfigurationManager(CORE_CONFIGURATION_FILE);
+
+			$configurationManager = 
+				new ConfigurationManager(CORE_CONFIGURATION_FILE);
 		}
 		$this->config = $configurationManager;
+		
+		// Bind the default task.
 		// Configure the application here.
 		!isset($this->config['cli']) or $this->bind('cli', 
 			new $this->config['cli']);
+		isset($this->config['default']) ? $this->bind('default', 
+			new $this->config['default']) : 
+			$this->bind('default', new RequestHandlerTask());
+
+		// Launch default task.
+		$this->launch('default', array());
 	}
 	
 }

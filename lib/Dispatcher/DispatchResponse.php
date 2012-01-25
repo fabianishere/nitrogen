@@ -25,7 +25,7 @@ class DispatchResponse {
 	 * @param $action The action that's found by the 
 	 * 	{@link Dispatcher}.	
 	 */
-	public function __construct($name = "default", $action = "default") {
+	public function __construct($name = 'default', $action = 'default') {
 		$this->name = $name;
 		$this->action = $action;
 	}

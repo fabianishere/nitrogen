@@ -5,6 +5,7 @@ if (!defined('FaabBB'))
 	die;
 
 use Task\Task as Task;
+use Dispatcher\Dispatcher as Dispatcher;
 
 /**
  * The {@link RequestHandlerTask} handles incomming HTTP requests.
@@ -18,6 +19,6 @@ use Task\Task as Task;
 class RequestHandlerTask extends Task {
 	
 	public function start($application, $request, $response, $args) {
-		echo 'Task invoked.';
+		// TODO	
 	}
 }

@@ -34,3 +34,5 @@ class InputManager {
 			$items[$name] : false;
 	}
 }
+
+?>

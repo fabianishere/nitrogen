@@ -26,7 +26,8 @@ class Dispatcher {
 	 * @param $request The {@link HttpRequest} to dispatch.
 	 */
 	public function dispatch($request) {
-
-		return new DispatchResponse();
+		return new DispatchResponse(isset($_GET['page']) ? $_GET['page'] : 
+			'default', isset($_GET['action']) ? $_GET['action'] : 
+			'default');
 	}
 }

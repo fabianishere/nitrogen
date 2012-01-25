@@ -49,7 +49,8 @@ class ConfigurationManager implements ArrayAccess {
 	
 	/** @Override */
 	public function __get($name) {
-		return $this->properties[$name];
+		return isset($this->properties[$name]) ? $this->properties[$name] 
+			: null;
 	}
 	
 	/** @Override */
@@ -80,12 +81,11 @@ class ConfigurationManager implements ArrayAccess {
 	/** @Override */
 	public function offsetUnset($name) {
 		$this->__unset($name);
-    }
+    	}
 
 	/** @Override */
-    public function offsetGet($name) {
-       	return $this->__get($name);
-    }
+   	public function offsetGet($name) {
+       		return $this->__get($name);
+    	}
 }
-
 ?>

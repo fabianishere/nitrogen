@@ -43,8 +43,11 @@ class FileHandler {
 		$this->formatter = new SimpleFormatter();
 		$this->file = $file;
 		$this->maxSize = $maxSize;
-		$this->fileStream = fopen($file, (!is_readable($file) || filesize($file)
+		$this->fileStream = @fopen($file, (!is_readable($file) || filesize($file)
 			> $maxSize ? 'w+' : 'a+'));
+		if (!$this->fileStream) {
+			echo 'Failed to access logging file ' . $file . '.';
+		}
 	}
 	
 	/**

@@ -71,14 +71,26 @@ class Application {
 	public function getRuntime() {
 		return $this->runtime;
  	}
+
+	/**
+	 * Returns the {@link ConfigurationManager} of this class.
+	 * 
+  	 * @since 3.010
+	 * @return The {@link ConfigurationManager} of this class.
+	 */
+	public function getConfiguration() {
+		return $this->config;
+ 	}
+	
 	
 	/**
 	 * Constructs a new {@link Application} instance.
 	 */
-	public function __construct() {
+	public function __construct($logging = true) {
 		$this->runtime = new Runtime();
 		$this->logger = new Logger("core");
-		$this->logger->addHandler(new FileHandler(CORE_LOG_FILE));
+		if ($logging)
+			$this->logger->addHandler(new FileHandler(CORE_LOG_FILE));
 		$this->logger->info(Constants::$PRODUCT . ' version ' . 
 			Constants::$VERSION . "\n" . Constants::$DESCRIPTION);
 	}
@@ -90,7 +102,7 @@ class Application {
  	 * @param $name The name of the {@link Task} to start.
 	 * @param $args The arguments to give to this {@link Task}.
 	 */
-	public function launch($name, $args = array()) {
+	public function launch($name = "default", $args = array()) {
 		!isset($this->tasks[$name]) or
 			$this->tasks[$name]->start($this, $this->runtime->getRequest(),
 				null, $args); 
@@ -130,16 +142,12 @@ class Application {
 		}
 		$this->config = $configurationManager;
 		
-		// Bind the default task.
 		// Configure the application here.
 		!isset($this->config['cli_task']) or $this->bind('cli', 
 			new $this->config['cli_task']);
 		isset($this->config['default_task']) ? $this->bind('default', 
 			new $this->config['default_task']) : 
-			$this->bind('default', new RequestHandlerTask());
-
-		// Launch default task.
-		$this->launch('default', array());
+		$this->bind('default', new RequestHandlerTask());
 	}
 	
 }

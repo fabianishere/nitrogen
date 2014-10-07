@@ -1,6 +1,6 @@
-Phosphor
+Carbon
 ========
-Phosphor is a lightweight webframework written in PHP.
+Carbon is a lightweight webframework written in PHP.
 
 ## License
 See LICENSE

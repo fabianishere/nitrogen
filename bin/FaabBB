@@ -1,6 +1,0 @@
-#! /usr/bin/php
-<?php
-include_once(dirname(__FILE__) . '/../app/Main.php');
-
-Main::app()->launch('cli', array('ARGUMENTS' => $_SERVER['argv']));
-?>

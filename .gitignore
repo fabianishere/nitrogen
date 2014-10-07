@@ -1,4 +1,10 @@
-.settings/
-.project
-.buildpath
-data/logs/*.php
+/.settings
+/.project
+/.buildpath
+/composer.phar
+/vendor
+/nbproject
+phpunit.xml
+.vagrant
+Vagrantfile
+.idea

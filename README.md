@@ -1,6 +1,6 @@
-Carbon
+Nitrogen
 ========
-Carbon is a lightweight webframework written in PHP.
+Nitrogen is a lightweight webframework written in PHP.
 
 ## License
 See LICENSE
